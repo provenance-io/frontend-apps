@@ -8,6 +8,8 @@ const BaseStyling = styled.div`
   font-family: ${({ theme }) => theme.PRIMARY_FONT_FAMILY};
   color: ${({ theme }) => theme.FONT_PRIMARY};
   font-weight: ${({ theme }) => theme.FONT_WEIGHT_THINEST };
+  font-size: 1.2rem;
+  background: ${({ theme }) => theme.BACKGROUND_MAIN };
   a {
     color: ${({ theme }) => theme.FONT_LINK};
     :visited {

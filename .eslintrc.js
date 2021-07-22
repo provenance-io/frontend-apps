@@ -20,6 +20,7 @@ module.exports = {
     'react/prefer-stateless-function': 'warn',
     'react/prop-types': 'warn',
     'react/require-default-props': 'warn',
+    'react/self-closing-comp': 'warn',
   },
   plugins: ['prettier', 'react-hooks'],
   env: {

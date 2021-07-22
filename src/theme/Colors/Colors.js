@@ -7,7 +7,7 @@ export const Colors = {
   // Font
   FONT_LINK: allColors.BLUE_LIGHTEST,
   FONT_LINK_VISITED: allColors.BLUE_PRIMARY,
-  FONT_PRIMARY: allColors.GRAY_PRIMARY,
+  FONT_PRIMARY: allColors.WHITE,
   FONT_TITLE_INFO: allColors.GRAY_PRIMARY,
   FONT_DISABLED: allColors.GRAY_LIGHTER,
   FONT_WHITE: allColors.WHITE,
@@ -15,7 +15,7 @@ export const Colors = {
   HEADER_BACKGROUND: allColors.BLUE_DARKER,
   HEADER_FONT: allColors.WHITE,
   // Background
-  BACKGROUND_MAIN: allColors.BLUE_DARKEST,
+  BACKGROUND_MAIN: allColors.GRAY_DARKEST,
   BACKGROUND_CONTENT: allColors.BLUE_DARKER,
   BACKGROUND_LIGHT: allColors.GRAY_LIGHTEST,
   // Button
@@ -42,8 +42,8 @@ export const Colors = {
   CARD_FONT: allColors.GRAY_DARKEST,
   CARD_BORDER: allColors.GRAY_LIGHTER,
   // Icon
-  ICON_PRIMARY: allColors.WHITE,
-  ICON_SECONDARY: allColors.BLUE_PRIMARY,
+  ICON_PRIMARY: allColors.BLUE_PRIMARY,
+  ICON_SECONDARY: allColors.WHITE,
   ICON_FIGURE: allColors.PURPLE_PRIMARY,
   ICON_PROVENANCE: allColors.BLUE_PRIMARY,
   // Toggle
@@ -69,6 +69,9 @@ export const Colors = {
   FIGURE_PURPLE_DARK: allColors.PURPLE_DARK,
   // Input
   INPUT_BORDER: allColors.GRAY_LIGHTER,
+  // Tile
+  TILE_BACKGROUND: allColors.GRAY_DARKER,
+  TILE_BACKGROUND_LIGHT: allColors.GRAY_DARK,
 
   // All other colors
   ...allColors,

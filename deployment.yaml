@@ -1,27 +1,27 @@
 apiVersion: ctl.provenance.com/v1
 kind: ProvenanceDeployment
 metadata:
-  name: provenance-frontend-template
+  name: frontend-apps
   namespace: apis
   labels:
-    pd: provenance-frontend-template
+    pd: frontend-apps
 spec:
   selector:
     matchLabels:
-      pd: provenance-frontend-template
+      pd: frontend-apps
   template:
     metadata:
       labels:
-        pd: provenance-frontend-template
+        pd: frontend-apps
     spec:
       kong:
         enabled: true
         services:
-          - name: frontend-template
+          - name: frontend-apps
             proxy:
               path: /
             route:
-              path: /template
+              path: /
               strip_path: true
               preserve_host: false
             jwt:
@@ -35,8 +35,8 @@ spec:
           test: 1
         isFrontEnd: true
         image:
-          prod: us.gcr.io/figure-production/provenance-frontend-template:latest
-          test: us.gcr.io/figure-development/provenance-frontend-template:latest
+          prod: us.gcr.io/figure-production/frontend-apps:latest
+          test: us.gcr.io/figure-development/frontend-apps:latest
         networkPolicy:
           enabled: true
         resources:

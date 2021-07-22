@@ -3,13 +3,10 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const PageWrapper = styled.div`
-  padding: 106px 5%;
+  padding: 185px 8% 158px 8%;
   position: relative;
   margin: 0 auto;
-  text-align: center;
   min-height: 100vh;
-  background-color: ${({ theme }) => theme.BACKGROUND_LIGHT};
-  font-size: 1.4rem;
 `;
 
 const Wrapper = ({ children, noHeader }) => (

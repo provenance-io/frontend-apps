@@ -110,10 +110,10 @@ const SpriteSheet = () => (
           height="23"
           transform="rotate(45 20 3.73654)"
           stroke="currentColor"
-        ></rect>
-        <path d="M27.7782 12.2218L13.9896 26.0104" stroke="currentColor"></path>
-        <path d="M11.5147 11.5147L17.8787 17.8787" stroke="currentColor"></path>
-        <path d="M20 20L28.4853 28.4853" stroke="currentColor"></path>
+        />
+        <path d="M27.7782 12.2218L13.9896 26.0104" stroke="currentColor"/>
+        <path d="M11.5147 11.5147L17.8787 17.8787" stroke="currentColor"/>
+        <path d="M20 20L28.4853 28.4853" stroke="currentColor"/>
       </svg>
     </g>
     <g id={ICON_NAMES.HELP}>
@@ -232,6 +232,11 @@ const SpriteSheet = () => (
     <g id={ICON_NAMES.WARNING}>
       <svg fill="currentColor" viewBox="0 0 24 24">
         <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z" />
+      </svg>
+    </g>
+    <g id={ICON_NAMES.CHECK}>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 6" fill="none">
+        <path stroke="currentColor" d="M1.27 2.4l1.86 2 3.74-4"/>
       </svg>
     </g>
   </Svg>
