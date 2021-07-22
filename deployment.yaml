@@ -1,0 +1,56 @@
+apiVersion: ctl.provenance.com/v1
+kind: ProvenanceDeployment
+metadata:
+  name: provenance-frontend-template
+  namespace: apis
+  labels:
+    pd: provenance-frontend-template
+spec:
+  selector:
+    matchLabels:
+      pd: provenance-frontend-template
+  template:
+    metadata:
+      labels:
+        pd: provenance-frontend-template
+    spec:
+      kong:
+        enabled: true
+        services:
+          - name: frontend-template
+            proxy:
+              path: /
+            route:
+              path: /template
+              strip_path: true
+              preserve_host: false
+            jwt:
+              enabled: true
+              isFrontEnd: true
+              isCookieAuth: true
+      deployment:
+        port: 80
+        replicas:
+          prod: 1
+          test: 1
+        isFrontEnd: true
+        image:
+          prod: us.gcr.io/figure-production/provenance-frontend-template:latest
+          test: us.gcr.io/figure-development/provenance-frontend-template:latest
+        networkPolicy:
+          enabled: true
+        resources:
+          requests:
+            memory: "50Mi"
+            cpu: "100m"
+          limits:
+            memory: "1024Mi"
+            cpu: "500m"
+        readinessProbe:
+          path: /
+          periodSeconds: 3
+          initialDelaySeconds: 30
+        livenessProbe:
+          path: /
+          periodSeconds: 3
+          initialDelaySeconds: 100
