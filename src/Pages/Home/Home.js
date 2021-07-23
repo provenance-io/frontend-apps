@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Button, Wrapper, Tile } from 'Components';
+import { SAMPLE_DATA } from 'consts';
 
 const Callout = styled.div`
   display: flex;
@@ -25,55 +26,25 @@ const TileContainer = styled.div`
   flex-wrap: wrap;
 `;
 
-const Home = () => (
-  <Wrapper>
-    <Callout>
-      <CalloutText>Link your Provenance Wallet to view the badges you have received</CalloutText>
-      <Button>Link Provenance Wallet</Button>
-    </Callout>
-    <BadgeNotice>0/14 Badges Complete</BadgeNotice>
-    <TileContainer>
-      <Tile complete={true} icon="WALLET" title="Create a Wallet">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed laoreet vehicula leo, eget posuere est sagittis a.
-      </Tile>
-      <Tile complete={false} icon="PASSPORT" title="Add a Passport">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed laoreet vehicula leo, eget posuere est sagittis a.
-      </Tile>
-      <Tile complete={true} icon="STABLECOIN" title="Purchase Stablecoin">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed laoreet vehicula leo, eget posuere est sagittis a.
-      </Tile>
-      <Tile complete={false} icon="DELEGATED" title="Delegated Token">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed laoreet vehicula leo, eget posuere est sagittis a.
-      </Tile>
-      <Tile complete={false} icon="HASHTRANSFER" title="Transferred Hash">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed laoreet vehicula leo, eget posuere est sagittis a.
-      </Tile>
-      <Tile complete={true} icon="CASTLE" title="Subscribe to a fund">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed laoreet vehicula leo, eget posuere est sagittis a.
-      </Tile>
-      <Tile complete={false} icon="ICON" title="Upgrade Passport">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed laoreet vehicula leo, eget posuere est sagittis a.
-      </Tile>
-      <Tile complete={false} icon="ICON" title="Trade on ATS">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed laoreet vehicula leo, eget posuere est sagittis a.
-      </Tile>
-      <Tile complete={false} icon="ICON" title="Create a NFT">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed laoreet vehicula leo, eget posuere est sagittis a.
-      </Tile>
-      <Tile complete={false} icon="ICON" title="Tokenize a NFT">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed laoreet vehicula leo, eget posuere est sagittis a.
-      </Tile>
-      <Tile complete={false} icon="ICON" title="Create a coin">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed laoreet vehicula leo, eget posuere est sagittis a.
-      </Tile>
-      <Tile complete={false} icon="ICON" title="BTC Bridge">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed laoreet vehicula leo, eget posuere est sagittis a.
-      </Tile>
-      <Tile complete={false} icon="ICON" title="ETH Bridge">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed laoreet vehicula leo, eget posuere est sagittis a.
-      </Tile>
-    </TileContainer>
-  </Wrapper>
-);
+const Home = () => {
+  const buildTiles = SAMPLE_DATA.map(({ title, content, complete }) => (
+    <Tile complete={complete} title={title} key={title}>{content}</Tile>
+  ));
+  const totalBadges = SAMPLE_DATA.length;
+  const badgesComplete = SAMPLE_DATA.filter(({ complete }) => complete).length;
+
+  return (
+    <Wrapper>
+      <Callout>
+        <CalloutText>Link your Provenance Wallet to view the badges you have received</CalloutText>
+        <Button>Link Provenance Wallet</Button>
+      </Callout>
+      <BadgeNotice>{badgesComplete}/{totalBadges} Badges Complete</BadgeNotice>
+      <TileContainer>
+        {buildTiles}
+      </TileContainer>
+    </Wrapper>
+  );
+};
 
 export default Home;

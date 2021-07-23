@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Sprite from 'Components/Sprite';
+import { TILE_ICONS } from 'consts';
 
 const TileWrapper = styled.div`
   background: green;
@@ -60,11 +61,22 @@ const CheckIcon = styled.div`
   background: ${({ theme, complete }) => complete ? theme.GREEN_LIGHTEST : theme.GRAY_LIGHT };
   margin-right: 8px;
 `;
+const SpriteCheck = styled(Sprite)`
+  margin-top: 1px;
+`;
 const TileIcon = styled.div`
   height: 48px;
   width: 48px;
   border-radius: 4px;
   background: ${({ theme }) => theme.GRAY_LIGHT };;
+  ${({ complete }) => !complete && `
+    filter: grayscale(100%);
+    opacity: 0.5;
+  `}
+`;
+const TileImg = styled.img`
+  height: 100%;
+  width: 100%;
 `;
 const BottomRow = styled.div`
   display:flex;
@@ -81,41 +93,54 @@ const ArrowContainer = styled.div`
   cursor: pointer;
 `;
 
-const Tile = ({ className, title, complete, children }) => (
-  <TileWrapper>
-    <TileBorder>
-      <TileContent className={className} tabIndex="0">
-        <TopRow>
-          <Status>
-            <CheckIcon complete={complete}>
-              <Sprite icon="CHECK" size="10px" color="GRAY_DARKER" />
-            </CheckIcon>
-            {complete ? 'Complete' : 'Incomplete'}
-          </Status>
-          <TileIcon />
-        </TopRow>
-        <TileTitle>{title}</TileTitle>
-        <TileText>{children}</TileText>
-        <BottomRow>
-          <ArrowContainer>
-            <Sprite icon="CALL_MADE" spin="45" width="30px" height="40px" color="ICON_PRIMARY" />
-          </ArrowContainer>
-        </BottomRow>
-      </TileContent>
-    </TileBorder>
-  </TileWrapper>
-);
+const Tile = ({ className, title, complete, children, icon }) => {
+  const getTileIcon = () => {
+    if (icon) return <Sprite icon={icon} />
+    if (TILE_ICONS[title]) return <TileImg src={`${process.env.PUBLIC_URL}/assets/images/${TILE_ICONS[title]}.svg`} alt={`${title} icon`} />
+    return '';
+  };
+  
+  return (
+    <TileWrapper>
+      <TileBorder>
+        <TileContent className={className} tabIndex="0">
+          <TopRow>
+            <Status>
+              <CheckIcon complete={complete}>
+                <SpriteCheck icon="CHECK" size="10px" color="GRAY_DARKER" />
+              </CheckIcon>
+              {complete ? 'Complete' : 'Incomplete'}
+            </Status>
+            {/* If the user passes an icon, pull it from the spritesheet icons.  If nothing is passed, use the title.  If title doesn't match tile icon, use default */}
+            <TileIcon complete={complete}>
+              {getTileIcon()}
+            </TileIcon>
+          </TopRow>
+          <TileTitle>{title}</TileTitle>
+          <TileText>{children}</TileText>
+          <BottomRow>
+            <ArrowContainer>
+              <Sprite icon="CALL_MADE" spin="45" width="30px" height="40px" color="ICON_PRIMARY" />
+            </ArrowContainer>
+          </BottomRow>
+        </TileContent>
+      </TileBorder>
+    </TileWrapper>
+  );
+};
 
 Tile.propTypes = {
   className: PropTypes.string,
   title: PropTypes.string.isRequired,
   complete: PropTypes.bool,
   children: PropTypes.node,
+  icon: PropTypes.string,
 };
 Tile.defaultProps = {
   className: '',
   complete: false,
   children: '',
+  icon: '',
 };
 
 export default Tile;

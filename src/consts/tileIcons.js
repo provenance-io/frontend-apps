@@ -1,0 +1,16 @@
+export const TILE_ICONS = {
+  'Create a Wallet': 'wallet',
+  'Add a Passport': 'circuit',
+  'Purchase Stablecoin': 'tokenDeposit',
+  'Delegated Token': 'tokenSpin',
+  'Transferred Hash': 'tokenCircuit',
+  'Place a trade on Dlob': 'boxLines',
+  'Subscribe to a fund': 'castle',
+  'Upgrade Passport to accredited': 'tokenFloat',
+  'Trade on ATS': 'boxChart',
+  'Create a NFT': 'boxCircuit',
+  'Tokenize a NFT': 'box',
+  'Create a coin': 'tokenSpotlight',
+  'BTC Bridge': 'bridgeBtc',
+  'ETH Bridge': 'bridgeEth',
+};
