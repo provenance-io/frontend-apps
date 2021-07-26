@@ -37,10 +37,7 @@ const pathAlreadyExists = async (path) => (
     .catch(error => true)
 );
 
-const isCamelCase = (value) => { // vALuE
-  const lcValue = value.toLowerCase(); // value
-  return value === lcValue[0].toUpperCase() + lcValue.substring(1); // Value
-}
+const isCamelCase = (value) => (/^[A-Z][a-zA-Z]*$/.test(value));
 
 const appendIndexFile = async (type, name) => {
   let indexFilePath = '';

@@ -1,11 +1,10 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import PropTypes from 'prop-types';
 import Sprite from 'Components/Sprite';
 import { TILE_ICONS } from 'consts';
 
 const TileWrapper = styled.div`
-  background: green;
   margin: 10px;
   height: 272px;
   width: 328px;
@@ -14,14 +13,23 @@ const TileWrapper = styled.div`
   align-items: center;
   justify-content: center;
   padding: 10px;
+  overflow: hidden;
+`;
+const tileBorderAnimation = keyframes`
+  from { background-position: 0% 50%; }
+  to { background-position: 100% 50%; }
 `;
 const TileBorder = styled.div`
   height: 100%;
-  background: linear-gradient(240deg, rgba(58,74,120,1) 0%, rgba(20,24,33,1) 14%, rgba(62,68,79,1) 29%, rgba(20,24,33,1) 72%, rgba(44,48,60,1) 100%);
   position: absolute;
   top:0;
   left:0;
   padding: 2px;
+  animation: ${tileBorderAnimation} 2s linear;
+  background: linear-gradient(240deg, rgba(58,74,120,1) 0%, rgba(20,24,33,1) 14%, rgba(62,68,79,1) 29%, rgba(31,34,42,1) 55%, rgba(70,74,84,1) 61%, rgba(20,24,33,1) 72%, rgba(44,48,60,1) 100%);
+  animation-direction: alternate;
+  animation-fill-mode: both;
+  background-size: 200% 200%;
 `;
 const TileContent = styled.div`
   height: 100%;

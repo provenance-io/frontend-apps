@@ -1,7 +1,7 @@
-import appReducer from './appReducer';
+import walletReducer from './walletReducer';
 
 const rootReducer = {
-  appReducer,
+	walletReducer,
 };
 
 export default rootReducer;

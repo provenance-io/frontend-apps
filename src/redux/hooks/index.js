@@ -1,2 +1,2 @@
 export { default as useRedux } from './useRedux';
-export { default as useApp } from './useApp';
+export { default as useWallet } from './useWallet';

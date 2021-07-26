@@ -184,7 +184,7 @@ const SpriteSheet = () => (
       </svg>
     </g>
     <g id={ICON_NAMES.LOGO}>
-      <svg fill="none" viewBox="0 0 32 32">
+      <svg fill="none" viewBox="0 0 22 32">
         <path
           fill="currentColor"
           d="M17.2 3.5L11.5 0 5.7 3.5 0 7v21.6L5.8 32v-9.9l5.7 3.5 5.8-3.5 5.7-3.5V7l-5.8-3.5zm-5.7 16.3l-5.8-3.5v-5.8L11.5 7l5.7 3.5v5.8l-5.7 3.5z"

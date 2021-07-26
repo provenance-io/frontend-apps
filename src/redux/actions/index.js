@@ -1,7 +1,7 @@
 import * as xhrActions from './xhrActions';
-import * as appActions from './appActions';
+import * as walletActions from './walletActions';
 
 export {
   xhrActions,
-  appActions,
+	walletActions,
 };
