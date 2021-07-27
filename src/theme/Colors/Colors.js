@@ -12,7 +12,7 @@ export const Colors = {
   FONT_DISABLED: allColors.GRAY_LIGHTER,
   FONT_WHITE: allColors.WHITE,
   // Header
-  HEADER_BACKGROUND: allColors.BLUE_DARKER,
+  HEADER_BACKGROUND: allColors.GRAY_DARK,
   HEADER_FONT: allColors.WHITE,
   // Background
   BACKGROUND_MAIN: allColors.GRAY_DARKEST,

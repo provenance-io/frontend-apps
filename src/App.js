@@ -6,6 +6,7 @@ import { SpriteSheet, BaseStyle } from 'Components';
 import { GlobalStyle, Themes } from 'theme';
 import { Home, NotFound } from 'Pages';
 import { useWallet } from 'redux/hooks';
+import Header from 'Components/Header';
 
 const Version = styled.div`
   text-align: right;
@@ -25,6 +26,7 @@ function App() {
         <SpriteSheet />
         <ThemeProvider theme={Themes.default}>
           <BaseStyle>
+            <Header />
             <Switch>
               <Route exact path="/" component={Home} />
               <Route component={NotFound} />

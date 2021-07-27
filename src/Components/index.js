@@ -4,3 +4,4 @@ export { default as Sprite } from './Sprite';
 export { default as Button } from './Button';
 export { default as Tile } from './Tile';
 export { default as CopyValue } from './CopyValue';
+export { default as Header } from './Header';

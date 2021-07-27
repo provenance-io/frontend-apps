@@ -2,7 +2,6 @@ import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import PropTypes from 'prop-types';
 import Sprite from 'Components/Sprite';
-import { TILE_ICONS } from 'consts';
 
 const TileWrapper = styled.div`
   margin: 10px;
@@ -37,12 +36,6 @@ const TileContent = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background: ${({ theme }) => theme.TILE_BACKGROUND };
-  cursor: pointer;
-  transition: 500ms all;
-  &:hover, &:focus {
-    background: ${({ theme }) => theme.TILE_BACKGROUND_LIGHT };
-  }
 `;
 const TileTitle = styled.h3``;
 const TileText = styled.div`
@@ -100,18 +93,27 @@ const ArrowContainer = styled.div`
   justify-content: flex-end;
   cursor: pointer;
 `;
+const TileLink = styled.a`
+  display: block;
+  height: 100%;
+  width: 100%;
+  box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.2) inset;
+  background: ${({ theme }) => theme.TILE_BACKGROUND };
+  transition: 500ms all;
+  &:hover, &:focus {
+    background: ${({ theme }) => theme.TILE_BACKGROUND_LIGHT };
+  }
+  &&& {
+    color: inherit;
+    user-select: none;
+  }
+`;
 
-const Tile = ({ className, title, complete, children, icon }) => {
-  const getTileIcon = () => {
-    if (icon) return <Sprite icon={icon} />
-    if (TILE_ICONS[title]) return <TileImg src={`${process.env.PUBLIC_URL}/assets/images/${TILE_ICONS[title]}.svg`} alt={`${title} icon`} />
-    return '';
-  };
-  
-  return (
-    <TileWrapper>
-      <TileBorder>
-        <TileContent className={className} tabIndex="0">
+const Tile = ({ className, children, url, complete, title, icon }) => (
+  <TileWrapper>
+    <TileBorder>
+      <TileLink href={url} target="_blank" rel="noreferrer">
+        <TileContent className={className}>
           <TopRow>
             <Status>
               <CheckIcon complete={complete}>
@@ -119,9 +121,8 @@ const Tile = ({ className, title, complete, children, icon }) => {
               </CheckIcon>
               {complete ? 'Complete' : 'Incomplete'}
             </Status>
-            {/* If the user passes an icon, pull it from the spritesheet icons.  If nothing is passed, use the title.  If title doesn't match tile icon, use default */}
             <TileIcon complete={complete}>
-              {getTileIcon()}
+              <TileImg src={`${process.env.PUBLIC_URL}/assets/images/${icon}.svg`} alt={`${title} icon`} />
             </TileIcon>
           </TopRow>
           <TileTitle>{title}</TileTitle>
@@ -132,23 +133,22 @@ const Tile = ({ className, title, complete, children, icon }) => {
             </ArrowContainer>
           </BottomRow>
         </TileContent>
-      </TileBorder>
-    </TileWrapper>
-  );
-};
+      </TileLink>
+    </TileBorder>
+  </TileWrapper>
+);
 
 Tile.propTypes = {
   className: PropTypes.string,
-  title: PropTypes.string.isRequired,
   complete: PropTypes.bool,
-  children: PropTypes.node,
-  icon: PropTypes.string,
+  title: PropTypes.string.isRequired,
+  icon: PropTypes.string.isRequired,
+  url: PropTypes.string.isRequired,
+  children: PropTypes.string.isRequired,
 };
 Tile.defaultProps = {
   className: '',
   complete: false,
-  children: '',
-  icon: '',
 };
 
 export default Tile;

@@ -192,7 +192,7 @@ const SpriteSheet = () => (
       </svg>
     </g>
     <g id={ICON_NAMES.REPORTS}>
-      <svg viewBox="0 0 20 20" fill="none">
+      <svg viewBox="5 3 10 14" fill="none">
         <path d="M6 4H10.5L14.5 8V15.5H6V4Z" stroke="currentColor" />
         <path d="M10.5 4V8.5H14.5" stroke="currentColor" />
       </svg>

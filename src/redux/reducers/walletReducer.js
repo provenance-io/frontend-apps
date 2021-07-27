@@ -1,9 +1,11 @@
 import { PROVENANCE_WALLET_URL } from 'consts';
 import { handleActions } from 'redux-actions';
+import { SUCCESS, REQUEST, FAILURE } from '../actions/xhrActions';
 import {
   SET_WALLET_LOGIN,
   SET_WALLET_LOGOUT,
   SET_WALLET_URL,
+  GET_WALLET_KYC,
 } from '../actions/walletActions';
 
 export const initialState = {
@@ -13,6 +15,10 @@ export const initialState = {
   isLoggedIn: false,
   walletUrl: PROVENANCE_WALLET_URL,
   walletIcon: '',
+  isKYC: false,
+  isKYCLoading: false,
+  isKYCFailed: false,
+  isKYCChecked: false,
 };
 
 const reducer = handleActions(
@@ -47,6 +53,32 @@ const reducer = handleActions(
     [SET_WALLET_LOGOUT](state, { payload }) {
       return {
         ...initialState,
+      };
+    },
+    /* -----------------
+    GET_WALLET_KYC
+    -------------------*/
+    [`${GET_WALLET_KYC}_${REQUEST}`](state) {
+      return {
+        ...state,
+        isKYC: false,
+        isKYCLoading: true,
+        isKYCFailed: false,
+        isKYCChecked: true,
+      };
+    },
+    [`${GET_WALLET_KYC}_${SUCCESS}`](state, { payload: isKYC }) {
+      return {
+        ...state,
+        isKYC,
+        isKYCLoading: false,
+      };
+    },
+    [`${GET_WALLET_KYC}_${FAILURE}`](state) {
+      return {
+        ...state,
+        isKYCLoading: false,
+        isKYCFailed: true,
       };
     },
   },
