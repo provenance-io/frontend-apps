@@ -21,13 +21,12 @@ spec:
             proxy:
               path: /
             route:
+              subdomain: apps
               path: /
               strip_path: true
-              preserve_host: false
+              preserve_host: true
             jwt:
-              enabled: true
-              isFrontEnd: true
-              isCookieAuth: true
+              enabled: false
       deployment:
         port: 80
         replicas:

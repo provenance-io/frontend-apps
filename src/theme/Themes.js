@@ -47,21 +47,6 @@ const night = {
   INPUT_FONT_DARK: allColors.GRAY_LIGHTER,
   INPUT_BTN_DARK: allColors.GRAY_DARK,
   INPUT_BTN_DARK_TEXT: allColors.WHITE,
-  // Line-chart (colors for a line graph)
-  CHART_LINE_MAIN: allColors.BLUE_PRIMARY,
-  CHART_LINE_GRADIENT_START: allColors.BLUE_DARKER,
-  CHART_LINE_GRADIENT_END: allColors.BLUE_LIGHTER,
-  // Pie-chart (colors for a top-10 split)
-  CHART_PIE_A: allColors.BLUE_LIGHT,
-  CHART_PIE_B: allColors.BLUE_PRIMARY,
-  CHART_PIE_C: allColors.BLUE_DARK,
-  CHART_PIE_D: allColors.BLUE_DARKER,
-  CHART_PIE_E: allColors.BLUE_DARKEST,
-  CHART_PIE_F: allColors.TEAL_LIGHT,
-  CHART_PIE_G: allColors.TEAL_PRIMARY,
-  CHART_PIE_H: allColors.TEAL_DARK,
-  CHART_PIE_I: allColors.TEAL_DARKER,
-  CHART_PIE_J: allColors.TEAL_DARKEST,
 };
 
 const rainbow = {

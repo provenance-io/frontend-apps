@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { Wrapper, Tile } from 'Components';
 import { TILE_DATA } from 'consts';
-import { useWallet } from 'redux/hooks';
+import { useWallet, usePageTitle } from 'redux/hooks';
 
 const HomeContainer = styled.div`
   margin: 0 auto;
@@ -20,6 +20,7 @@ const TileContainer = styled.div`
 `;
 
 const Home = () => {
+  usePageTitle('Home');
   const walletStore = useWallet();
   const {
     address,

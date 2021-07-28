@@ -1,4 +1,4 @@
-import { PROVENANCE_BRIDGE_URL, PROVENANCE_WEBSITE_URL } from './urls';
+import { PROVENANCE_BRIDGE_URL } from './urls';
 
 export const TILE_DATA = [
   {
@@ -155,7 +155,7 @@ export const TILE_DATA = [
     },
     incomplete: {
       content: 'To use the BTC Bridge you must have completed your Figure Passport and be approved.  Click here to get detailed step by step directions and complete this process.',
-      url: `${PROVENANCE_WEBSITE_URL}/deposit-money`,
+      url: `/passport-info`,
     }
   },
   {
@@ -168,7 +168,7 @@ export const TILE_DATA = [
     },
     incomplete: {
       content: 'To use the ETH Bridge you must have completed your Figure Passport and be approved.  Click here to get detailed step by step directions and complete this process.',
-      url: `${PROVENANCE_WEBSITE_URL}/deposit-money`,
+      url: `/passport-info`,
     }
   },
 ];

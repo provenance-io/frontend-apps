@@ -2,6 +2,7 @@ import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import PropTypes from 'prop-types';
 import Sprite from 'Components/Sprite';
+import Link from 'Components/Link';
 
 const TileWrapper = styled.div`
   margin: 10px;
@@ -93,7 +94,7 @@ const ArrowContainer = styled.div`
   justify-content: flex-end;
   cursor: pointer;
 `;
-const TileLink = styled.a`
+const TileLink = styled(Link)`
   display: block;
   height: 100%;
   width: 100%;
@@ -112,7 +113,7 @@ const TileLink = styled.a`
 const Tile = ({ className, children, url, complete, title, icon }) => (
   <TileWrapper>
     <TileBorder>
-      <TileLink href={url} target="_blank" rel="noreferrer">
+      <TileLink to={url}>
         <TileContent className={className}>
           <TopRow>
             <Status>
@@ -122,7 +123,7 @@ const Tile = ({ className, children, url, complete, title, icon }) => (
               {complete ? 'Complete' : 'Incomplete'}
             </Status>
             <TileIcon complete={complete}>
-              <TileImg src={`${process.env.PUBLIC_URL}/assets/images/${icon}.svg`} alt={`${title} icon`} />
+              <TileImg src={`${process.env.PUBLIC_URL}/assets/images/tileIcons/${icon}.svg`} alt={`${title} icon`} />
             </TileIcon>
           </TopRow>
           <TileTitle>{title}</TileTitle>

@@ -16,7 +16,7 @@ export const Colors = {
   HEADER_FONT: allColors.WHITE,
   // Background
   BACKGROUND_MAIN: allColors.GRAY_DARKEST,
-  BACKGROUND_CONTENT: allColors.BLUE_DARKER,
+  BACKGROUND_CONTENT: allColors.GRAY_DARKER,
   BACKGROUND_LIGHT: allColors.GRAY_LIGHTEST,
   // Button
   BUTTON_BACKGROUND: allColors.BLUE_PRIMARY,
