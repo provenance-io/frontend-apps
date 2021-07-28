@@ -41,7 +41,7 @@
     "build": "react-scripts build",
     "build:production": "npm run build",
     "build:staging": "REACT_APP_ENV=test npm run build",
-    "test": "react-scripts test",
+    "test": "",
     "eject": "react-scripts eject",
     "script:component": "node scripts/createComponent/createComponent.js"
   },
