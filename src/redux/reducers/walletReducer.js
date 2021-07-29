@@ -12,6 +12,7 @@ export const initialState = {
   walletType: '',
   keychainAccountName: '',
   address: '',
+  publicKeyB64: '',
   isLoggedIn: false,
   walletUrl: PROVENANCE_WALLET_URL,
   walletIcon: '',
@@ -36,7 +37,14 @@ const reducer = handleActions(
     SET_WALLET_LOGIN
     -------------------*/
     [SET_WALLET_LOGIN](state, { payload }) {
-      const { address, keychainAccountName, walletType } = payload;
+      const {
+        address,
+        keychainAccountName,
+        walletType,
+        publicKeyB64,
+        randomB64,
+        signedB64,
+      } = payload;
       const walletIcon = (walletType && walletType === 'PROVENANCE' && 'LOGO') || (walletType && walletType === 'FIGURE' && 'FIGURE')
       return {
         ...state,
@@ -45,6 +53,9 @@ const reducer = handleActions(
         walletType,
         isLoggedIn: !!address,
         walletIcon,
+        publicKeyB64,
+        randomB64,
+        signedB64,
       };
     },
     /* -----------------

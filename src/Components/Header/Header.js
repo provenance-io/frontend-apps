@@ -128,10 +128,8 @@ const Navigation = () => {
   // Check for any changes to values in the wallet state and updated as needed
   // -------------------------------------------------------------------------------
   useEffect(() => {
-    setWalletLogin({
-      address, keychainAccountName, walletType,
-    });
-  }, [address, keychainAccountName, walletType, setWalletLogin]);
+    setWalletLogin(walletService.state);
+  }, [walletService.state, setWalletLogin]);
 
   // --------------------------------------------
   // Auto-Connect wallet if query params exist
