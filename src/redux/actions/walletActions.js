@@ -16,5 +16,15 @@ export const setWalletLogin = createAction(SET_WALLET_LOGIN);
 export const setWalletLogout = createAction(SET_WALLET_LOGOUT);
 export const setWalletUrl = createAction(SET_WALLET_URL);
 // - API
-export const getWalletKYC = (address) => async (dispatch) =>
-ajaxGet(GET_WALLET_KYC, dispatch, `${BRIDGE_WALLET_KYC_URL}/${address}`);
+export const getWalletKYC = ({address, publicKeyB64, fullJWT}) => async (dispatch) => {
+  const configHeaders = { headers: {'x-prov-pubk': publicKeyB64, 'x-prov-jwt': fullJWT} };
+  
+  return (
+    ajaxGet(
+      GET_WALLET_KYC,
+      dispatch,
+      `${BRIDGE_WALLET_KYC_URL}/${address}`,
+      configHeaders,
+    )
+  );
+}

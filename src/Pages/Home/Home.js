@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
+import { useWalletService, WINDOW_MESSAGES } from '@provenanceio/wallet-lib';
 import { Wrapper, Tile } from 'Components';
 import { TILE_DATA } from 'consts';
 import { useWallet, usePageTitle } from 'redux/hooks';
@@ -29,13 +30,43 @@ const Home = () => {
     isKYC,
     getWalletKYC,
     isKYCChecked,
+    publicKeyB64,
+    signedB64,
+    walletUrl,
   } = walletStore;
+
+  const { walletService } = useWalletService(walletUrl);
+
   useEffect(() => {
     // Only run this check once if we are missing KYC on this wallet
     if (!isKYC && !isKYCChecked && address) {
-      getWalletKYC(address);
+      // Create the jwt payload
+      const expires = Math.floor(Date.now() / 1000) - 30; // 30 seconds
+      const addressBase64 = btoa(address);
+      const header = {alg: 'ES256', typ: 'JWT'};
+      const headerEncoded = btoa(header);
+      const payload = {sub: `${publicKeyB64},${addressBase64}`, iss: 'provenance.io', iat: expires, exp: expires}
+      const payloadEncoded = btoa(payload);
+      const jwtEncoded = btoa(`${headerEncoded}.${payloadEncoded}`);
+      // Create window event listener (once wallet finishes)
+      walletService.addEventListener(WINDOW_MESSAGES.SIGNATURE_COMPLETE, ({ message = {} }) => {
+        const { signedPayload } = message;
+        const fullJWT = `${headerEncoded}.${payloadEncoded}.${signedPayload}`;
+        // Use the response to send to the wallet
+        getWalletKYC({address, publicKeyB64, fullJWT});
+      });
+      // Open the wallet to sign the payload
+      walletService.sign({payload: jwtEncoded});
     }
-  }, [getWalletKYC, isKYC, isKYCChecked, address]);
+  }, [
+    getWalletKYC,
+    walletService,
+    isKYC,
+    isKYCChecked,
+    address,
+    publicKeyB64,
+    signedB64,
+  ]);
   
   let badgesComplete = 0;
 

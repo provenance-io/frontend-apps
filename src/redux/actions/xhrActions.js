@@ -9,7 +9,6 @@ export const axios = _axios.create({
     'Content-Type': 'application/json',
     // 'apikey': 'KnfNsgXoIomkH7QhYDFNRpJ3wubaYMcs',
   },
-  withCredentials: true
 });
 
 export const REQUEST = 'REQUEST';
