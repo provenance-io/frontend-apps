@@ -7,7 +7,6 @@ export const axios = _axios.create({
   headers: {
     Accept: 'application/json',
     'Content-Type': 'application/json',
-    // 'apikey': 'KnfNsgXoIomkH7QhYDFNRpJ3wubaYMcs',
   },
 });
 
