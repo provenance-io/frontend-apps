@@ -181,7 +181,7 @@ const Navigation = () => {
         // Save token in store
         setJwtToken(fullJWT);
         // Use the response to send to the wallet
-        getWalletKYC({latestAddress, publicKeyB64, fullJWT});
+        getWalletKYC({address: latestAddress, publicKeyB64, fullJWT});
       }, { once: true });
       // Open the wallet to sign the payload
       setTimeout(() => {
