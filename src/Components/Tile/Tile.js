@@ -30,6 +30,10 @@ const TileBorder = styled.div`
   animation-direction: alternate;
   animation-fill-mode: both;
   background-size: 200% 200%;
+  &:hover, &:focus {
+    transition: 2s all;
+    background-size: 1300% 1300%;
+  }
 `;
 const TileContent = styled.div`
   height: 100%;

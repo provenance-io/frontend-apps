@@ -1,9 +1,11 @@
 import { PROVENANCE_WALLET_URL } from 'consts';
 import { handleActions } from 'redux-actions';
+import { getFromSessionStorage, addToSessionStorage, removeFromSessionStorage } from 'utils';
 import { SUCCESS, REQUEST, FAILURE } from '../actions/xhrActions';
 import {
   SET_WALLET_LOGIN,
   SET_WALLET_LOGOUT,
+  SET_JWT_TOKEN,
   SET_WALLET_URL,
   GET_WALLET_KYC,
 } from '../actions/walletActions';
@@ -20,10 +22,23 @@ export const initialState = {
   isKYCLoading: false,
   isKYCFailed: false,
   isKYCChecked: false,
+  jwtToken: getFromSessionStorage('jwtToken'),
 };
 
 const reducer = handleActions(
   {
+    /* -----------------
+    SET_JWT_TOKEN
+    -------------------*/
+    [SET_JWT_TOKEN](state, { payload: jwtToken }) {
+      // Are we clearing the jwt out by passing ''?
+      jwtToken ? addToSessionStorage({jwtToken}) : removeFromSessionStorage('jwtToken');
+
+      return {
+        ...state,
+        jwtToken,
+      };
+    },
     /* -----------------
     SET_WALLET_URL
     -------------------*/

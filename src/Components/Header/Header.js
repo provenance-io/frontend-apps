@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { Link as BaseLink, useLocation } from 'react-router-dom';
-import { useWalletService } from '@provenanceio/wallet-lib';
+import { useWalletService, WINDOW_MESSAGES } from '@provenanceio/wallet-lib';
 import { useWallet } from 'redux/hooks';
 import { CopyValue, Sprite, Button } from 'Components';
 import { PROVENANCE_WALLET_URL } from 'consts';
@@ -110,6 +110,11 @@ const Navigation = () => {
     setWalletLogin,
     setWalletLogout,
     walletUrl,
+    isKYC,
+    isKYCChecked,
+    getWalletKYC,
+    jwtToken,
+    setJwtToken,
   } = useWallet();
 
   // Get URL Query Parameters
@@ -151,8 +156,44 @@ const Navigation = () => {
     walletService
   ]);
 
+  // -----------------------------------------------------------------------
+  // Create event listener for the user logging in to trigger KYC check
+  // -----------------------------------------------------------------------
+  walletService.addEventListener(WINDOW_MESSAGES.CONNECTED, walletServiceState => {
+    const { address: latestAddress, publicKeyB64 } = walletServiceState;
+    // Update the wallet store
+    setWalletLogin(walletServiceState);
+
+    // Only run this check once if we are missing KYC on this wallet
+    if (!isKYC && !isKYCChecked && latestAddress && !jwtToken) {
+      // Create the jwt payload
+      const expires = Math.floor(Date.now() / 1000) - 900; // 900s (15min)
+      const addressBase64 = btoa(latestAddress);
+      const header = {alg: 'ES256', typ: 'JWT'};
+      const headerEncoded = btoa(header);
+      const payload = {sub: `${publicKeyB64},${addressBase64}`, iss: 'provenance.io', iat: expires, exp: expires}
+      const payloadEncoded = btoa(payload);
+      const jwtEncoded = btoa(`${headerEncoded}.${payloadEncoded}`);
+      // Create window event listener (once wallet finishes)
+      walletService.addEventListener(WINDOW_MESSAGES.SIGNATURE_COMPLETE, ({ message = {} }) => {
+        const { signedPayload } = message;
+        const fullJWT = `${headerEncoded}.${payloadEncoded}.${signedPayload}`;
+        // Save token in store
+        setJwtToken(fullJWT);
+        // Use the response to send to the wallet
+        getWalletKYC({latestAddress, publicKeyB64, fullJWT});
+      }, { once: true });
+      // Open the wallet to sign the payload
+      setTimeout(() => {
+        walletService.sign({payload: jwtEncoded});
+      }, 1000);
+    }
+  });
+
   const handleSignout = () => {
     setWalletLogout();
+    // Clear jwtToken
+    setJwtToken('');
     walletService.disconnect();
     walletService.updateState();
   };
