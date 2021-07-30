@@ -88,7 +88,7 @@ const Passport = () => {
         <StepRow>
           <StepTxt>
             <StepTitle>Step 6</StepTitle>
-            <StepInfo>Once you have completed your Figure Passport and are approved, you’ll receive an email confirming approval.  You can now use the BTC and/or ETH Bridge.</StepInfo>
+            <StepInfo>Once you have completed your Figure Passport and are approved, you’ll receive an email confirming approval.  You can now use the BTC and/or ETH Bridge after logging in.</StepInfo>
           </StepTxt>
           <StepImg src={`${process.env.PUBLIC_URL}/assets/images/passportSteps/step6.webp`} alt="Passport Step 6" />
         </StepRow>

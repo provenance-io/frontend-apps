@@ -7,6 +7,7 @@ import { ajaxGet } from './xhrActions';
 export const SET_WALLET_LOGIN = 'WALLET::SET_WALLET_LOGIN';
 export const SET_WALLET_LOGOUT = 'WALLET::SET_WALLET_LOGOUT';
 export const SET_WALLET_URL = 'WALLET::SET_WALLET_URL';
+export const SET_JWT_TOKEN = 'WALLET::SET_JWT_TOKEN';
 // - API
 export const GET_WALLET_KYC = 'WALLET::GET_WALLET_KYC';
 
@@ -15,6 +16,7 @@ export const GET_WALLET_KYC = 'WALLET::GET_WALLET_KYC';
 export const setWalletLogin = createAction(SET_WALLET_LOGIN);
 export const setWalletLogout = createAction(SET_WALLET_LOGOUT);
 export const setWalletUrl = createAction(SET_WALLET_URL);
+export const setJwtToken = createAction(SET_JWT_TOKEN);
 // - API
 export const getWalletKYC = ({address, publicKeyB64, fullJWT}) => async (dispatch) => {
   const configHeaders = { headers: {'x-prov-pubk': publicKeyB64, 'x-prov-jwt': fullJWT} };
