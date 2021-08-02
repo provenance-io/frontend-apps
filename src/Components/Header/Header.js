@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
+import base64url from 'base64url';
 import { Link as BaseLink, useLocation } from 'react-router-dom';
 import { useWalletService, WINDOW_MESSAGES } from '@provenanceio/wallet-lib';
 import { useWallet } from 'redux/hooks';
@@ -115,6 +116,7 @@ const Navigation = () => {
     getWalletKYC,
     jwtToken,
     setJwtToken,
+    publicKeyB64,
   } = useWallet();
 
   // Get URL Query Parameters
@@ -160,34 +162,8 @@ const Navigation = () => {
   // Create event listener for the user logging in to trigger KYC check
   // -----------------------------------------------------------------------
   walletService.addEventListener(WINDOW_MESSAGES.CONNECTED, walletServiceState => {
-    const { address: latestAddress, publicKeyB64 } = walletServiceState;
     // Update the wallet store
     setWalletLogin(walletServiceState);
-
-    // Only run this check once if we are missing KYC on this wallet
-    if (!isKYC && !isKYCChecked && latestAddress && !jwtToken) {
-      // Create the jwt payload
-      const expires = Math.floor(Date.now() / 1000) - 900; // 900s (15min)
-      const addressBase64 = btoa(latestAddress);
-      const header = {alg: 'ES256', typ: 'JWT'};
-      const headerEncoded = btoa(header);
-      const payload = {sub: `${publicKeyB64},${addressBase64}`, iss: 'provenance.io', iat: expires, exp: expires}
-      const payloadEncoded = btoa(payload);
-      const jwtEncoded = btoa(`${headerEncoded}.${payloadEncoded}`);
-      // Create window event listener (once wallet finishes)
-      walletService.addEventListener(WINDOW_MESSAGES.SIGNATURE_COMPLETE, ({ message = {} }) => {
-        const { signedPayload } = message;
-        const fullJWT = `${headerEncoded}.${payloadEncoded}.${signedPayload}`;
-        // Save token in store
-        setJwtToken(fullJWT);
-        // Use the response to send to the wallet
-        getWalletKYC({address: latestAddress, publicKeyB64, fullJWT});
-      }, { once: true });
-      // Open the wallet to sign the payload
-      setTimeout(() => {
-        walletService.sign({payload: jwtEncoded});
-      }, 1000);
-    }
   });
 
   const handleSignout = () => {
@@ -198,6 +174,29 @@ const Navigation = () => {
     walletService.updateState();
   };
 
+  const handleKYCSign = () => {
+    const expires = Math.floor(Date.now() / 1000) + 900; // 900s (15min)
+    const header = JSON.stringify({alg: 'ES256', typ: 'JWT'});
+    const headerEncoded = base64url(header);
+    // const addressBase64 = base64url(address);
+    const payload = JSON.stringify({sub: `${publicKeyB64},${address}`, iss: 'provenance.io', iat: expires, exp: expires});
+    const payloadEncoded = base64url(payload);
+    // const jwtEncoded = base64url(`${headerEncoded}.${payloadEncoded}`);
+    const jwtEncoded = base64url(`${header}.${payload}`);
+    // Open the wallet and sign the payload
+    walletService.sign({payload: jwtEncoded});
+    // Create window event listener (once wallet finishes)
+    walletService.addEventListener(WINDOW_MESSAGES.SIGNATURE_COMPLETE, ({ message = {} }) => {
+      const { signedPayload } = message;
+      const signedPayloadEncoded = base64url(signedPayload);
+      const fullJWT = `${headerEncoded}.${payloadEncoded}.${signedPayloadEncoded}`;
+      // Save token in store
+      setJwtToken(fullJWT);
+      // Use the response to send to the wallet
+      getWalletKYC({address, publicKeyB64, fullJWT});
+    }, { once: true });
+  };
+
   return (
     <HeaderWrapper>
       <LogoLink to='/' title="Provenance Applications">
@@ -205,6 +204,9 @@ const Navigation = () => {
         <LogoText>Apps</LogoText>
         {process.env.REACT_APP_ENV !== 'production' && <TestnetMessage>TESTNET</TestnetMessage>}
       </LogoLink>
+      {!isKYC && !isKYCChecked && address && !jwtToken &&
+        <Button onClick={handleKYCSign}>Check Account KYC</Button>
+      }
       {isLoggedIn ?
         <LoginStatus>
           <LoginMsg>
