@@ -175,21 +175,19 @@ const Navigation = () => {
   };
 
   const handleKYCSign = () => {
-    const expires = Math.floor(Date.now() / 1000) + 900; // 900s (15min)
+    const expires = Math.floor(Date.now() / 1000) + 9000; // 900s (15min)
     const header = JSON.stringify({alg: 'ES256', typ: 'JWT'});
     const headerEncoded = base64url(header);
     // const addressBase64 = base64url(address);
     const payload = JSON.stringify({sub: `${publicKeyB64},${address}`, iss: 'provenance.io', iat: expires, exp: expires});
     const payloadEncoded = base64url(payload);
-    // const jwtEncoded = base64url(`${headerEncoded}.${payloadEncoded}`);
-    const jwtEncoded = base64url(`${header}.${payload}`);
+    const jwtEncoded = base64url(`${headerEncoded}.${payloadEncoded}`);
     // Open the wallet and sign the payload
     walletService.sign({payload: jwtEncoded});
     // Create window event listener (once wallet finishes)
     walletService.addEventListener(WINDOW_MESSAGES.SIGNATURE_COMPLETE, ({ message = {} }) => {
       const { signedPayload } = message;
-      const signedPayloadEncoded = base64url(signedPayload);
-      const fullJWT = `${headerEncoded}.${payloadEncoded}.${signedPayloadEncoded}`;
+      const fullJWT = `${headerEncoded}.${payloadEncoded}.${signedPayload}`;
       // Save token in store
       setJwtToken(fullJWT);
       // Use the response to send to the wallet
