@@ -12,7 +12,7 @@ export const TILE_DATA = [
     },
     incomplete: {
       content: 'To use the BTC Bridge you must have completed your Figure Passport and be approved.  Click here to get detailed step by step directions and complete this process.',
-      url: `/passport-info`,
+      url: '/passport-info',
     }
   },
   {
@@ -26,7 +26,7 @@ export const TILE_DATA = [
     },
     incomplete: {
       content: 'To use the ETH Bridge you must have completed your Figure Passport and be approved.  Click here to get detailed step by step directions and complete this process.',
-      url: `/passport-info`,
+      url: '/passport-info',
     }
   },
   {
@@ -35,11 +35,11 @@ export const TILE_DATA = [
     title: 'Create a Wallet',
     complete: {
       content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed laoreet vehicula leo, eget posuere est sagittis a.',
-      url: 'https://provenance.io/bridge',
+      url: 'https://provenance.io/create-a-wallet',
     },
     incomplete: {
       content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed laoreet vehicula leo, eget posuere est sagittis a.',
-      url: 'https://provenance.io/bridge',
+      url: 'https://provenance.io/create-a-wallet',
     }
   },
   {
@@ -48,11 +48,11 @@ export const TILE_DATA = [
     title: 'Add a Passport',
     complete: {
       content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed laoreet vehicula leo, eget posuere est sagittis a.',
-      url: 'https://provenance.io/bridge',
+      url: 'https://provenance.io/add-a-passport',
     },
     incomplete: {
       content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed laoreet vehicula leo, eget posuere est sagittis a.',
-      url: 'https://provenance.io/bridge',
+      url: 'https://provenance.io/add-a-passport',
     }
   },
   {
@@ -61,11 +61,11 @@ export const TILE_DATA = [
     title: 'Purchase Stablecoin',
     complete: {
       content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed laoreet vehicula leo, eget posuere est sagittis a.',
-      url: 'https://provenance.io/bridge',
+      url: 'https://provenance.io/purchase-stablecoin',
     },
     incomplete: {
       content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed laoreet vehicula leo, eget posuere est sagittis a.',
-      url: 'https://provenance.io/bridge',
+      url: 'https://provenance.io/purchase-stablecoin',
     }
   },
   {
@@ -74,11 +74,11 @@ export const TILE_DATA = [
     title: 'Delegated Token',
     complete: {
       content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed laoreet vehicula leo, eget posuere est sagittis a.',
-      url: 'https://provenance.io/bridge',
+      url: 'https://provenance.io/delegated-token',
     },
     incomplete: {
       content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed laoreet vehicula leo, eget posuere est sagittis a.',
-      url: 'https://provenance.io/bridge',
+      url: 'https://provenance.io/delegated-token',
     }
   },
   {
@@ -87,11 +87,11 @@ export const TILE_DATA = [
     title: 'Transferred Hash',
     complete: {
       content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed laoreet vehicula leo, eget posuere est sagittis a.',
-      url: 'https://provenance.io/bridge',
+      url: 'https://provenance.io/transferred-hash',
     },
     incomplete: {
       content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed laoreet vehicula leo, eget posuere est sagittis a.',
-      url: 'https://provenance.io/bridge',
+      url: 'https://provenance.io/transferred-hash',
     }
   },
   {
@@ -100,11 +100,11 @@ export const TILE_DATA = [
     title: 'Place a trade on Dlob',
     complete: {
       content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed laoreet vehicula leo, eget posuere est sagittis a.',
-      url: 'https://provenance.io/bridge',
+      url: 'https://provenance.io/trade-on-dlob',
     },
     incomplete: {
       content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed laoreet vehicula leo, eget posuere est sagittis a.',
-      url: 'https://provenance.io/bridge',
+      url: 'https://provenance.io/trade-on-dlob',
     }
   },
   {
@@ -113,11 +113,11 @@ export const TILE_DATA = [
     title: 'Subscribe to a fund',
     complete: {
       content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed laoreet vehicula leo, eget posuere est sagittis a.',
-      url: 'https://provenance.io/bridge',
+      url: 'https://provenance.io/subscribe-to-fund',
     },
     incomplete: {
       content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed laoreet vehicula leo, eget posuere est sagittis a.',
-      url: 'https://provenance.io/bridge',
+      url: 'https://provenance.io/subscribe-to-fund',
     }
   },
   {
@@ -126,11 +126,11 @@ export const TILE_DATA = [
     title: 'Upgrade Passport to accredited',
     complete: {
       content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed laoreet vehicula leo, eget posuere est sagittis a.',
-      url: 'https://provenance.io/bridge',
+      url: 'https://provenance.io/upgrade-passport',
     },
     incomplete: {
       content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed laoreet vehicula leo, eget posuere est sagittis a.',
-      url: 'https://provenance.io/bridge',
+      url: 'https://provenance.io/upgrade-passport',
     }
   },
   {
@@ -139,11 +139,11 @@ export const TILE_DATA = [
     title: 'Trade on ATS',
     complete: {
       content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed laoreet vehicula leo, eget posuere est sagittis a.',
-      url: 'https://provenance.io/bridge',
+      url: 'https://provenance.io/trade-on-ats',
     },
     incomplete: {
       content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed laoreet vehicula leo, eget posuere est sagittis a.',
-      url: 'https://provenance.io/bridge',
+      url: 'https://provenance.io/trade-on-ats',
     }
   },
   {
@@ -152,11 +152,11 @@ export const TILE_DATA = [
     title: 'Create a NFT',
     complete: {
       content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed laoreet vehicula leo, eget posuere est sagittis a.',
-      url: 'https://provenance.io/bridge',
+      url: 'https://provenance.io/create-a-nft',
     },
     incomplete: {
       content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed laoreet vehicula leo, eget posuere est sagittis a.',
-      url: 'https://provenance.io/bridge',
+      url: 'https://provenance.io/create-a-nft',
     }
   },
   {
@@ -165,11 +165,11 @@ export const TILE_DATA = [
     title: 'Tokenize a NFT',
     complete: {
       content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed laoreet vehicula leo, eget posuere est sagittis a.',
-      url: 'https://provenance.io/bridge',
+      url: 'https://provenance.io/tokenize-a-nft',
     },
     incomplete: {
       content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed laoreet vehicula leo, eget posuere est sagittis a.',
-      url: 'https://provenance.io/bridge',
+      url: 'https://provenance.io/tokenize-a-nft',
     }
   },
   {
@@ -178,11 +178,11 @@ export const TILE_DATA = [
     title: 'Create a coin',
     complete: {
       content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed laoreet vehicula leo, eget posuere est sagittis a.',
-      url: 'https://provenance.io/bridge',
+      url: 'https://provenance.io/create-a-coin',
     },
     incomplete: {
       content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed laoreet vehicula leo, eget posuere est sagittis a.',
-      url: 'https://provenance.io/bridge',
+      url: 'https://provenance.io/create-a-coin',
     }
   },
 ];
