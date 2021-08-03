@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Wrapper, Tile } from 'Components';
+import base64url from 'base64url';
+import { useWalletService, WINDOW_MESSAGES } from '@provenanceio/wallet-lib';
+import { Wrapper, Tile, Button } from 'Components';
 import { TILE_DATA } from 'consts';
 import { useWallet, usePageTitle } from 'redux/hooks';
 
@@ -18,6 +20,10 @@ const TileContainer = styled.div`
   display:flex;
   flex-wrap: wrap;
 `;
+const AuthenticateButton = styled(Button)`
+  padding: 6px 18px;
+  margin-top: 10px;
+`;
 
 const Home = () => {
   usePageTitle('Home');
@@ -26,10 +32,37 @@ const Home = () => {
     address,
     keychainAccountName,
     walletType,
+    publicKeyB64,
+    walletUrl,
+    setJwtToken,
+    getWalletKYC,
   } = walletStore;
-  
+  const { walletService } = useWalletService(walletUrl);
+
   let badgesComplete = 0;
   let totalBadges = 0;
+
+  const handleKYCSign = () => {
+    // Don't click the badge behind me...
+    const expires = Math.floor(Date.now() / 1000) + 9000; // 900s (15min)
+    const header = JSON.stringify({alg: 'ES256', typ: 'JWT'});
+    const headerEncoded = base64url(header);
+    const payload = JSON.stringify({sub: `${publicKeyB64},${address}`, iss: 'provenance.io', iat: expires, exp: expires});
+    const payloadEncoded = base64url(payload);
+    const jwtEncoded = base64url(`${headerEncoded}.${payloadEncoded}`);
+    // Open the wallet and sign the payload
+    walletService.sign({payload: jwtEncoded});
+    // Create window event listener (once wallet finishes)
+    walletService.addEventListener(WINDOW_MESSAGES.SIGNATURE_COMPLETE, ({ message = {} }) => {
+      const { signedPayload } = message;
+      const fullJWT = `${headerEncoded}.${payloadEncoded}.${signedPayload}`;
+      // Save token in store
+      setJwtToken(fullJWT);
+      // Use the response to send to the wallet
+      getWalletKYC({address, publicKeyB64, fullJWT});
+    }, { once: true });
+  };
+
 
   const buildTiles = TILE_DATA.map(({ complete, incomplete, title, icon, requires, active }) => {
     if (!active) return '';
@@ -39,6 +72,17 @@ const Home = () => {
     if (isComplete) { badgesComplete += 1}
     const { content, url: baseUrl } = isComplete ? complete : incomplete;
     const url = isComplete ? `${baseUrl}?address=${address}&keychainAccountName=${keychainAccountName}&walletType=${walletType}` : baseUrl;
+    let finalContent = content;
+    // This is ugly, so we need to come up with a cleaner way to change certain things like this on tiles.
+    // Add a button to authenticate KYC to allow Bridge access
+    if ((title === 'BTC Bridge' || title === 'ETH Bridge') && !isComplete) {
+      finalContent = (
+        <>
+          {content}
+          <AuthenticateButton onClick={handleKYCSign} title="Click to Authenticate KYC">Authenticate</AuthenticateButton>
+        </>
+      )
+    };
 
     return (
       <Tile
@@ -48,7 +92,7 @@ const Home = () => {
         icon={icon}
         url={url}
       >
-        {content}
+        {finalContent}
       </Tile>
     );
   });

@@ -6,7 +6,7 @@ import Link from 'Components/Link';
 
 const TileWrapper = styled.div`
   margin: 10px;
-  height: 272px;
+  height: 282px;
   width: 328px;
   position: relative;
   display: flex;
@@ -41,11 +41,20 @@ const TileContent = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.2) inset;
+  background: ${({ theme }) => theme.TILE_BACKGROUND };
+  transition: 500ms all;
+  cursor: pointer;
+  position: relative;
+  &:hover, &:focus {
+    background: ${({ theme }) => theme.TILE_BACKGROUND_LIGHT };
+  }
 `;
 const TileTitle = styled.h3``;
 const TileText = styled.div`
   font-size: 1.2rem;
   line-height: 2rem;
+  z-index: 10;
 `;
 const TopRow = styled.div`
   display: flex;
@@ -100,45 +109,38 @@ const ArrowContainer = styled.div`
 `;
 const TileLink = styled(Link)`
   display: block;
+  position: absolute;
   height: 100%;
   width: 100%;
-  box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.2) inset;
-  background: ${({ theme }) => theme.TILE_BACKGROUND };
-  transition: 500ms all;
-  &:hover, &:focus {
-    background: ${({ theme }) => theme.TILE_BACKGROUND_LIGHT };
-  }
-  &&& {
-    color: inherit;
-    user-select: none;
-  }
+  z-index: 5;
+  top: 0;
+  left: 0;
 `;
 
 const Tile = ({ className, children, url, complete, title, icon }) => (
   <TileWrapper>
     <TileBorder>
-      <TileLink to={url}>
-        <TileContent className={className}>
-          <TopRow>
-            <Status>
-              <CheckIcon complete={complete}>
-                <SpriteCheck icon="CHECK" size="10px" color="GRAY_DARKER" />
-              </CheckIcon>
-              {complete ? 'Complete' : 'Incomplete'}
-            </Status>
-            <TileIcon complete={complete}>
-              <TileImg src={`${process.env.PUBLIC_URL}/assets/images/tileIcons/${icon}.svg`} alt={`${title} icon`} />
-            </TileIcon>
-          </TopRow>
-          <TileTitle>{title}</TileTitle>
-          <TileText>{children}</TileText>
-          <BottomRow>
-            <ArrowContainer>
-              <Sprite icon="CALL_MADE" spin="45" width="30px" height="40px" color="ICON_PRIMARY" />
-            </ArrowContainer>
-          </BottomRow>
-        </TileContent>
-      </TileLink>
+      <TileContent className={className}>
+        <TileLink to={url} />
+        <TopRow>
+          <Status>
+            <CheckIcon complete={complete}>
+              <SpriteCheck icon="CHECK" size="10px" color="GRAY_DARKER" />
+            </CheckIcon>
+            {complete ? 'Complete' : 'Incomplete'}
+          </Status>
+          <TileIcon complete={complete}>
+            <TileImg src={`${process.env.PUBLIC_URL}/assets/images/tileIcons/${icon}.svg`} alt={`${title} icon`} />
+          </TileIcon>
+        </TopRow>
+        <TileTitle>{title}</TileTitle>
+        <TileText>{children}</TileText>
+        <BottomRow>
+          <ArrowContainer>
+            <Sprite icon="CALL_MADE" spin="45" width="30px" height="40px" color="ICON_PRIMARY" />
+          </ArrowContainer>
+        </BottomRow>
+      </TileContent>
     </TileBorder>
   </TileWrapper>
 );
@@ -149,7 +151,7 @@ Tile.propTypes = {
   title: PropTypes.string.isRequired,
   icon: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
-  children: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
 };
 Tile.defaultProps = {
   className: '',
