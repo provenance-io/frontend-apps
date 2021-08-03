@@ -72,7 +72,7 @@ const Home = () => {
     let finalContent = content;
     // This is ugly, so we need to come up with a cleaner way to change certain things like this on tiles.
     // Add a button to authenticate KYC to allow Bridge access
-    if ((title === 'BTC Bridge' || title === 'ETH Bridge') && !isComplete) {
+    if ((title === 'BTC Bridge' || title === 'ETH Bridge') && !isComplete && address) {
       finalContent = (
         <>
           {content}
