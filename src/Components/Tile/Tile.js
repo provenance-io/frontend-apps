@@ -55,6 +55,7 @@ const TileText = styled.div`
   font-size: 1.2rem;
   line-height: 2rem;
   z-index: 10;
+  pointer-events: none;
 `;
 const TopRow = styled.div`
   display: flex;

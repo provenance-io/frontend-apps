@@ -178,8 +178,8 @@ const Navigation = () => {
       {isLoggedIn ?
         <LoginStatus>
           <LoginMsg>
-            <div>Logged in as</div>
-            <LoginLink onClick={handleSignout}>(Sign Out)</LoginLink>
+            <div>Connected Wallet:</div>
+            <LoginLink onClick={handleSignout}>(Disconnect)</LoginLink>
           </LoginMsg>
           <WalletInfo>
             {walletIcon && <SpriteSection><Sprite size="30px" icon={walletIcon} /></SpriteSection>}

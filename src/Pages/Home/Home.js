@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import base64url from 'base64url';
 import { useWalletService, WINDOW_MESSAGES } from '@provenanceio/wallet-lib';
 import { Wrapper, Tile, Button } from 'Components';
-import { TILE_DATA } from 'consts';
+import { TILE_DATA, PROVENANCE_BRIDGE_URL } from 'consts';
 import { useWallet, usePageTitle } from 'redux/hooks';
 
 const HomeContainer = styled.div`
@@ -23,6 +23,7 @@ const TileContainer = styled.div`
 const AuthenticateButton = styled(Button)`
   padding: 6px 18px;
   margin-top: 10px;
+  pointer-events: all;
 `;
 
 const Home = () => {
@@ -41,15 +42,14 @@ const Home = () => {
   let totalBadges = 0;
 
   const handleKYCSign = () => {
-    // Don't click the badge behind me...
-    const expires = Math.floor(Date.now() / 1000) + 9000; // 900s (15min)
+    const expires = Math.floor(Date.now() / 1000) + 900; // 900s (15min)
     const header = JSON.stringify({alg: 'ES256', typ: 'JWT'});
     const headerEncoded = base64url(header);
     const payload = JSON.stringify({sub: `${publicKeyB64},${address}`, iss: 'provenance.io', iat: expires, exp: expires});
     const payloadEncoded = base64url(payload);
     const jwtEncoded = base64url(`${headerEncoded}.${payloadEncoded}`);
     // Open the wallet and sign the payload
-    walletService.sign({payload: jwtEncoded});
+    walletService.sign({payload: jwtEncoded, description: 'Please sign for an authentication token', title: 'Authentication'});
     // Create window event listener (once wallet finishes)
     walletService.addEventListener(WINDOW_MESSAGES.SIGNATURE_COMPLETE, ({ message = {} }) => {
       const { signedPayload } = message;
@@ -57,7 +57,15 @@ const Home = () => {
       // Save token in store
       setJwtToken(fullJWT);
       // Use the response to send to the wallet
-      getWalletKYC({address, fullJWT});
+      getWalletKYC({address, fullJWT}).then(({ data = {}}) => {
+        const { expirationDate, pending } = data;
+        const dateValid = expirationDate && new Date() < new Date(expirationDate);
+        const pendingValid = pending === false;
+        // Auto-redirect to the bridge on success
+        if (dateValid && pendingValid) {
+          window.location.replace(PROVENANCE_BRIDGE_URL);
+        }
+      });
     }, { once: true });
   };
 
@@ -66,7 +74,7 @@ const Home = () => {
     if (!active) return '';
     totalBadges += 1;
     // Need some way to determine if this current tile is complete or not...
-    const isComplete = requires ? !!walletStore[requires] : false;
+    const isComplete = !!address && (requires ? !!walletStore[requires] : false);
     if (isComplete) { badgesComplete += 1}
     const { content, url } = isComplete ? complete : incomplete;
     let finalContent = content;
