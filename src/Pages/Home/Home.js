@@ -30,8 +30,6 @@ const Home = () => {
   const walletStore = useWallet();
   const {
     address,
-    keychainAccountName,
-    walletType,
     publicKeyB64,
     walletUrl,
     setJwtToken,
@@ -70,8 +68,7 @@ const Home = () => {
     // Need some way to determine if this current tile is complete or not...
     const isComplete = requires ? !!walletStore[requires] : false;
     if (isComplete) { badgesComplete += 1}
-    const { content, url: baseUrl } = isComplete ? complete : incomplete;
-    const url = isComplete ? `${baseUrl}?address=${address}&keychainAccountName=${keychainAccountName}&walletType=${walletType}` : baseUrl;
+    const { content, url } = isComplete ? complete : incomplete;
     let finalContent = content;
     // This is ugly, so we need to come up with a cleaner way to change certain things like this on tiles.
     // Add a button to authenticate KYC to allow Bridge access

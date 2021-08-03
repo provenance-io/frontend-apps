@@ -77,6 +77,7 @@ const reducer = handleActions(
     SET_WALLET_LOGOUT
     -------------------*/
     [SET_WALLET_LOGOUT](state, { payload }) {
+      removeFromSessionStorage('jwtToken');
       return {
         ...initialState,
       };
