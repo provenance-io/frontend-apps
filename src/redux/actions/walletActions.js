@@ -18,8 +18,8 @@ export const setWalletLogout = createAction(SET_WALLET_LOGOUT);
 export const setWalletUrl = createAction(SET_WALLET_URL);
 export const setJwtToken = createAction(SET_JWT_TOKEN);
 // - API
-export const getWalletKYC = ({address, publicKeyB64, fullJWT}) => async (dispatch) => {
-  const configHeaders = { headers: {'x-prov-pubk': publicKeyB64, 'x-prov-jwt': fullJWT} };
+export const getWalletKYC = ({address, fullJWT}) => async (dispatch) => {
+  const configHeaders = { headers: {'x-prov-jwt': fullJWT} };
   
   return (
     ajaxGet(

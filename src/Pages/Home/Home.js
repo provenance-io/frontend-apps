@@ -59,7 +59,7 @@ const Home = () => {
       // Save token in store
       setJwtToken(fullJWT);
       // Use the response to send to the wallet
-      getWalletKYC({address, publicKeyB64, fullJWT});
+      getWalletKYC({address, fullJWT});
     }, { once: true });
   };
 
