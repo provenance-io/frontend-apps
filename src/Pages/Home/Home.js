@@ -66,7 +66,6 @@ const Home = () => {
     if (!active) return '';
     totalBadges += 1;
     // Need some way to determine if this current tile is complete or not...
-    console.log('walletStore :', walletStore);
     const isComplete = requires ? !!walletStore[requires] : false;
     if (isComplete) { badgesComplete += 1}
     const { content, url } = isComplete ? complete : incomplete;
