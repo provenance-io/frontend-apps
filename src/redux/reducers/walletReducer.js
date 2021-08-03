@@ -94,7 +94,9 @@ const reducer = handleActions(
         isKYCChecked: true,
       };
     },
-    [`${GET_WALLET_KYC}_${SUCCESS}`](state, { payload: isKYC }) {
+    [`${GET_WALLET_KYC}_${SUCCESS}`](state, { payload }) {
+      const isKYC = !!payload;
+      
       addToSessionStorage({isKYC})
       
       return {

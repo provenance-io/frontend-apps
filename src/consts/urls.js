@@ -2,7 +2,6 @@
 const reactAppEnv = process.env.REACT_APP_ENV;
 // Determine current environment
 const isProd = reactAppEnv === 'production';
-const isTest = reactAppEnv === 'test';
 
 // -- Provenance.io Website
 export const PROVENANCE_WEBSITE_URL =
@@ -15,7 +14,7 @@ export const PROVENANCE_WALLET_URL = isProd
   : process.env.REACT_APP_TEST_PROVENANCE_WALLET_URL;
 
 // -- Provenance Bridge
-export const PROVENANCE_BRIDGE_URL = `https://apps${isTest && '.test'}.provenance.io/bridge`;
+export const PROVENANCE_BRIDGE_URL = `https://apps${isProd ? '' : '.test'}.provenance.io/bridge`;
 ;
 // -------- Base Bridge URL
 const BRIDGE_API_URL =
