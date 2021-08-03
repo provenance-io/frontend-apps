@@ -18,11 +18,11 @@ export const initialState = {
   isLoggedIn: false,
   walletUrl: PROVENANCE_WALLET_URL,
   walletIcon: '',
-  isKYC: false,
+  isKYC: getFromSessionStorage('isKYC') || '',
   isKYCLoading: false,
   isKYCFailed: false,
   isKYCChecked: false,
-  jwtToken: getFromSessionStorage('jwtToken'),
+  jwtToken: getFromSessionStorage('jwtToken') || '',
 };
 
 const reducer = handleActions(
@@ -77,7 +77,7 @@ const reducer = handleActions(
     SET_WALLET_LOGOUT
     -------------------*/
     [SET_WALLET_LOGOUT](state, { payload }) {
-      removeFromSessionStorage('jwtToken');
+      removeFromSessionStorage(['jwtToken', 'isKYC']);
       return {
         ...initialState,
       };
@@ -95,6 +95,8 @@ const reducer = handleActions(
       };
     },
     [`${GET_WALLET_KYC}_${SUCCESS}`](state, { payload: isKYC }) {
+      addToSessionStorage({isKYC})
+      
       return {
         ...state,
         isKYC,
