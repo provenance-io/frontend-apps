@@ -1,4 +1,4 @@
-import { PROVENANCE_BRIDGE_URL } from './urls';
+import { FIGURE_DASHBOARD_URL } from './urls';
 
 export const TILE_DATA = [
   {
@@ -8,11 +8,11 @@ export const TILE_DATA = [
     requires: 'isKYC',
     complete: {
       content: 'Utilize Your Bitcoin Holdings by buying, selling and trading on the Provenance Ecosystem through Provenance Bridge.',
-      url: `${PROVENANCE_BRIDGE_URL}`,
+      url: `${FIGURE_DASHBOARD_URL}`,
     },
     incomplete: {
       content: 'To use the BTC Bridge you must have completed your Figure Passport and be approved.  Click here to get detailed step by step directions and complete this process.',
-      url: `${PROVENANCE_BRIDGE_URL}`,
+      url: `${FIGURE_DASHBOARD_URL}`,
     }
   },
   {
@@ -22,11 +22,11 @@ export const TILE_DATA = [
     requires: 'isKYC',
     complete: {
       content: 'Utilize Your ETH Holdings by buying, selling and trading on the Provenance Ecosystem through Provenance Bridge.',
-      url: `${PROVENANCE_BRIDGE_URL}`,
+      url: `${FIGURE_DASHBOARD_URL}`,
     },
     incomplete: {
       content: 'To use the ETH Bridge you must have completed your Figure Passport and be approved.  Click here to get detailed step by step directions and complete this process.',
-      url: `${PROVENANCE_BRIDGE_URL}`,
+      url: `${FIGURE_DASHBOARD_URL}`,
     }
   },
   {

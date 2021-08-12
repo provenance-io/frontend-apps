@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useHistory } from 'react-router';
-import { Wrapper, Tile, Sprite } from 'Components';
+import { Wrapper, Tile, Sprite as BaseSprite, Link as BaseLink } from 'Components';
 import { TILE_DATA, PASSPORT_INFO_URL } from 'consts';
 import { useWallet, usePageTitle } from 'redux/hooks';
 
@@ -19,10 +18,17 @@ const TileContainer = styled.div`
   display:flex;
   flex-wrap: wrap;
 `;
+const Link = styled(BaseLink)`
+  display: inline-flex;
+  margin-top: 10px;
+  pointer-events: all;
+`;
+const Sprite = styled(BaseSprite)`
+  margin-right: 6px;
+`;
 
 const Home = () => {
   usePageTitle('Home');
-  const { history } = useHistory();
   const walletStore = useWallet();
   const { address } = walletStore;
 
@@ -43,7 +49,10 @@ const Home = () => {
       finalContent = (
         <>
           {content}
-          <Sprite onClick={() => history.push(PASSPORT_INFO_URL)} icon="HELP_OUTLINE" title="Click to Authenticate KYC" size="2rem" />
+          <Link to={PASSPORT_INFO_URL} title="Passport Information and Details">
+            <Sprite icon="HELP_OUTLINE" size="2rem" />
+            Details
+          </Link>
         </>
       )
     };

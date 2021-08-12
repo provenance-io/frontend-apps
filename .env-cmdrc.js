@@ -3,7 +3,6 @@ module.exports = {
     // App settings
     PUBLIC_URL: "/",
     SKIP_PREFLIGHT_CHECK: "true",
-    REACT_APP_VERSION: "$npm_package_version",
     // Figure/Provenance Configs
     REACT_APP_AUTHORIZATION_PREFIX: "x-",
     REACT_APP_LOCAL_UUID: "8b73804f-f50a-4a27-b842-5c9bca2b3c14",
