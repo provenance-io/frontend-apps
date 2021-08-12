@@ -12,7 +12,7 @@ export const TILE_DATA = [
     },
     incomplete: {
       content: 'To use the BTC Bridge you must have completed your Figure Passport and be approved.  Click here to get detailed step by step directions and complete this process.',
-      url: '/passport-info',
+      url: `${PROVENANCE_BRIDGE_URL}`,
     }
   },
   {
@@ -26,7 +26,7 @@ export const TILE_DATA = [
     },
     incomplete: {
       content: 'To use the ETH Bridge you must have completed your Figure Passport and be approved.  Click here to get detailed step by step directions and complete this process.',
-      url: '/passport-info',
+      url: `${PROVENANCE_BRIDGE_URL}`,
     }
   },
   {

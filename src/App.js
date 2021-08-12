@@ -7,6 +7,7 @@ import { GlobalStyle, Themes } from 'theme';
 import { Home, NotFound, Passport } from 'Pages';
 import { useWallet } from 'redux/hooks';
 import Header from 'Components/Header';
+import { PASSPORT_INFO_URL, HOME_URL } from 'consts';
 
 const Version = styled.div`
   text-align: right;
@@ -28,8 +29,8 @@ function App() {
           <BaseStyle>
             <Header />
             <Switch>
-              <Route exact path="/" component={Home} />
-              <Route path="/passport-info" component={Passport} />
+              <Route exact path={HOME_URL} component={Home} />
+              <Route path={PASSPORT_INFO_URL} component={Passport} />
               <Route component={NotFound} />
             </Switch>
             <Version>v{process.env.REACT_APP_VERSION}</Version>

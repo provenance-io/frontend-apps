@@ -1,9 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import base64url from 'base64url';
-import { useWalletService, WINDOW_MESSAGES } from '@provenanceio/wallet-lib';
-import { Wrapper, Tile, Button } from 'Components';
-import { TILE_DATA, PROVENANCE_BRIDGE_URL } from 'consts';
+import { useHistory } from 'react-router';
+import { Wrapper, Tile, Sprite } from 'Components';
+import { TILE_DATA, PASSPORT_INFO_URL } from 'consts';
 import { useWallet, usePageTitle } from 'redux/hooks';
 
 const HomeContainer = styled.div`
@@ -20,55 +19,15 @@ const TileContainer = styled.div`
   display:flex;
   flex-wrap: wrap;
 `;
-const AuthenticateButton = styled(Button)`
-  padding: 6px 18px;
-  margin-top: 10px;
-  pointer-events: all;
-`;
 
 const Home = () => {
   usePageTitle('Home');
+  const { history } = useHistory();
   const walletStore = useWallet();
-  const {
-    address,
-    publicKeyB64,
-    walletUrl,
-    setJwtToken,
-    getWalletKYC,
-  } = walletStore;
-  const { walletService } = useWalletService(walletUrl);
+  const { address } = walletStore;
 
   let badgesComplete = 0;
   let totalBadges = 0;
-
-  const handleKYCSign = () => {
-    const expires = Math.floor(Date.now() / 1000) + 900; // 900s (15min)
-    const header = JSON.stringify({alg: 'ES256', typ: 'JWT'});
-    const headerEncoded = base64url(header);
-    const payload = JSON.stringify({sub: `${publicKeyB64},${address}`, iss: 'provenance.io', iat: expires, exp: expires});
-    const payloadEncoded = base64url(payload);
-    const jwtEncoded = base64url(`${headerEncoded}.${payloadEncoded}`);
-    // Open the wallet and sign the payload
-    walletService.sign({payload: jwtEncoded, description: 'Please sign for an authentication token', title: 'Authentication'});
-    // Create window event listener (once wallet finishes)
-    walletService.addEventListener(WINDOW_MESSAGES.SIGNATURE_COMPLETE, ({ message = {} }) => {
-      const { signedPayload } = message;
-      const fullJWT = `${headerEncoded}.${payloadEncoded}.${signedPayload}`;
-      // Save token in store
-      setJwtToken(fullJWT);
-      // Use the response to send to the wallet
-      getWalletKYC({address, fullJWT}).then(({ data = {}}) => {
-        const { expirationDate, pending } = data;
-        const dateValid = expirationDate && new Date() < new Date(expirationDate);
-        const pendingValid = pending === false;
-        // Auto-redirect to the bridge on success
-        if (dateValid && pendingValid) {
-          window.location.replace(PROVENANCE_BRIDGE_URL);
-        }
-      });
-    }, { once: true });
-  };
-
 
   const buildTiles = TILE_DATA.map(({ complete, incomplete, title, icon, requires, active }) => {
     if (!active) return '';
@@ -80,11 +39,11 @@ const Home = () => {
     let finalContent = content;
     // This is ugly, so we need to come up with a cleaner way to change certain things like this on tiles.
     // Add a button to authenticate KYC to allow Bridge access
-    if ((title === 'BTC Bridge' || title === 'ETH Bridge') && !isComplete && address) {
+    if ((title === 'BTC Bridge' || title === 'ETH Bridge') && !isComplete) {
       finalContent = (
         <>
           {content}
-          <AuthenticateButton onClick={handleKYCSign} title="Click to Authenticate KYC">Authenticate</AuthenticateButton>
+          <Sprite onClick={() => history.push(PASSPORT_INFO_URL)} icon="HELP_OUTLINE" title="Click to Authenticate KYC" size="2rem" />
         </>
       )
     };
