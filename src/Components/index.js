@@ -1,4 +1,5 @@
 export * from './Layout';
+export * from './LineSpacer';
 export { default as SpriteSheet } from './SpriteSheet';
 export { default as Sprite } from './Sprite';
 export { default as Button } from './Button';

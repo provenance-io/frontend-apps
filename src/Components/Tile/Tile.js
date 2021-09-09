@@ -3,9 +3,11 @@ import styled, { keyframes } from 'styled-components';
 import PropTypes from 'prop-types';
 import Sprite from 'Components/Sprite';
 import Link from 'Components/Link';
+import { useWallet } from 'redux/hooks';
+import { breakpoints } from 'consts';
 
 const TileWrapper = styled.div`
-  margin: 10px;
+  margin: 0 30px;
   height: 282px;
   width: 328px;
   position: relative;
@@ -14,6 +16,14 @@ const TileWrapper = styled.div`
   justify-content: center;
   padding: 10px;
   overflow: hidden;
+  @media ${breakpoints.down('lg')} {
+    height: 250px;
+    width: 275px;
+  }
+  @media ${breakpoints.down('md')} {
+    height: 200px;
+    width: 140px;
+  }
 `;
 const tileBorderAnimation = keyframes`
   from { background-position: 0% 50%; }
@@ -21,6 +31,7 @@ const tileBorderAnimation = keyframes`
 `;
 const TileBorder = styled.div`
   height: 100%;
+  width: 100%;
   position: absolute;
   top:0;
   left:0;
@@ -118,45 +129,48 @@ const TileLink = styled(Link)`
   left: 0;
 `;
 
-const Tile = ({ className, children, url, complete, title, icon }) => (
-  <TileWrapper>
-    <TileBorder>
-      <TileContent className={className}>
-        <TileLink to={url} />
-        <TopRow>
-          <Status>
-            <CheckIcon complete={complete}>
-              <SpriteCheck icon="CHECK" size="10px" color="GRAY_DARKER" />
-            </CheckIcon>
-            {complete ? 'Complete' : 'Incomplete'}
-          </Status>
-          <TileIcon complete={complete}>
-            <TileImg src={`${process.env.PUBLIC_URL}/assets/images/tileIcons/${icon}.svg`} alt={`${title} icon`} />
-          </TileIcon>
-        </TopRow>
-        <TileTitle>{title}</TileTitle>
-        <TileText>{children}</TileText>
-        <BottomRow>
-          <ArrowContainer>
-            <Sprite icon="CALL_MADE" spin="45" width="30px" height="40px" color="ICON_PRIMARY" />
-          </ArrowContainer>
-        </BottomRow>
-      </TileContent>
-    </TileBorder>
-  </TileWrapper>
-);
+const Tile = ({ className, data }) => {
+  const { walletStore } = useWallet();
+  const { active, icon, complete, incomplete, requires } = data;
+  // Determine is tile is available
+  const status = (walletStore && (!requires || !!walletStore[requires])) ? complete : incomplete;
+  const { url, content, title } = status;
+
+  return active ? (
+    <TileWrapper>
+      <TileBorder>
+        <TileContent className={className}>
+          <TileLink to={url} />
+          <TopRow>
+            <Status>
+              <CheckIcon complete={complete}>
+                <SpriteCheck icon="CHECK" size="10px" color="GRAY_DARKER" />
+              </CheckIcon>
+              {complete ? 'Complete' : 'Incomplete'}
+            </Status>
+            <TileIcon complete={complete}>
+              <TileImg src={`${process.env.PUBLIC_URL}/assets/images/tileIcons/${icon}.svg`} alt={`${title} icon`} />
+            </TileIcon>
+          </TopRow>
+          <TileTitle>{title}</TileTitle>
+          <TileText>{content}</TileText>
+          <BottomRow>
+            <ArrowContainer>
+              <Sprite icon="CALL_MADE" spin="45" width="30px" height="40px" color="ICON_PRIMARY" />
+            </ArrowContainer>
+          </BottomRow>
+        </TileContent>
+      </TileBorder>
+    </TileWrapper>
+  ) : null;
+};
 
 Tile.propTypes = {
   className: PropTypes.string,
-  complete: PropTypes.bool,
-  title: PropTypes.string.isRequired,
-  icon: PropTypes.string.isRequired,
-  url: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired,
+  data: PropTypes.object.isRequired,
 };
 Tile.defaultProps = {
   className: '',
-  complete: false,
 };
 
 export default Tile;

@@ -16,6 +16,7 @@ module.exports = {
     // Wallet Urls
     REACT_APP_FIGURE_WALLET_URL: "https://test.figure.com/dashboard",
     REACT_APP_PROVENANCE_WALLET_URL: "https://wallet.test.provenance.io",
+    REACT_APP_PROVENANCE_CREATE_WALLET_URL: "https://test.provenance.io/create-a-wallet",
   },
   staging: {
     // App settings
@@ -34,5 +35,6 @@ module.exports = {
     // Wallet Urls
     REACT_APP_FIGURE_WALLET_URL: "https://figure.com/dashboard",
     REACT_APP_PROVENANCE_WALLET_URL: "https://wallet.provenance.io",
+    REACT_APP_PROVENANCE_CREATE_WALLET_URL: "https://provenance.io/create-a-wallet",
   },
 };
