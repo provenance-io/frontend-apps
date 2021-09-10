@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Wrapper, Tile, LineSpacer } from 'Components';
 import {
@@ -17,6 +17,7 @@ import {
   updatePassport
 } from 'consts';
 import { usePageTitle } from 'redux/hooks';
+import useApp from 'redux/hooks/useApp';
 
 const HomeContainer = styled.div`
   margin: 0 auto;
@@ -36,18 +37,41 @@ const TileColumn = styled.div`
   flex-direction: column;
   justify-content: flex-start;
 `;
+const HeaderText = styled.div`
+  font-size: 2.1rem;
+  margin-bottom: 50px;
+  text-align: center;
+`;
+const TestPermissions = styled.div`
+  position: fixed;
+  top:80px;
+  left: 0;
+  background: grey;
+  padding: 10px;
+  display: flex;
+`;
 
 const Home = () => {
   usePageTitle('Home');
+  const [permissionName, setPermissionName] = useState();
+  const { addPermissions, removePermissions } = useApp();
 
   return (
     <Wrapper>
       <HomeContainer>
+        <HeaderText>Link your Provenance Wallet to view the apps you can use</HeaderText>
+        { /* TEST ONLY, REMOVE ME | START */}
+        <TestPermissions>
+          <input placeholder="Enter Permission Name" onChange={({ target }) => setPermissionName(target.value)}/>
+          <button onClick={() => removePermissions(permissionName)}>Remove</button>
+          <button onClick={() => addPermissions(permissionName)}>Add</button>
+        </TestPermissions>
+        { /* TEST ONLY, REMOVE ME | END */}
         <TileContainer>
           <TileRow>
-            <TileColumn>
+              <LineSpacer horizontal position="right" />
               <Tile data={createWallet} />
-            </TileColumn>
+              <LineSpacer horizontal position="left" />
           </TileRow>
           <TileRow>
             <TileColumn>

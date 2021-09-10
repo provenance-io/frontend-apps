@@ -1,0 +1,65 @@
+import { handleActions } from 'redux-actions';
+import {
+  ADD_PERMISSIONS,
+  SET_PERMISSIONS,
+  REMOVE_PERMISSIONS,
+} from '../actions/appActions';
+
+export const initialState = {
+  appPermissions: [],
+};
+
+const reducer = handleActions(
+  {
+    /* -----------------
+    SET_PERMISSIONS
+    -------------------*/
+    [SET_PERMISSIONS](state, { payload: appPermissions }) {
+      return {
+        ...state,
+        appPermissions,
+      };
+    },
+    /* -----------------
+    ADD_PERMISSIONS
+    -------------------*/
+    [ADD_PERMISSIONS](state, { payload }) {
+      const isArray = Array.isArray(payload);
+      const appPermissions = [...state.appPermissions];
+      // Turn it into an array if not one already
+      const names = isArray ? payload : [payload];
+      // Loop through the names and if it doesn't already exist in appPermissions, add it
+      names.forEach(name => {
+        if (!appPermissions.includes(name)) {
+          appPermissions.push(name);
+        }
+      });
+      return {
+        ...state,
+        appPermissions,
+      };
+    },
+    /* ----------------------
+    REMOVE_PERMISSIONS
+    -----------------------*/
+    [REMOVE_PERMISSIONS](state, { payload }) {
+      const isArray = Array.isArray(payload);
+      // Turn it into an array if not one already
+      const names = isArray ? payload : [payload];
+      // Clone current permissions to make changes
+      const appPermissions = [...state.appPermissions];
+      // Loop through each name, removing it from the permissions if it's there
+      names.forEach(name => {
+        const index = appPermissions.indexOf(name);
+        if (index > -1) appPermissions.splice(index, 1);
+      });
+      return {
+        ...state,
+        appPermissions,
+      };
+    },
+  },
+  initialState
+);
+
+export default reducer;

@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 import PropTypes from 'prop-types';
 import Sprite from 'Components/Sprite';
 import Link from 'Components/Link';
-import { useWallet } from 'redux/hooks';
 import { breakpoints } from 'consts';
+import { useApp } from 'redux/hooks';
+import { getTileInfo } from 'utils';
 
 const TileWrapper = styled.div`
   margin: 0 30px;
@@ -73,24 +74,24 @@ const TopRow = styled.div`
   align-items: center;
   justify-content: space-between;
 `;
-const Status = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-const CheckIcon = styled.div`
-  height:15px;
-  width: 15px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 100%;
-  background: ${({ theme, complete }) => complete ? theme.GREEN_LIGHTEST : theme.GRAY_LIGHT };
-  margin-right: 8px;
-`;
-const SpriteCheck = styled(Sprite)`
-  margin-top: 1px;
-`;
+// const Status = styled.div`
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+// `;
+// const CheckIcon = styled.div`
+//   height:15px;
+//   width: 15px;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   border-radius: 100%;
+//   background: ${({ theme, complete }) => complete ? theme.GREEN_LIGHTEST : theme.GRAY_LIGHT };
+//   margin-right: 8px;
+// `;
+// const SpriteCheck = styled(Sprite)`
+//   margin-top: 1px;
+// `;
 const TileIcon = styled.div`
   height: 48px;
   width: 48px;
@@ -108,7 +109,7 @@ const TileImg = styled.img`
 const BottomRow = styled.div`
   display:flex;
   align-items: flex-end;
-  justify-content: flex-end;
+  justify-content: space-between;
 `;
 const ArrowContainer = styled.div`
   height: 30px;
@@ -128,33 +129,92 @@ const TileLink = styled(Link)`
   top: 0;
   left: 0;
 `;
+const RequirementsContainer = styled.div``;
+const RequirementsText = styled.p`
+  font-size: 1.0rem;
+  margin-bottom: 0;
+  font-style: italic;
+  color: ${({ theme }) => theme.GRAY_LIGHT };
+`;
+const RequirementsImages = styled.div`
+  display: flex;
+  height: 40px;
+`;
+const RequireIcon = styled(TileImg)`
+  margin-right: 6px;
+`;
 
 const Tile = ({ className, data }) => {
-  const { walletStore } = useWallet();
-  const { active, icon, complete, incomplete, requires } = data;
-  // Determine is tile is available
-  const status = (walletStore && (!requires || !!walletStore[requires])) ? complete : incomplete;
-  const { url, content, title } = status;
+  const [hasPermission, setHasPermission] = useState(false);
+  const [isComplete, setIsComplete] = useState(false);
+  const { appPermissions } = useApp();
+  const { complete = [], requires = [], active, icon } = data;
+  // Check permissions on each render
+  useEffect(() => {
+    let permissionMissing = false;
+    let tileIncomplete = false;
+    // Determine is user has permission for this tile
+    requires.forEach(requirement => {
+      if(!appPermissions.includes(requirement)){
+        permissionMissing = true;
+      }
+    });
+    // Determine if use has completed this tile
+    complete.forEach(requirement => {
+      if(!appPermissions.includes(requirement)){
+        tileIncomplete = true;
+      }
+    });
+    // Update tile state to reflect permissions and completeness
+    setHasPermission(!permissionMissing);
+    setIsComplete(!tileIncomplete);
+  }, [appPermissions, complete, requires]);
+  // If not yet completed, override the url, content, and title from incomplete
+  const finalData = isComplete ? data : {...data, ...data.incomplete}
+  const { url, content, title } = finalData;
+
+  // Loop through each requirement and make an image tile for it
+  const renderRequirements = () => {
+    // Get the missing requirements for this tile
+    const missingReqs = requires.filter(name => !appPermissions.includes(name));
+    return missingReqs.map(name => {
+      const { icon: reqIcon, title: reqTitle } = getTileInfo(name);
+      return (
+        <RequireIcon
+          src={`${process.env.PUBLIC_URL}/assets/images/tileIcons/${reqIcon}.svg`}
+          alt={`Requires ${reqTitle}`}
+          title={`Requires ${reqTitle}`}
+          key={reqTitle}
+        />
+      )
+    })
+  };
 
   return active ? (
     <TileWrapper>
       <TileBorder>
         <TileContent className={className}>
-          <TileLink to={url} />
+          {url && hasPermission && <TileLink to={url} />}
           <TopRow>
-            <Status>
-              <CheckIcon complete={complete}>
+            {/* <Status>
+              <CheckIcon complete={hasPermission}>
                 <SpriteCheck icon="CHECK" size="10px" color="GRAY_DARKER" />
               </CheckIcon>
-              {complete ? 'Complete' : 'Incomplete'}
-            </Status>
-            <TileIcon complete={complete}>
+              {hasPermission ? 'Complete' : 'Incomplete'}
+            </Status> */}
+            <TileIcon complete={hasPermission}>
               <TileImg src={`${process.env.PUBLIC_URL}/assets/images/tileIcons/${icon}.svg`} alt={`${title} icon`} />
             </TileIcon>
           </TopRow>
           <TileTitle>{title}</TileTitle>
           <TileText>{content}</TileText>
           <BottomRow>
+            {!hasPermission && (
+              <RequirementsContainer>
+                <RequirementsText>Requires:</RequirementsText>
+                <RequirementsImages>{renderRequirements()}</RequirementsImages>
+              </RequirementsContainer>
+            )}
             <ArrowContainer>
               <Sprite icon="CALL_MADE" spin="45" width="30px" height="40px" color="ICON_PRIMARY" />
             </ArrowContainer>
