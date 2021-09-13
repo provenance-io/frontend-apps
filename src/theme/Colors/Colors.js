@@ -44,6 +44,7 @@ export const Colors = {
   // Icon
   ICON_PRIMARY: allColors.BLUE_PRIMARY,
   ICON_SECONDARY: allColors.WHITE,
+  ICON_DISABLED: allColors.GRAY_PRIMARY,
   ICON_FIGURE: allColors.PURPLE_PRIMARY,
   ICON_PROVENANCE: allColors.BLUE_PRIMARY,
   // Toggle

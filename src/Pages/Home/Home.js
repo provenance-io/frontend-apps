@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Wrapper, Tile, LineSpacer } from 'Components';
+import { Wrapper, Tile } from 'Components';
 import {
   createWallet,
   addPassport,
@@ -50,6 +50,10 @@ const TestPermissions = styled.div`
   padding: 10px;
   display: flex;
 `;
+const TileIndent = styled.div`
+  margin-left: 30px;
+  border-left: 2px solid ${({ theme }) => theme.GRAY_DARK };
+`;
 
 const Home = () => {
   usePageTitle('Home');
@@ -69,40 +73,32 @@ const Home = () => {
         { /* TEST ONLY, REMOVE ME | END */}
         <TileContainer>
           <TileRow>
-              <LineSpacer horizontal position="right" />
               <Tile data={createWallet} />
-              <LineSpacer horizontal position="left" />
           </TileRow>
           <TileRow>
             <TileColumn>
-              <LineSpacer />
               <Tile data={addPassport} />
-              <LineSpacer />
-              <Tile data={subscribeToFund} />
-              <LineSpacer />
-              <Tile data={purchaseStablecoin} />
-              <LineSpacer />
-              <Tile data={tradeATS} />
-              <LineSpacer />
-              <Tile data={bridgeBTC} />
-              <LineSpacer />
-              <Tile data={bridgeETH} />
-              <LineSpacer />
-              <Tile data={updatePassport} />
+              <TileIndent>
+                <Tile line data={subscribeToFund} />
+                <Tile line data={purchaseStablecoin} />
+                <Tile line data={tradeATS} />
+                <Tile line data={bridgeBTC} />
+                <Tile line data={bridgeETH} />
+                <Tile line data={updatePassport} />
+              </TileIndent>
             </TileColumn>
             <TileColumn>
-              <LineSpacer />
-              <Tile data={createNFT} />
-              <LineSpacer />
-              <Tile data={tokenizeNFT} />
+              <TileIndent>
+                <Tile line data={createNFT} />
+                <Tile line data={tokenizeNFT} />
+              </TileIndent>
             </TileColumn>
             <TileColumn>
-              <LineSpacer />
-              <Tile data={purchaseHash} />
-              <LineSpacer />
-              <Tile data={delegateHash} />
-              <LineSpacer />
-              <Tile data={transferHash} />
+              <TileIndent>
+                <Tile line data={purchaseHash} />
+                <Tile line data={delegateHash} />
+                <Tile line data={transferHash} />
+              </TileIndent>
             </TileColumn>
           </TileRow>
         </TileContainer>

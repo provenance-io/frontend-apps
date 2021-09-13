@@ -14,9 +14,9 @@ const TileWrapper = styled.div`
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   padding: 10px;
-  overflow: hidden;
+  margin-top: 50px;
   @media ${breakpoints.down('lg')} {
     height: 250px;
     width: 275px;
@@ -131,7 +131,7 @@ const TileLink = styled(Link)`
 `;
 const RequirementsContainer = styled.div``;
 const RequirementsText = styled.p`
-  font-size: 1.0rem;
+  font-size: 1.1rem;
   margin-bottom: 0;
   font-style: italic;
   color: ${({ theme }) => theme.GRAY_LIGHT };
@@ -143,8 +143,15 @@ const RequirementsImages = styled.div`
 const RequireIcon = styled(TileImg)`
   margin-right: 6px;
 `;
+const Line = styled.div`
+  height: 2px;
+  width: 100%;
+  background: ${({ theme }) => theme.GRAY_DARK };
+  position: absolute;
+  left: -30px;
+`;
 
-const Tile = ({ className, data }) => {
+const Tile = ({ className, data, line }) => {
   const [hasPermission, setHasPermission] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
   const { appPermissions } = useApp();
@@ -192,6 +199,7 @@ const Tile = ({ className, data }) => {
 
   return active ? (
     <TileWrapper>
+      {line && <Line data-id="test" />}
       <TileBorder>
         <TileContent className={className}>
           {url && hasPermission && <TileLink to={url} />}
@@ -216,7 +224,7 @@ const Tile = ({ className, data }) => {
               </RequirementsContainer>
             )}
             <ArrowContainer>
-              <Sprite icon="CALL_MADE" spin="45" width="30px" height="40px" color="ICON_PRIMARY" />
+              <Sprite icon="CALL_MADE" spin="45" width="30px" height="40px" color={`${hasPermission ? 'ICON_PRIMARY' : 'ICON_DISABLED'}`} />
             </ArrowContainer>
           </BottomRow>
         </TileContent>
@@ -228,9 +236,11 @@ const Tile = ({ className, data }) => {
 Tile.propTypes = {
   className: PropTypes.string,
   data: PropTypes.object.isRequired,
+  line: PropTypes.bool,
 };
 Tile.defaultProps = {
   className: '',
+  line: false,
 };
 
 export default Tile;
