@@ -48,7 +48,6 @@ const RowTitle = styled.h2`
 const HeaderText = styled.div`
   font-size: 2.1rem;
   margin-bottom: 50px;
-  text-align: center;
 `;
 const TestPermissions = styled.div`
   position: fixed;

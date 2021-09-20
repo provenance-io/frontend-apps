@@ -3,7 +3,7 @@ import { FIGURE_DASHBOARD_URL, PROVENANCE_CREATE_WALLET_URL } from '../urls';
 export const createWallet = {
   active: true,
   icon: 'wallet',
-  complete: ['createWallet'],
+  complete: ['wallet'],
   title: 'View Wallet',
   content: 'Visit Figure Dashboard to view your wallet in detail.',
   url: FIGURE_DASHBOARD_URL,

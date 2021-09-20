@@ -3,7 +3,7 @@ import { FIGURE_DASHBOARD_URL } from '../urls';
 export const bridgeBTC = {
   active: true,
   icon: 'bridgeBtc',
-  requires: ['createWallet', 'addPassport'],
+  requires: ['wallet', 'passport'],
   complete: ['isKYC'],
   title: "View BTC Bridge",
   content: 'Utilize Your Bitcoin Holdings by buying, selling and trading on the Provenance Ecosystem through Provenance Bridge.',

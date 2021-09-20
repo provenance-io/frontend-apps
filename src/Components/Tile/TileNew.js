@@ -19,13 +19,14 @@ const TileWrapper = styled.div`
 `;
 const TileTop = styled.div`
   display: flex;
-  align-items: flex-start;
+  align-items: space-between;
   justify-content: center;
   position: relative;
-  padding: 40px;
+  padding: 30px 30px 0 30px;
   background: ${({ theme, color }) => `radial-gradient(100% 130% at 0% 0%, ${theme[`TILE_${color}_A`]} 70%, ${theme[`TILE_${color}_B`]} 130%)`};
   border-radius: 5px 5px 0 0;
   flex-grow: 1;
+  flex-wrap: wrap;
 `;
 const TileTopPattern = styled.div`
   background-image: url('${process.env.PUBLIC_URL}/assets/images/other/hex01.png');
@@ -36,15 +37,21 @@ const TileTopPattern = styled.div`
   top: 0;
   left: 0;
 `;
+const TileIcon = styled.img`
+  height: 100px;
+  width: auto;
+  z-index: 1;
+`;
 const TileTitle = styled.h3`
   font-size: 2.2rem;
+  flex-basis: 100%;
   text-align: center;
   z-index: 1;
   font-weight: ${({ theme }) => theme.FONT_WEIGHT_BOLD };
 `;
 const TileBottom = styled.div`
   padding: 20px;
-  height: 140px;
+  height: 120px;
   display: flex;
   align-items: center;
   background: ${({ theme, color }) => `radial-gradient(50% 50% at 50% 0%, ${theme[`TILE_${color}_C`]} 0%, ${theme[`TILE_${color}_D`]} 100%)`};
@@ -54,6 +61,8 @@ const BottonIconContainer = styled.div`
   margin-right: 18px;
   ${({ hasPermission }) => hasPermission && 'cursor: pointer;' }
   position: relative;
+  width: 90px;
+  height: 90px;
 `;
 const BottomLink = styled.a`
   position: absolute;
@@ -71,8 +80,7 @@ const Tile = ({ className, data, color }) => {
   const [hasPermission, setHasPermission] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
   const { appPermissions } = useApp();
-  // const { complete = [], requires = [], active, icon } = data;
-  const { complete = [], requires = [], active } = data;
+  const { complete = [], requires = [], active, icon } = data;
   // If not yet completed, override the url, content, and title from incomplete
   const finalData = isComplete ? data : {...data, ...data.incomplete}
   const { url, content, title } = finalData;
@@ -119,6 +127,7 @@ const Tile = ({ className, data, color }) => {
     <TileWrapper hasPermission={hasPermission}>
       <TileTop color={finalColor}>
         <TileTopPattern />
+        <TileIcon src={`${process.env.PUBLIC_URL}/assets/images/tileIcons/new/${icon}.svg`} alt={`${title} icon`} />
         <TileTitle>{title}</TileTitle>
       </TileTop>
       <TileBottom color={finalColor}>
@@ -127,7 +136,7 @@ const Tile = ({ className, data, color }) => {
           <Sprite icon="CIRCLE_ARROW" color="WHITE" />
         </BottonIconContainer>
         <BottomText>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed laoreet vehicula leo, eget posuere est sagittis a.
+          {content}
         </BottomText>
       </TileBottom>
     </TileWrapper>

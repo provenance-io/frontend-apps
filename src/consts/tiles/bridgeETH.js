@@ -3,7 +3,7 @@ import { FIGURE_DASHBOARD_URL } from '../urls';
 export const bridgeETH = {
   active: true,
   icon: 'bridgeEth',
-  requires: ['createWallet', 'addPassport'],
+  requires: ['wallet', 'passport'],
   complete: ['isKYC'],
   title: 'View ETH Bridge',
   content: 'Utilize Your ETH Holdings by buying, selling and trading on the Provenance Ecosystem through Provenance Bridge.',
