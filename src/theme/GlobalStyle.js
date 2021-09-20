@@ -12,6 +12,10 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
 
+  h1, h2, h3, h4, body, div {
+    font-weight: unset;
+  }
+
   body {
     font-size: 10px;
     letter-spacing: 0.07rem;
@@ -42,7 +46,6 @@ export const GlobalStyle = createGlobalStyle`
 
   p, span, li, footer {
     font-size: 1.4rem;
-    font-weight: 200;
     line-height: 1.75;
   }
 

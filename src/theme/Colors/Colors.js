@@ -1,4 +1,5 @@
 import { allColors } from './allColors';
+import { tileColors } from './tileColors';
 
 // Colors with a purpose.  These colors will corrospond to specific css and layout targets.
 // Note: There will likely be lots of duplicates, this is expected (the same color can/will be used for multiple elements)
@@ -7,7 +8,7 @@ export const Colors = {
   // Font
   FONT_LINK: allColors.BLUE_LIGHTEST,
   FONT_LINK_VISITED: allColors.BLUE_PRIMARY,
-  FONT_PRIMARY: allColors.WHITE,
+  FONT_PRIMARY: allColors.GRAY_DARKER,
   FONT_TITLE_INFO: allColors.GRAY_PRIMARY,
   FONT_DISABLED: allColors.GRAY_LIGHTER,
   FONT_WHITE: allColors.WHITE,
@@ -76,4 +77,5 @@ export const Colors = {
 
   // All other colors
   ...allColors,
+  ...tileColors,
 };

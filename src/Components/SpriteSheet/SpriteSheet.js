@@ -239,7 +239,17 @@ const SpriteSheet = () => (
         <path stroke="currentColor" d="M1.27 2.4l1.86 2 3.74-4"/>
       </svg>
     </g>
+    <g id={ICON_NAMES.CIRCLE_ARROW}>
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 65 65">
+        <path stroke="currentColor" strokeWidth="4" d="M29 46l10-13-10-14m4 44a30 30 0 11-1-61 30 30 0 011 61z"/>
+      </svg>
+    </g>
   </Svg>
 );
 
 export default SpriteSheet;
+
+
+
+
+
