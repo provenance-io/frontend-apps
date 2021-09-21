@@ -9,7 +9,7 @@ const BaseStyling = styled.div`
   color: ${({ theme }) => theme.FONT_PRIMARY};
   font-weight: ${({ theme }) => theme.FONT_WEIGHT_THINEST };
   font-size: 1.2rem;
-  background: ${({ theme }) => theme.BACKGROUND_MAIN };
+  background: ${({ theme }) => theme.GRAY_LIGHTEST };
   a {
     color: ${({ theme }) => theme.FONT_LINK};
     :visited {
@@ -20,13 +20,11 @@ const BaseStyling = styled.div`
   h2,
   h3 {
     font-family: ${({ theme }) => theme.HEADER_FONT_FAMILY};
-    font-weight: ${({ theme }) => theme.FONT_WEIGHT_THIN};
   }
   h4,
   h5,
   h6 {
     font-family: ${({ theme }) => theme.PRIMARY_FONT_FAMILY};
-    font-weight: ${({ theme }) => theme.FONT_WEIGHT_BOLD};
   }
   p,
   span,

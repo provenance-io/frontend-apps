@@ -1,21 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Wrapper, Tile } from 'Components';
-import {
-  createWallet,
-  addPassport,
-  bridgeBTC,
-  bridgeETH,
-  createNFT,
-  delegateHash,
-  purchaseHash,
-  purchaseStablecoin,
-  subscribeToFund,
-  tokenizeNFT,
-  tradeATS,
-  transferHash,
-  updatePassport
-} from 'consts';
 import { usePageTitle } from 'redux/hooks';
 import useApp from 'redux/hooks/useApp';
 
@@ -28,31 +13,34 @@ const TileContainer = styled.div`
 `;
 const TileRow = styled.div`
   display: flex;
-  justify-content: center;
   align-items: flex-start;
   width: 100%;
+  flex-wrap: wrap;
+  padding: 20px;
+  background: ${({ theme }) => theme.WHITE };
+  margin: 20px 0;
+  border-radius: 3px;
+  box-shadow: 4px 4px 6px 0px ${({ theme }) => theme.BLACK13 };
 `;
-const TileColumn = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+const RowTitle = styled.h2`
+  font-size: 3.6rem;
+  margin: 0;
+  padding: 20px 20px 0 20px;
+  flex-basis: 100%;
+  font-weight: ${({ theme }) => theme.FONT_WEIGHT_NORMAL };
+  color: ${({ theme }) => theme.GRAY_LIGHT };
 `;
 const HeaderText = styled.div`
   font-size: 2.1rem;
   margin-bottom: 50px;
-  text-align: center;
 `;
 const TestPermissions = styled.div`
   position: fixed;
   top:80px;
-  left: 0;
+  right: 0;
   background: grey;
   padding: 10px;
   display: flex;
-`;
-const TileIndent = styled.div`
-  margin-left: 30px;
-  border-left: 2px solid ${({ theme }) => theme.GRAY_DARK };
 `;
 
 const Home = () => {
@@ -73,33 +61,32 @@ const Home = () => {
         { /* TEST ONLY, REMOVE ME | END */}
         <TileContainer>
           <TileRow>
-              <Tile data={createWallet} />
+            <RowTitle>Wallet</RowTitle>
+            <Tile tileName='wallet' />
           </TileRow>
           <TileRow>
-            <TileColumn>
-              <Tile data={addPassport} />
-              <TileIndent>
-                <Tile line data={subscribeToFund} />
-                <Tile line data={purchaseStablecoin} />
-                <Tile line data={tradeATS} />
-                <Tile line data={bridgeBTC} />
-                <Tile line data={bridgeETH} />
-                <Tile line data={updatePassport} />
-              </TileIndent>
-            </TileColumn>
-            <TileColumn>
-              <TileIndent>
-                <Tile line data={createNFT} />
-                <Tile line data={tokenizeNFT} />
-              </TileIndent>
-            </TileColumn>
-            <TileColumn>
-              <TileIndent>
-                <Tile line data={purchaseHash} />
-                <Tile line data={delegateHash} />
-                <Tile line data={transferHash} />
-              </TileIndent>
-            </TileColumn>
+            <RowTitle>NFT</RowTitle>
+            <Tile tileName='createNFT' />
+            <Tile tileName='tokenizeNFT' />
+          </TileRow>
+          <TileRow>
+            <RowTitle>Hash</RowTitle>
+            <Tile tileName='purchaseHash' />
+            <Tile tileName='delegateHash' />
+            <Tile tileName='transferHash' />
+          </TileRow>
+          <TileRow>
+            <RowTitle>Passport</RowTitle>
+            <Tile tileName='passport' />
+            <Tile tileName='updatePassport' />
+          </TileRow>
+          <TileRow>
+            <RowTitle>Exchange</RowTitle>
+            <Tile tileName='subscribeToFund' />
+            <Tile tileName='buyDigitalCurrency' />
+            <Tile tileName='tradeATS' />
+            <Tile tileName='bridgeBTC' />
+            <Tile tileName='bridgeETH' />
           </TileRow>
         </TileContainer>
       </HomeContainer>

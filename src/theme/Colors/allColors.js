@@ -10,10 +10,12 @@ export const allColors = {
   // Black
   BLACK: '#000000',
   BLACK30: '#00000076',
+  BLACK25: 'rgba(0,0,0, 0.25)',
+  BLACK13: 'rgba(0,0,0, 0.13)',
   // Gray
-  GRAY_LIGHTEST: '#EEEEEE',
+  GRAY_LIGHTEST: '#F5F7FD',
   GRAY_LIGHTER: '#DADADA',
-  GRAY_LIGHT: '#9EAAC7',
+  GRAY_LIGHT: '#555555',
   GRAY_PRIMARY: '#383E55',
   GRAY_DARK: '#32384d',
   GRAY_DARKER: '#191C27',

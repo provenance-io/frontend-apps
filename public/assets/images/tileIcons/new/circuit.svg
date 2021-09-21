@@ -1,0 +1,151 @@
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 147 148">
+  <path stroke="url(#a)" d="M49 65.7 25.6 43.4h-19"/>
+  <path stroke="url(#b)" d="m49 56.8-21.2-20H6.7"/>
+  <path stroke="url(#c)" d="m44.5 70.2-21.1-20H6.7"/>
+  <path stroke="url(#d)" d="M61.2 51.2 39 27.8V6.7"/>
+  <path stroke="url(#e)" d="m52.3 51.2-20-21.1V6.7"/>
+  <path stroke="url(#f)" d="m65.7 46.8-20-21.2v-19"/>
+  <path stroke="url(#g)" d="m98 65.7 23.4-22.3h19"/>
+  <path stroke="url(#h)" d="m98 56.8 21.2-20h21.1"/>
+  <path stroke="url(#i)" d="m102.5 70.2 21.1-20h16.7"/>
+  <path stroke="url(#j)" d="M85.8 51.2 108 27.8V6.7"/>
+  <path stroke="url(#k)" d="m94.7 51.2 20-21.1V6.7"/>
+  <path stroke="url(#l)" d="m81.3 46.8 20-21.2v-19"/>
+  <path stroke="url(#m)" d="m98 81.3 23.4 22.3h19"/>
+  <path stroke="url(#n)" d="m98 90.2 21.2 20h21.1"/>
+  <path stroke="url(#o)" d="m102.5 76.8 21.1 20h16.7"/>
+  <path stroke="url(#p)" d="m85.8 95.8 22.2 23.4v21.1"/>
+  <path stroke="url(#q)" d="m94.7 95.8 20 21.1v23.4"/>
+  <path stroke="url(#r)" d="m81.3 100.2 20 21.2v19"/>
+  <path stroke="url(#s)" d="m49 81.3-23.4 22.3h-19"/>
+  <path stroke="url(#t)" d="m49 90.2-21.2 20H6.7"/>
+  <path stroke="url(#u)" d="m44.5 76.8-21.1 20H6.7"/>
+  <path stroke="url(#v)" d="M61.2 95.8 39 119.2v21.1"/>
+  <path stroke="url(#w)" d="m52.3 95.8-20 21.1v23.4"/>
+  <path stroke="url(#x)" d="m65.7 100.2-20 21.2v19"/>
+  <g filter="url(#y)">
+    <rect width="55.7" height="69" x="44.5" y="37.9" fill="#C4C4C4" rx="1"/>
+    <rect width="55.7" height="69" x="44.5" y="37.9" fill="url(#z)" rx="1"/>
+  </g>
+  <mask id="A" fill="#fff">
+    <rect width="51.2" height="64.6" x="46.8" y="40.1" rx=".5"/>
+  </mask>
+  <rect width="51.2" height="64.6" x="46.8" y="40.1" stroke="#191D26" stroke-width="2" mask="url(#A)" rx=".5"/>
+  <rect width="51.2" height="64.6" x="46.8" y="40.1" stroke="#000" stroke-opacity=".2" stroke-width="2" mask="url(#A)" rx=".5"/>
+  <defs>
+    <linearGradient id="a" x1="4.2" x2="45.2" y1="56.7" y2="70.9" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="b" x1="4.2" x2="45.2" y1="48.8" y2="63" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="c" x1="-.7" x2="39.4" y1="58.1" y2="72.4" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="d" x1="52.2" x2="66.4" y1="6.4" y2="47.4" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="e" x1="44.4" x2="58.5" y1="6.4" y2="47.4" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="f" x1="53.6" x2="67.9" y1="1.5" y2="41.6" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="g" x1="142.8" x2="101.8" y1="56.7" y2="70.9" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="h" x1="142.8" x2="101.8" y1="48.8" y2="63" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="i" x1="147.7" x2="107.6" y1="58.1" y2="72.4" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="j" x1="94.8" x2="80.6" y1="6.4" y2="47.4" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="k" x1="102.6" x2="88.5" y1="6.4" y2="47.4" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="l" x1="93.4" x2="79.1" y1="1.5" y2="41.6" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="m" x1="142.8" x2="101.8" y1="90.3" y2="76.1" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="n" x1="142.8" x2="101.8" y1="98.2" y2="84" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="o" x1="147.7" x2="107.6" y1="88.9" y2="74.6" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="p" x1="94.8" x2="80.6" y1="140.6" y2="99.6" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="q" x1="102.6" x2="88.5" y1="140.6" y2="99.6" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="r" x1="93.4" x2="79.1" y1="145.5" y2="105.4" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="s" x1="4.2" x2="45.2" y1="90.3" y2="76.1" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="t" x1="4.2" x2="45.2" y1="98.2" y2="84" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="u" x1="-.7" x2="39.4" y1="88.9" y2="74.6" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="v" x1="52.2" x2="66.4" y1="140.6" y2="99.6" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="w" x1="44.4" x2="58.5" y1="140.6" y2="99.6" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="x" x1="53.6" x2="67.9" y1="145.5" y2="105.4" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="z" x1="39" x2="113.8" y1="31" y2="93.5" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff"/>
+      <stop offset=".1" stop-color="#B7B7B7"/>
+      <stop offset=".2" stop-color="#fff"/>
+      <stop offset=".3" stop-color="#9C9C9C"/>
+      <stop offset=".5" stop-color="#403F3A"/>
+      <stop offset=".8" stop-color="#9C9C9C"/>
+      <stop offset="1" stop-color="#fff"/>
+    </linearGradient>
+    <filter id="y" width="63.7" height="77" x="40.5" y="37.9" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feColorMatrix in="SourceAlpha" result="hardAlpha" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
+      <feOffset dy="4"/>
+      <feGaussianBlur stdDeviation="2"/>
+      <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+      <feBlend in2="BackgroundImageFix" result="effect1_dropShadow"/>
+      <feBlend in="SourceGraphic" in2="effect1_dropShadow" result="shape"/>
+    </filter>
+  </defs>
+</svg>
