@@ -1,5 +1,6 @@
 export const transferHash = {
   active: true,
+  color: 'GREEN',
   icon: 'tokenCircuit',
   requires: ['wallet'],
   title: 'Transfer Hash',

@@ -1,21 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Wrapper, Tile } from 'Components';
-import {
-  createWallet,
-  addPassport,
-  bridgeBTC,
-  bridgeETH,
-  createNFT,
-  delegateHash,
-  purchaseHash,
-  purchaseStablecoin,
-  subscribeToFund,
-  tokenizeNFT,
-  tradeATS,
-  transferHash,
-  updatePassport
-} from 'consts';
 import { usePageTitle } from 'redux/hooks';
 import useApp from 'redux/hooks/useApp';
 
@@ -76,32 +61,32 @@ const Home = () => {
         { /* TEST ONLY, REMOVE ME | END */}
         <TileContainer>
           <TileRow>
-              <RowTitle>Wallet</RowTitle>
-              <Tile color="BLUE" data={createWallet} />
+            <RowTitle>Wallet</RowTitle>
+            <Tile tileName='wallet' />
           </TileRow>
           <TileRow>
             <RowTitle>NFT</RowTitle>
-            <Tile color="ORANGE" data={createNFT} />
-            <Tile color="ORANGE" data={tokenizeNFT} />
+            <Tile tileName='createNFT' />
+            <Tile tileName='tokenizeNFT' />
           </TileRow>
           <TileRow>
             <RowTitle>Hash</RowTitle>
-            <Tile color="GREEN" data={purchaseHash} />
-            <Tile color="GREEN" data={delegateHash} />
-            <Tile color="GREEN" data={transferHash} />
+            <Tile tileName='purchaseHash' />
+            <Tile tileName='delegateHash' />
+            <Tile tileName='transferHash' />
           </TileRow>
           <TileRow>
             <RowTitle>Passport</RowTitle>
-            <Tile color="TEAL" data={addPassport} />
-            <Tile color="TEAL" data={updatePassport} />
+            <Tile tileName='passport' />
+            <Tile tileName='updatePassport' />
           </TileRow>
           <TileRow>
             <RowTitle>Exchange</RowTitle>
-            <Tile color="PURPLE" data={subscribeToFund} />
-            <Tile color="PURPLE" data={purchaseStablecoin} />
-            <Tile color="PURPLE" data={tradeATS} />
-            <Tile color="PURPLE" data={bridgeBTC} />
-            <Tile color="PURPLE" data={bridgeETH} />
+            <Tile tileName='subscribeToFund' />
+            <Tile tileName='buyDigitalCurrency' />
+            <Tile tileName='tradeATS' />
+            <Tile tileName='bridgeBTC' />
+            <Tile tileName='bridgeETH' />
           </TileRow>
         </TileContainer>
       </HomeContainer>

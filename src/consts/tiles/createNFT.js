@@ -1,5 +1,6 @@
 export const createNFT = {
   active: true,
+  color: 'ORANGE',
   icon: 'boxCircuit',
   requires: ['wallet'],
   title: 'Create an NFT',

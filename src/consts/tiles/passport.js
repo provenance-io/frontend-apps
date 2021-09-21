@@ -1,5 +1,6 @@
-export const addPassport = {
+export const passport = {
   active: true,
+  color: 'TEAL',
   icon: 'circuit',
   requires: ['wallet'],
   complete: ['passport'],

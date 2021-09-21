@@ -1,5 +1,6 @@
 export const delegateHash = {
   active: true,
+  color: 'GREEN',
   icon: 'tokenSpin',
   requires: ['wallet'],
   title: 'Delegate Hash',

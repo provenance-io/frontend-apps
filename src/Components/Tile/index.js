@@ -1,1 +1,1 @@
-export { default } from './TileNew';
+export { default } from './Tile';

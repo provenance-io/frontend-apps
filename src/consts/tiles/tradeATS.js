@@ -1,5 +1,6 @@
 export const tradeATS = {
   active: true,
+  color: 'PURPLE',
   icon: 'boxChart',
   requires: ['wallet', 'passport'],
   title: 'Trade on ATS',
