@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
-import { Wrapper, Tile } from 'Components';
+import { Wrapper, Tile, Button as BaseButton } from 'Components';
 import { usePageTitle } from 'redux/hooks';
 import useApp from 'redux/hooks/useApp';
 
 const HomeContainer = styled.div`
-  margin: 0 auto;
+  flex-grow: 1;
+  padding-bottom: 180px;
 `;
 const TileContainer = styled.div`
   display:flex;
@@ -32,56 +33,123 @@ const RowTitle = styled.h2`
 `;
 const HeaderText = styled.div`
   font-size: 2.1rem;
-  margin-bottom: 50px;
 `;
 const TestPermissions = styled.div`
   position: fixed;
-  top:80px;
+  top:0;
   right: 0;
-  background: grey;
-  padding: 10px;
+  width: 200px;
+  background: ${({ theme }) => theme.BLUE_PRIMARY };
+  padding: 12px 20px;
   display: flex;
+  flex-wrap: wrap;
+  border-radius: 0 0 0 5px;
+  opacity: 0.25;
+  transition: 500ms all;
+  &:hover, &:active, &:focus {
+    opacity: 1;
+  }
+  input {
+    padding: 8px 10px;
+    border: none;
+    border-radius: 5px 0 0 5px;
+    width: 128px;
+    height: 20px;
+    outline: none;
+  }
+  button {
+    border: none;
+    background: ${({ theme }) => theme.TILE_PURPLE_C };
+    color: ${({ theme }) => theme.WHITE };
+    padding: 0 5px;
+    height: 20px;
+    cursor: pointer;
+    border-radius: 0 5px 5px 0;
+  }
+`;
+const PermissionWrapper = styled.div`
+  flex-basis: 100%;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  color: ${({ theme }) => theme.WHITE };
+`;
+const ClosePermission = styled.div`
+  cursor: pointer;
+  margin-right: 10px;
+`;
+const Permission = styled.div``;
+const Button = styled(BaseButton)`
+  margin: 20px 0 50px 0;
 `;
 
 const Home = () => {
   usePageTitle('Home');
-  const [permissionName, setPermissionName] = useState();
-  const { addPermissions, removePermissions } = useApp();
+  const [permissionName, setPermissionName] = useState('');
+  const { addPermissions, removePermissions, setSectionElements, appPermissions } = useApp();
+  const elWallet = useRef(null);
+  const elNFT = useRef(null);
+  const elHash = useRef(null);
+  const elPassport = useRef(null);
+  const elExchange = useRef(null);
+  useEffect(() => {
+    // Create all the menu locations (smooth scrolling)
+    setSectionElements({
+      wallet: elWallet,
+      nft: elNFT,
+      hash: elHash,
+      passport: elPassport,
+      exchange: elExchange,
+    });
+  }, [
+    setSectionElements,
+    elWallet,
+    elNFT,
+    elHash,
+    elPassport,
+    elExchange,
+  ]);
 
   return (
     <Wrapper>
       <HomeContainer>
-        <HeaderText>Link your Provenance Wallet to view the apps you can use</HeaderText>
+        <HeaderText>Connect or create a Provenance Wallet to view the apps you can use</HeaderText>
+        <Button>Connect Wallet</Button>
         { /* TEST ONLY, REMOVE ME | START */}
         <TestPermissions>
-          <input placeholder="Enter Permission Name" onChange={({ target }) => setPermissionName(target.value)}/>
-          <button onClick={() => removePermissions(permissionName)}>Remove</button>
-          <button onClick={() => addPermissions(permissionName)}>Add</button>
+          <input placeholder="Debug Permissions" value={permissionName} onChange={({ target }) => setPermissionName(target.value)}/>
+          <button onClick={() => { (permissionName && addPermissions(permissionName)); setPermissionName('');}}>Add</button>
+          {appPermissions.map(permission => (
+            <PermissionWrapper key={permission}>
+              <ClosePermission onClick={() => {removePermissions(permission); setPermissionName('');}}>✖</ClosePermission>
+              <Permission>{permission}</Permission>
+            </PermissionWrapper>
+          ))}
         </TestPermissions>
         { /* TEST ONLY, REMOVE ME | END */}
         <TileContainer>
           <TileRow>
-            <RowTitle>Wallet</RowTitle>
+            <RowTitle ref={elWallet}>Wallet</RowTitle>
             <Tile tileName='wallet' />
           </TileRow>
           <TileRow>
-            <RowTitle>NFT</RowTitle>
+            <RowTitle ref={elNFT}>NFT</RowTitle>
             <Tile tileName='createNFT' />
             <Tile tileName='tokenizeNFT' />
           </TileRow>
           <TileRow>
-            <RowTitle>Hash</RowTitle>
+            <RowTitle ref={elHash}>Hash</RowTitle>
             <Tile tileName='purchaseHash' />
             <Tile tileName='delegateHash' />
             <Tile tileName='transferHash' />
           </TileRow>
           <TileRow>
-            <RowTitle>Passport</RowTitle>
+            <RowTitle ref={elPassport}>Passport</RowTitle>
             <Tile tileName='passport' />
             <Tile tileName='updatePassport' />
           </TileRow>
           <TileRow>
-            <RowTitle>Exchange</RowTitle>
+            <RowTitle ref={elExchange}>Exchange</RowTitle>
             <Tile tileName='subscribeToFund' />
             <Tile tileName='buyDigitalCurrency' />
             <Tile tileName='tradeATS' />

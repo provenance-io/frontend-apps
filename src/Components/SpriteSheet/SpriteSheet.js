@@ -54,7 +54,7 @@ const SpriteSheet = () => (
     </g>
     <g id={ICON_NAMES.CHEVRON}>
       <svg viewBox="0 0 7 10" fill="none" stroke="currentColor">
-        <path d="M5.81818 1L2 5L5.81818 9" strokeWidth="2" />
+        <path d="M5.81818 1L2 5L5.81818 9" strokeWidth="1" />
       </svg>
     </g>
     <g id={ICON_NAMES.CLOSE}>

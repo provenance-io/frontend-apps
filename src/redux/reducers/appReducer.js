@@ -3,14 +3,26 @@ import {
   ADD_PERMISSIONS,
   SET_PERMISSIONS,
   REMOVE_PERMISSIONS,
+  SET_SECTION_ELEMENTS,
 } from '../actions/appActions';
 
 export const initialState = {
   appPermissions: [],
+  sectionElements: {},
 };
 
 const reducer = handleActions(
   {
+    /* -----------------
+    SET_SECTION_ELEMENTS
+    -------------------*/
+    [SET_SECTION_ELEMENTS](state, { payload }) {
+      const sectionElements = { ...state.sectionElements, ...payload };
+      return {
+        ...state,
+        sectionElements,
+      };
+    },
     /* -----------------
     SET_PERMISSIONS
     -------------------*/

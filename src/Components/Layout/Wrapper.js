@@ -3,10 +3,9 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const PageWrapper = styled.div`
-  padding: 130px 10% 130px 10%;
+  padding: 50px 30px;
   position: relative;
   margin: 0 auto;
-  min-height: 100vh;
 `;
 
 const Wrapper = ({ children, noHeader }) => (

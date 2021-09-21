@@ -7,3 +7,4 @@ export { default as Tile } from './Tile';
 export { default as CopyValue } from './CopyValue';
 export { default as Header } from './Header';
 export { default as Link } from './Link';
+export { default as Menu } from './Menu';

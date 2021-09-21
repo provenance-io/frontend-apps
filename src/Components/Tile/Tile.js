@@ -81,8 +81,8 @@ const RequiredSection = styled.div`
   background: ${({ theme }) => `linear-gradient(
     270deg,
     ${theme.TRANSPARENT} 0%,
-    ${theme.GRAY_LIGHTEST} 23%,
-    ${theme.GRAY_LIGHTEST} 77.33%,
+    ${theme.GRAY_LIGHTEST} 25%,
+    ${theme.GRAY_LIGHTEST} 78%,
     ${theme.TRANSPARENT} 100%
   )`};
   height: 40px;
