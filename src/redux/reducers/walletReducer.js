@@ -1,6 +1,5 @@
-import { PROVENANCE_WALLET_URL } from 'consts';
 import { handleActions } from 'redux-actions';
-import { getFromSessionStorage, addToSessionStorage, removeFromSessionStorage } from 'utils';
+import { addToSessionStorage, removeFromSessionStorage } from 'utils';
 import { SUCCESS, REQUEST, FAILURE } from '../actions/xhrActions';
 import {
   SET_WALLET_LOGIN,
@@ -23,13 +22,8 @@ export const initialState = {
   address: '',
   publicKeyB64: '',
   isLoggedIn: false,
-  walletUrl: PROVENANCE_WALLET_URL,
+  walletUrl: '',
   walletIcon: '',
-  isKYC: getFromSessionStorage('isKYC') || '',
-  isKYCLoading: false,
-  isKYCFailed: false,
-  isKYCChecked: false,
-  jwtToken: getFromSessionStorage('jwtToken') || '',
 };
 
 const reducer = handleActions(
@@ -165,8 +159,7 @@ const reducer = handleActions(
     /* -----------------
     SET_WALLET_LOGOUT
     -------------------*/
-    [SET_WALLET_LOGOUT](state, { payload }) {
-      removeFromSessionStorage(['jwtToken', 'isKYC']);
+    [SET_WALLET_LOGOUT](state) {
       return {
         ...initialState,
       };

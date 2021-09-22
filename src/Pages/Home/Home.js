@@ -4,7 +4,7 @@ import { useWalletService, WINDOW_MESSAGES } from '@provenanceio/wallet-lib';
 import { Wrapper, Tile, Button as BaseButton, WalletPreview, PermissionsTest } from 'Components';
 import { PROVENANCE_WALLET_URL, FIGURE_WALLET_URL } from 'consts';
 import { usePageTitle, useWallet } from 'redux/hooks';
-import { getWalletUrlParams } from 'utils';
+import { getFromSessionStorage, getWalletUrlParams } from 'utils';
 
 const HomeContainer = styled.div`
   flex-grow: 1;
@@ -84,23 +84,28 @@ const Home = () => {
     // Update the wallet store
     setWalletLogin(walletServiceState);
   });
-  // -------------------------------------------------------------------------------
-  // Check for any changes to values in the wallet state and updated as needed
-  // -------------------------------------------------------------------------------
+  // -------------------------------------------------------
+  // Auto-Connect wallet if session storage wallet exists
+  // -------------------------------------------------------
   useEffect(() => {
-    const addressChanged = walletService.state.address !== storeAddress;
-    const walletTypeChanged = walletService.state.walletType !== storeWalletType;
-    const keychainAccountNameChanged = walletService.state.keychainAccountName !== storeKeychainAccountName;
+    const {
+      address: sessionAddress,
+      walletType: sessionWalletType,
+      keychainAccountName: sessionKeychainAccountName,
+     } = getFromSessionStorage(['address', 'walletType', 'keychainAccountName'])
+    const newAddress = sessionAddress && sessionAddress !== storeAddress;
+    const newWalletType = sessionWalletType && sessionWalletType !== storeWalletType;
+    const newKeychainAccountName = sessionKeychainAccountName && sessionKeychainAccountName !== storeKeychainAccountName;
     // Only run if main values have changed
-    if (addressChanged || walletTypeChanged || keychainAccountNameChanged) {
-      setWalletLogin(walletService.state);
+    if (newAddress || newWalletType || newKeychainAccountName) {
+      setWalletLogin({
+        address: sessionAddress,
+        walletType: sessionWalletType,
+        keychainAccountName: sessionKeychainAccountName,
+      });
     }
   }, [
-    walletService.state,
     setWalletLogin,
-    address,
-    getPermissions,
-    permissionsLoading,
     storeAddress,
     storeWalletType,
     storeKeychainAccountName,
@@ -127,8 +132,9 @@ const Home = () => {
   ]);
   // Connect to the wallet api
   const connectWallet = (url) => {
-    walletService.setWalletUrl(url || walletUrl);
-    walletService.connect();
+    console.log('url :', url);
+    walletService.setWalletUrl(url);
+    walletService.connect(url);
   };
   // User initially selects "Connect Wallet", determine type of wallet (Fig vs Prov)
   const renderConnectionStatus = () => (
