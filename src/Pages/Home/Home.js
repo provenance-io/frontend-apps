@@ -1,9 +1,9 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useWalletService, WINDOW_MESSAGES } from '@provenanceio/wallet-lib';
 import { Wrapper, Tile, Button as BaseButton, WalletPreview, PermissionsTest } from 'Components';
 import { PROVENANCE_WALLET_URL, FIGURE_WALLET_URL } from 'consts';
-import { usePageTitle, useApp, useWallet } from 'redux/hooks';
+import { usePageTitle, useWallet } from 'redux/hooks';
 import { getWalletUrlParams } from 'utils';
 
 const HomeContainer = styled.div`
@@ -52,28 +52,59 @@ const Button = styled(BaseButton)`
 const Home = () => {
   usePageTitle('Home');
   const [connectionStatus, setConnectionStatus] = useState('');
-  const { setSectionElements } = useApp();
-  const { setWalletLogin, walletUrl, isLoggedIn, setWalletUrl, getPermissions } = useWallet();
+  const [permissionsChecked, setPermissionsChecked] = useState(false);
+  const {
+    setWalletLogin,
+    walletUrl,
+    isLoggedIn,
+    setWalletUrl,
+    getPermissions,
+    permissionsLoading,
+    walletType: storeWalletType,
+    address: storeAddress,
+    keychainAccountName: storeKeychainAccountName,
+  } = useWallet();
   // Get wallet info
   const { walletService } = useWalletService(walletUrl);
   const { address } = walletService?.state;
   const existingWallet = getWalletUrlParams();
-  
+  // ----------------------------------------------------------------
+  // Wallet has logged in (one way or another), check permissions
+  // ----------------------------------------------------------------
+  useEffect(() => {
+    if (isLoggedIn && address && !permissionsLoading && !permissionsChecked) {
+      setPermissionsChecked(true);
+      getPermissions(address);
+    }
+  }, [isLoggedIn, address, permissionsLoading, getPermissions, permissionsChecked]);
   // -----------------------------------------------------------------------
   // Create event listener for the user logging in to trigger KYC check
   // -----------------------------------------------------------------------
   walletService.addEventListener(WINDOW_MESSAGES.CONNECTED, walletServiceState => {
     // Update the wallet store
     setWalletLogin(walletServiceState);
-    // Make a call to get updated permissions
-    getPermissions(address);
   });
   // -------------------------------------------------------------------------------
   // Check for any changes to values in the wallet state and updated as needed
   // -------------------------------------------------------------------------------
   useEffect(() => {
-    setWalletLogin(walletService.state);
-  }, [walletService.state, setWalletLogin, address, getPermissions]);
+    const addressChanged = walletService.state.address !== storeAddress;
+    const walletTypeChanged = walletService.state.walletType !== storeWalletType;
+    const keychainAccountNameChanged = walletService.state.keychainAccountName !== storeKeychainAccountName;
+    // Only run if main values have changed
+    if (addressChanged || walletTypeChanged || keychainAccountNameChanged) {
+      setWalletLogin(walletService.state);
+    }
+  }, [
+    walletService.state,
+    setWalletLogin,
+    address,
+    getPermissions,
+    permissionsLoading,
+    storeAddress,
+    storeWalletType,
+    storeKeychainAccountName,
+  ]);
   // --------------------------------------------
   // Auto-Connect wallet if query params exist
   // --------------------------------------------
@@ -91,32 +122,8 @@ const Home = () => {
     walletService.initialize,
     isLoggedIn,
     setWalletUrl,
-    walletService
-  ]);
-  // ------------------------------------------------------------
-  // Create refs to sections on the page for smooth scrolling
-  // ------------------------------------------------------------
-  const elWallet = useRef(null);
-  const elNFT = useRef(null);
-  const elHash = useRef(null);
-  const elPassport = useRef(null);
-  const elExchange = useRef(null);
-  useEffect(() => {
-    // Create all the menu locations (smooth scrolling)
-    setSectionElements({
-      wallet: elWallet,
-      nft: elNFT,
-      hash: elHash,
-      passport: elPassport,
-      exchange: elExchange,
-    });
-  }, [
-    setSectionElements,
-    elWallet,
-    elNFT,
-    elHash,
-    elPassport,
-    elExchange,
+    walletService,
+    getPermissions,
   ]);
   // Connect to the wallet api
   const connectWallet = (url) => {
@@ -152,27 +159,27 @@ const Home = () => {
         { /* TEST ONLY, REMOVE ME | END */}
         <TileContainer>
           <TileRow>
-            <RowTitle ref={elWallet}>Wallet</RowTitle>
+            <RowTitle id="wallet">Wallet</RowTitle>
             <Tile tileName='wallet' />
           </TileRow>
           <TileRow>
-            <RowTitle ref={elNFT}>NFT</RowTitle>
+            <RowTitle id="nft">NFT</RowTitle>
             <Tile tileName='createNFT' />
             <Tile tileName='tokenizeNFT' />
           </TileRow>
           <TileRow>
-            <RowTitle ref={elHash}>Hash</RowTitle>
+            <RowTitle id="hash">Hash</RowTitle>
             <Tile tileName='purchaseHash' />
             <Tile tileName='delegateHash' />
             <Tile tileName='transferHash' />
           </TileRow>
           <TileRow>
-            <RowTitle ref={elPassport}>Passport</RowTitle>
+            <RowTitle id="passport">Passport</RowTitle>
             <Tile tileName='passport' />
             <Tile tileName='updatePassport' />
           </TileRow>
           <TileRow>
-            <RowTitle ref={elExchange}>Exchange</RowTitle>
+            <RowTitle id="exchange">Exchange</RowTitle>
             <Tile tileName='subscribeToFund' />
             <Tile tileName='buyDigitalCurrency' />
             <Tile tileName='tradeATS' />

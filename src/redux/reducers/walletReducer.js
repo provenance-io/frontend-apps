@@ -16,6 +16,8 @@ import {
 
 export const initialState = {
   permissions: [],
+  permissionsLoading: false,
+  permissionsFailed: false,
   walletType: '',
   keychainAccountName: '',
   address: '',
@@ -35,11 +37,36 @@ const reducer = handleActions(
     /* -----------------
     GET_PERMISSIONS
     -------------------*/
-    [GET_PERMISSIONS](state, { payload: permissions }) {
-      debugger; // eslint-disable-line no-debugger
+    [`${GET_PERMISSIONS}_${REQUEST}`](state) {
       return {
         ...state,
+        permissionsLoading: true,
+        permissionsFailed: false,
+        permissions: [],
+      };
+    },
+    [`${GET_PERMISSIONS}_${SUCCESS}`](state, { payload }) {
+      // Main info exists within attributes
+      const { attributes = [] } = payload;
+      const permissions = ['wallet'];
+      // Loop through each attribute and note permissions
+      attributes.forEach(({ name }) => {
+        if (name.includes('kyc-aml.passport')) {
+          permissions.push('passport');
+        }
+      });
+
+      return {
+        ...state,
+        permissionsLoading: false,
         permissions,
+      };
+    },
+    [`${GET_PERMISSIONS}_${FAILURE}`](state) {
+      return {
+        ...state,
+        permissionsLoading: false,
+        permissionsFailed: true,
       };
     },
     /* -----------------

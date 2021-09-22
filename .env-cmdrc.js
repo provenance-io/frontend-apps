@@ -17,8 +17,7 @@ module.exports = {
     REACT_APP_FIGURE_WALLET_URL: "https://test.figure.com/dashboard",
     REACT_APP_PROVENANCE_WALLET_URL: "https://wallet.test.provenance.io",
     REACT_APP_PROVENANCE_CREATE_WALLET_URL: "https://test.provenance.io/create-a-wallet",
-    REACT_APP_FIGMENT_WALLET_URL: "https://pio-testnet-1--lcd.datahub.figment.io/provenance/attribute/v1/attributes",
-    REACT_APP_FIGMENT_WALLET_AUTHORIZATION: "c24057645914c81c334ce383ec8ae0ba",
+    REACT_APP_WALLET_PERMISSION_URL: "https://api.test.provenance.io/provenance/attribute/v1/attributes",
   },
   staging: {
     // App settings
@@ -38,5 +37,6 @@ module.exports = {
     REACT_APP_FIGURE_WALLET_URL: "https://figure.com/dashboard",
     REACT_APP_PROVENANCE_WALLET_URL: "https://wallet.provenance.io",
     REACT_APP_PROVENANCE_CREATE_WALLET_URL: "https://provenance.io/create-a-wallet",
+    REACT_APP_WALLET_PERMISSION_URL: "https://api.provenance.io/provenance/attribute/v1/attributes",
   },
 };

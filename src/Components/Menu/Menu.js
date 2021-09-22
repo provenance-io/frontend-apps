@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import PropTypes from 'prop-types';
 import { Sprite } from 'Components';
 import MenuItem from './MenuItem';
@@ -29,6 +29,8 @@ const MenuHeader = styled.div`
 const MenuLogo = styled.div`
   display: flex;
   align-items: center;
+  position: relative;
+  cursor: pointer;
 `;
 const LogoTitle = styled.p`
   font-size: 2.6rem;
@@ -55,12 +57,33 @@ const MenuSection = styled.div``;
 const SectionTitle = styled.h4`
   font-weight: ${({ theme }) => theme.FONT_WEIGHT_NORMAL };
 `;
+const spaceout = keyframes`
+  from {
+    transform: rotate(-5deg);
+  }
+  to {
+    transform: rotate(5deg);
+  }
+`;
+const TestnetMessage = styled.div`
+  font-size: 1rem;
+  letter-spacing: 0.27rem;
+  font-weight: ${({ theme }) => theme.FONT_WEIGHT_BOLD };
+  animation: ${spaceout} 1s linear infinite;
+  animation-direction: alternate-reverse;
+  position: absolute;
+  color: ${({ theme }) => theme.GRAY_LIGHT };
+  top: 26px;
+  left: 64px;
+  opacity: 0.3;
+`;
 
 const Menu = ({ className }) => (
   <MenuContainer className={className}>
     <MenuContent>
       <MenuHeader>
-        <MenuLogo>
+        <MenuLogo onClick={() => { window.scrollTo({top: 0, behavior: 'smooth'}) }}>
+          {process.env.REACT_APP_ENV !== 'production' && <TestnetMessage>TESTNET</TestnetMessage>}
           <IconContainer>
             <Sprite icon="LOGO" color="WHITE" />
           </IconContainer>

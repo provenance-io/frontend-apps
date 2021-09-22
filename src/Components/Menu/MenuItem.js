@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Sprite } from 'Components';
-import { useApp } from 'redux/hooks';
 
 const MenuItemContainer = styled.div`
   padding: 8px 12px;
@@ -29,12 +28,12 @@ const MenuIconContainer = styled.div`
 `;
 
 const MenuItem = ({ className, title, section }) => {
-  const { sectionElements } = useApp();
-  
   const scrollTo = () => {
     if (section) {
-      const targetElement = sectionElements[section];
-      targetElement.current.scrollIntoView({ behavior: 'smooth' });
+      const targetElement = document.getElementById(section);
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   };
 

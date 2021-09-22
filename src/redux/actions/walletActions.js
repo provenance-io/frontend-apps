@@ -1,5 +1,5 @@
 import { createAction } from 'redux-actions';
-import { BRIDGE_WALLET_KYC_URL, FIGMENT_WALLET_URL } from 'consts';
+import { BRIDGE_WALLET_KYC_URL, WALLET_PERMISSION_URL } from 'consts';
 import { ajaxGet } from './xhrActions';
 
 // Vars
@@ -37,16 +37,10 @@ export const getWalletKYC = ({address, fullJWT}) => async (dispatch) => {
     )
   );
 };
-export const getPermissions = (address) => async (dispatch) => {
-  const Authorization = process.env.REACT_APP_FIGMENT_WALLET_AUTHORIZATION;
-  const configHeaders = { headers: { Authorization } };
-
-  return (
-    ajaxGet(
-      GET_PERMISSIONS,
-      dispatch,
-      `${FIGMENT_WALLET_URL}/${address}`,
-      configHeaders,
-    )
-  );
-}
+export const getPermissions = (address) => async (dispatch) => (
+  ajaxGet(
+    GET_PERMISSIONS,
+    dispatch,
+    `${WALLET_PERMISSION_URL}/${address}`,
+  )
+);
