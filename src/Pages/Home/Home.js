@@ -132,7 +132,6 @@ const Home = () => {
   ]);
   // Connect to the wallet api
   const connectWallet = (url) => {
-    console.log('url :', url);
     walletService.setWalletUrl(url);
     walletService.connect(url);
   };
