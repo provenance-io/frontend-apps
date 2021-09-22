@@ -29,6 +29,7 @@ const Content = styled.div`
 
 function App() {
   const { walletUrl } = useWallet();
+  console.log('App() - test console.log()');
 
   return (
     <BrowserRouter basename={process.env.PUBLIC_URL || ''}>
