@@ -8,3 +8,5 @@ export { default as CopyValue } from './CopyValue';
 export { default as Header } from './Header';
 export { default as Link } from './Link';
 export { default as Menu } from './Menu';
+export { default as PermissionsTest } from './PermissionsTest';
+export { default as WalletPreview } from './WalletPreview';

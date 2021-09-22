@@ -6,7 +6,7 @@ import { tileColors } from './tileColors';
 
 export const Colors = {
   // Font
-  FONT_LINK: allColors.BLUE_LIGHTEST,
+  FONT_LINK: allColors.BLUE_LIGHT,
   FONT_LINK_VISITED: allColors.BLUE_PRIMARY,
   FONT_PRIMARY: allColors.GRAY_DARKER,
   FONT_TITLE_INFO: allColors.GRAY_PRIMARY,

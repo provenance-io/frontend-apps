@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Sprite from 'Components/Sprite';
 // import Link from 'Components/Link';
 // import { breakpoints } from 'consts';
-import { useApp } from 'redux/hooks';
+import { useWallet } from 'redux/hooks';
 import * as allTiles from 'consts/tiles';
 
 const TileWrapper = styled.div`
@@ -114,7 +114,7 @@ const RequireIcon = styled.img`
 const Tile = ({ className, tileName }) => {
   const [hasPermission, setHasPermission] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
-  const { appPermissions } = useApp();
+  const { permissions } = useWallet();
   const data = allTiles[tileName];
   const { complete = [], requires = [], active, icon, color } = data;
   // If not yet completed, override the url, content, and title from incomplete
@@ -127,25 +127,25 @@ const Tile = ({ className, tileName }) => {
     let tileIncomplete = false;
     // Determine is user has permission for this tile
     requires.forEach(requirement => {
-      if(!appPermissions.includes(requirement)){
+      if(!permissions.includes(requirement)){
         permissionMissing = true;
       }
     });
     // Determine if use has completed this tile
     complete.forEach(requirement => {
-      if(!appPermissions.includes(requirement)){
+      if(!permissions.includes(requirement)){
         tileIncomplete = true;
       }
     });
     // Update tile state to reflect permissions and completeness
     setHasPermission(!permissionMissing);
     setIsComplete(!tileIncomplete);
-  }, [appPermissions, complete, requires]);
+  }, [permissions, complete, requires]);
   
   // Loop through each requirement and make an image tile for it
   const getRequiredImages = () => {
     // Get the missing requirements for this tile
-    const missingReqs = requires.filter(name => !appPermissions.includes(name));
+    const missingReqs = requires.filter(name => !permissions.includes(name));
     return missingReqs.map(name => {
       const { icon: reqIcon, color: reqColor } = allTiles[name];
       return (

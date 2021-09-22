@@ -1,8 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
-import { Wrapper, Tile, Button as BaseButton } from 'Components';
-import { usePageTitle } from 'redux/hooks';
-import useApp from 'redux/hooks/useApp';
+import { useWalletService, WINDOW_MESSAGES } from '@provenanceio/wallet-lib';
+import { Wrapper, Tile, Button as BaseButton, WalletPreview, PermissionsTest } from 'Components';
+import { PROVENANCE_WALLET_URL, FIGURE_WALLET_URL } from 'consts';
+import { usePageTitle, useApp, useWallet } from 'redux/hooks';
+import { getWalletUrlParams } from 'utils';
 
 const HomeContainer = styled.div`
   flex-grow: 1;
@@ -31,62 +33,69 @@ const RowTitle = styled.h2`
   font-weight: ${({ theme }) => theme.FONT_WEIGHT_NORMAL };
   color: ${({ theme }) => theme.GRAY_LIGHT };
 `;
+const HeaderContent = styled.div``;
 const HeaderText = styled.div`
   font-size: 2.1rem;
 `;
-const TestPermissions = styled.div`
-  position: fixed;
-  top:0;
-  right: 0;
-  width: 200px;
-  background: ${({ theme }) => theme.BLUE_PRIMARY };
-  padding: 12px 20px;
+const ButtonGroup = styled.div`
   display: flex;
-  flex-wrap: wrap;
-  border-radius: 0 0 0 5px;
-  opacity: 0.25;
-  transition: 500ms all;
-  &:hover, &:active, &:focus {
-    opacity: 1;
-  }
-  input {
-    padding: 8px 10px;
-    border: none;
-    border-radius: 5px 0 0 5px;
-    width: 128px;
-    height: 20px;
-    outline: none;
-  }
   button {
-    border: none;
-    background: ${({ theme }) => theme.TILE_PURPLE_C };
-    color: ${({ theme }) => theme.WHITE };
-    padding: 0 5px;
-    height: 20px;
-    cursor: pointer;
-    border-radius: 0 5px 5px 0;
+    &:not(:first-of-type) {
+      margin-left: 20px;
+    }
   }
 `;
-const PermissionWrapper = styled.div`
-  flex-basis: 100%;
-  margin-top: 10px;
-  display: flex;
-  align-items: center;
-  color: ${({ theme }) => theme.WHITE };
-`;
-const ClosePermission = styled.div`
-  cursor: pointer;
-  margin-right: 10px;
-`;
-const Permission = styled.div``;
 const Button = styled(BaseButton)`
   margin: 20px 0 50px 0;
 `;
 
 const Home = () => {
   usePageTitle('Home');
-  const [permissionName, setPermissionName] = useState('');
-  const { addPermissions, removePermissions, setSectionElements, appPermissions } = useApp();
+  const [connectionStatus, setConnectionStatus] = useState('');
+  const { setSectionElements } = useApp();
+  const { setWalletLogin, walletUrl, isLoggedIn, setWalletUrl, getPermissions } = useWallet();
+  // Get wallet info
+  const { walletService } = useWalletService(walletUrl);
+  const { address } = walletService?.state;
+  const existingWallet = getWalletUrlParams();
+  
+  // -----------------------------------------------------------------------
+  // Create event listener for the user logging in to trigger KYC check
+  // -----------------------------------------------------------------------
+  walletService.addEventListener(WINDOW_MESSAGES.CONNECTED, walletServiceState => {
+    // Update the wallet store
+    setWalletLogin(walletServiceState);
+    // Make a call to get updated permissions
+    getPermissions(address);
+  });
+  // -------------------------------------------------------------------------------
+  // Check for any changes to values in the wallet state and updated as needed
+  // -------------------------------------------------------------------------------
+  useEffect(() => {
+    setWalletLogin(walletService.state);
+  }, [walletService.state, setWalletLogin, address, getPermissions]);
+  // --------------------------------------------
+  // Auto-Connect wallet if query params exist
+  // --------------------------------------------
+  useEffect(() => {
+    if (existingWallet && !isLoggedIn) {
+      const { existingWalletType, existingKeychainAccountName, existingAddress } = existingWallet;
+      const existingWalletUrl = existingWalletType.toLocaleLowerCase === 'figure' ? FIGURE_WALLET_URL : PROVENANCE_WALLET_URL;
+      // Only Provenance Wallet will autoconnect for now
+      setWalletUrl(existingWalletUrl);
+      walletService.setWalletUrl(existingWalletUrl);
+      walletService.initialize({ keychainAccountName: existingKeychainAccountName, address: existingAddress })
+    }
+  }, [
+    existingWallet,
+    walletService.initialize,
+    isLoggedIn,
+    setWalletUrl,
+    walletService
+  ]);
+  // ------------------------------------------------------------
+  // Create refs to sections on the page for smooth scrolling
+  // ------------------------------------------------------------
   const elWallet = useRef(null);
   const elNFT = useRef(null);
   const elHash = useRef(null);
@@ -109,23 +118,37 @@ const Home = () => {
     elPassport,
     elExchange,
   ]);
+  // Connect to the wallet api
+  const connectWallet = (url) => {
+    walletService.setWalletUrl(url || walletUrl);
+    walletService.connect();
+  };
+  // User initially selects "Connect Wallet", determine type of wallet (Fig vs Prov)
+  const renderConnectionStatus = () => (
+    isLoggedIn ? (
+      <WalletPreview />
+    ) : connectionStatus ? (
+      <HeaderContent>
+        <HeaderText>Select the type of wallet to connect</HeaderText>
+        <ButtonGroup>
+          <Button onClick={()=> connectWallet(FIGURE_WALLET_URL)}>Figure Wallet</Button>
+          <Button onClick={()=> connectWallet(PROVENANCE_WALLET_URL)}>Provenance Wallet</Button>
+        </ButtonGroup>
+      </HeaderContent>
+    ) : (
+      <HeaderContent>
+        <HeaderText>Connect or create a wallet to view the apps you have access to</HeaderText>
+        <Button onClick={()=> setConnectionStatus('select')}>Connect Wallet</Button>
+      </HeaderContent>
+    )
+  );
 
   return (
     <Wrapper>
       <HomeContainer>
-        <HeaderText>Connect or create a Provenance Wallet to view the apps you can use</HeaderText>
-        <Button>Connect Wallet</Button>
+        {renderConnectionStatus()}
         { /* TEST ONLY, REMOVE ME | START */}
-        <TestPermissions>
-          <input placeholder="Debug Permissions" value={permissionName} onChange={({ target }) => setPermissionName(target.value)}/>
-          <button onClick={() => { (permissionName && addPermissions(permissionName)); setPermissionName('');}}>Add</button>
-          {appPermissions.map(permission => (
-            <PermissionWrapper key={permission}>
-              <ClosePermission onClick={() => {removePermissions(permission); setPermissionName('');}}>✖</ClosePermission>
-              <Permission>{permission}</Permission>
-            </PermissionWrapper>
-          ))}
-        </TestPermissions>
+        <PermissionsTest />
         { /* TEST ONLY, REMOVE ME | END */}
         <TileContainer>
           <TileRow>
