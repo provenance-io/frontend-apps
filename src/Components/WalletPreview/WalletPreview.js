@@ -8,7 +8,7 @@ import { Sprite, CopyValue } from 'Components';
 const WalletPreviewContainer = styled.div`
   font-size: 1.3rem;
   display: inline-block;
-  color: ${({ theme }) => theme.FONT_PRIMATY };
+  margin-bottom: 60px;
 `;
 const LoginMsg = styled.div`
   display: flex;
@@ -23,8 +23,8 @@ const LoginLink = styled.a`
 `;
 const WalletInfo = styled.div`
   display: flex;
-  background: ${({ theme }) => theme.WHITE };
-  border: 1px solid ${({ theme }) => theme.GRAY_LIGHTER };
+  background: ${({ theme }) => theme.BLUE_MUTED_DARKEST };
+  border: 1px solid ${({ theme }) => theme.BLUE_MUTED_DARK };
   color: ${({ theme }) => theme.FONT_PRIMARY };
   border-radius: 10px;
   align-items: center;

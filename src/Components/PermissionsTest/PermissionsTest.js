@@ -9,7 +9,7 @@ const PermissionsTestContainer = styled.div`
   top:0;
   right: 0;
   width: 225px;
-  background: ${({ theme }) => theme.BLUE_PRIMARY };
+  background: ${({ theme }) => theme.BLUE_MUTED_PRIMARY };
   padding: 12px 20px;
   display: flex;
   flex-wrap: wrap;
@@ -28,7 +28,7 @@ const PermissionsTestContainer = styled.div`
   }
   button {
     border: none;
-    background: ${({ theme }) => theme.TILE_PURPLE_C };
+    background: ${({ theme }) => theme.BUTTON_BG };
     color: ${({ theme }) => theme.WHITE };
     padding: 5px 8px;
     cursor: pointer;

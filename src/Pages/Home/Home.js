@@ -5,27 +5,38 @@ import { Wrapper, Tile, Button as BaseButton, WalletPreview, PermissionsTest } f
 import { PROVENANCE_WALLET_URL, FIGURE_WALLET_URL } from 'consts';
 import { usePageTitle, useWallet } from 'redux/hooks';
 import { getFromSessionStorage, getWalletUrlParams } from 'utils';
+import rayBG from './rayBG.jpg';
 
 const HomeContainer = styled.div`
   flex-grow: 1;
   padding-bottom: 180px;
+  padding-left: 460px;
+  margin-top: 90px;
+  background-image: url(${rayBG});
+  background-size: cover;
+  background-position: 400px -300px;
+  background-repeat: no-repeat;
 `;
 const TileContainer = styled.div``;
-const TileRow = styled.div``;
+const TileRow = styled.div`
+  margin-bottom: 40px;
+`;
 const TileRowContent = styled.div`
   display: inline-flex;
   align-items: flex-start;
+  justify-content: stretch;
+  justify-items: stretch;
   flex-wrap: wrap;
-  padding: 20px;
   margin: 20px 0;
 `;
 const RowTitle = styled.h2`
   font-size: 1.8rem;
   padding-bottom: 8px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+  margin-left: 10px;
   border-bottom: 1px solid ${({ theme }) => theme.BORDER_PRIMARY };
   flex-basis: 100%;
-  font-weight: ${({ theme }) => theme.FONT_WEIGHT_NORMAL };
+  font-weight: ${({ theme }) => theme.FONT_WEIGHT_BOLD };
   color: ${({ theme }) => theme.GRAY_LIGHT };
 `;
 const HeaderContent = styled.div``;

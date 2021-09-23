@@ -1,6 +1,5 @@
 export const purchaseHash =   {
   active: true,
-  color: 'GREEN',
   icon: 'token',
   requires: ['wallet'],
   title: 'Purchase Hash',

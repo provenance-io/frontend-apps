@@ -1,6 +1,5 @@
 export const tokenizeNFT = {
   active: true,
-  color: 'ORANGE',
   icon: 'boxRing',
   requires: ['wallet'],
   title: 'Tokenize an NFT',

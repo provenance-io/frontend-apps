@@ -7,26 +7,26 @@ import logo from './logo.svg';
 const MenuContainer = styled.div`
   min-width: 400px;
   width: 400px;
+  position: fixed;
   overflow: hidden;
+  top: 0;
+  left: 0;
   height: 100%;
   min-height: 100vh;
-  margin-right: 30px;
-  position: relative;
   text-transform: uppercase;
   font-size: 1.2rem;
   letter-spacing: 0.24rem;
-  box-shadow: 0 4px 54px 0 ${({ theme }) => theme.BLACK95 };
+  box-shadow: 0 4px 50px 20px ${({ theme }) => theme.BLACK95 };
+  z-index: 20;
 `;
 const MenuContent = styled.div`
-  width: 400px;
-  max-height: 100%;
-  overflow-y: scroll;
+  width: 415px;
   padding: 50px;
   height: 100%;
-  position: fixed;
   background: ${({ theme }) => theme.MENU_BG };
-  left: 0;
-  top: 0;
+  padding-bottom: 100px;
+  overflow-x: hidden;
+  overflow-y: scroll;
 `;
 const MenuHeader = styled.div`
   margin-bottom: 20px;

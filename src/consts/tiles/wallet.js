@@ -2,7 +2,6 @@ import { FIGURE_DASHBOARD_URL, PROVENANCE_CREATE_WALLET_URL } from '../urls';
 
 export const wallet = {
   active: true,
-  color: 'BLUE',
   icon: 'wallet',
   complete: ['wallet'],
   title: 'View Wallet',

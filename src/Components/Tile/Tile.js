@@ -1,28 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import Sprite from 'Components/Sprite';
+import {default as BaseSprite} from 'Components/Sprite';
 // import Link from 'Components/Link';
 // import { breakpoints } from 'consts';
 import { useWallet } from 'redux/hooks';
 import * as allTiles from 'consts/tiles';
 
 const TileWrapper = styled.div`
-  height: 380px;
+  /* height: 500px; */
   width: 340px;
   position: relative;
   display: flex;
   flex-direction: column;
-  border-radius: 5px;
-  margin: 20px;
+  align-self: stretch;
+  border-radius: 8px;
+  margin: 10px;
   overflow: hidden;
+  border: 1px solid ${({ theme }) => theme.TILE_BORDER };
 `;
 const TileTop = styled.div`
   border-radius: 5px 5px 0 0;
+  ${({ hasPermission }) => !hasPermission && `
+    filter: saturate(0%);
+  ` }
 `;
 const TileIcon = styled.img`
-  height: 100px;
-  width: auto;
+  width: 100%;
   z-index: 1;
 `;
 const TileTitle = styled.h3`
@@ -32,27 +36,29 @@ const TileTitle = styled.h3`
 `;
 const TileBottom = styled.div`
   padding: 40px;
-  background: ${({ theme }) => theme.TILE_BG };
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  background: ${({ theme }) => theme.TILE_BG};
   border-radius: 0px 0px 5px 5px;
 `;
-const BottonIconContainer = styled.div`
-  margin-right: 18px;
-  ${({ hasPermission }) => hasPermission && 'cursor: pointer;' }
-  position: relative;
-  width: 90px;
-  height: 90px;
+const BottomLinkSection = styled.div`
+  display: flex;
+  flex-grow: 1;
+  align-items: flex-end;
+  justify-content: flex-end;
 `;
-const BottomLink = styled.a`
-  position: absolute;
-  top: 0;
-  left: 0;
+const BottomLink = styled.a``;
+const Sprite = styled(BaseSprite)`
   height: 100%;
   width: 100%;
+  width: 21px;
+  height: 14px;
 `;
 const BottomText = styled.p`
   font-size: 1.2rem;
   line-height: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 `;
 const RequiredSection = styled.div``;
 const RequiredText = styled.div`
@@ -60,12 +66,12 @@ const RequiredText = styled.div`
   text-transform: uppercase;
   letter-spacing: .24rem;
   font-weight: ${({ theme }) => theme.FONT_WEIGHT_BOLD };
+  margin-bottom: 14px;
 `;
 const RequireIcon = styled.img`
-  height: 24px;
-  width: 24px;
+  height: 50px;
+  width: 50px;
   margin-right: 10px;
-  border-radius: 4px;
 `;
 
 const Tile = ({ className, tileName }) => {
@@ -73,11 +79,10 @@ const Tile = ({ className, tileName }) => {
   const [isComplete, setIsComplete] = useState(false);
   const { permissions } = useWallet();
   const data = allTiles[tileName];
-  const { complete = [], requires = [], active, icon, color } = data;
+  const { complete = [], requires = [], active, icon } = data;
   // If not yet completed, override the url, content, and title from incomplete
   const finalData = isComplete ? data : {...data, ...data.incomplete}
   const { url, content, title } = finalData;
-  const finalColor = hasPermission ? color : 'GRAY';
   // Check permissions on each render
   useEffect(() => {
     let permissionMissing = false;
@@ -104,37 +109,37 @@ const Tile = ({ className, tileName }) => {
     // Get the missing requirements for this tile
     const missingReqs = requires.filter(name => !permissions.includes(name));
     return missingReqs.map(name => {
-      const { icon: reqIcon, color: reqColor } = allTiles[name];
+      const { icon: reqIcon } = allTiles[name];
       return (
         <RequireIcon
-          src={`${process.env.PUBLIC_URL}/assets/images/tileIcons/${reqIcon}.svg`}
+          src={`${process.env.PUBLIC_URL}/assets/images/reqIcons/${reqIcon}.svg`}
           alt={`Requires ${name}`}
           title={`Requires ${name}`}
           key={name}
-          color={reqColor}
         />
       )
     })
   };
 
   return active ? (
-    <TileWrapper hasPermission={hasPermission}>
-      <TileTop color={finalColor}>
-        <TileIcon src={`${process.env.PUBLIC_URL}/assets/images/tileIcons/new/${icon}.svg`} alt={`${title} icon`} />
+    <TileWrapper>
+      <TileTop hasPermission={hasPermission}>
+        <TileIcon src={`${process.env.PUBLIC_URL}/assets/images/tileIcons/${icon}.svg`} alt={`${title} icon`} />
       </TileTop>
-      <TileBottom color={finalColor}>
+      <TileBottom>
         <TileTitle>{title}</TileTitle>
         <BottomText>
           {content}
         </BottomText>
         {hasPermission ? (
-          <BottonIconContainer>
-            {hasPermission && <BottomLink href={url} />}
-            <Sprite icon="CIRCLE_ARROW" color="WHITE" />
-          </BottonIconContainer>
+          <BottomLinkSection>
+            <BottomLink href={url}>
+              <Sprite icon="ARROW" color="WHITE" />
+            </BottomLink>
+          </BottomLinkSection>
         ) : (
           <RequiredSection>
-            <RequiredText>Requires:</RequiredText>
+            <RequiredText>Requires</RequiredText>
             {getRequiredImages()}
           </RequiredSection>
         )}

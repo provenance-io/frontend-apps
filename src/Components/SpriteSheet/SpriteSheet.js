@@ -37,6 +37,11 @@ const SpriteSheet = () => (
         <path d="M10 9.5V14.5" stroke="currentColor" />
       </svg>
     </g>
+    <g id={ICON_NAMES.ARROW}>
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 22 16">
+        <path stroke="currentColor" strokeWidth="1.4" d="m14 1 7 7-7 7M21 8H0"/>
+      </svg>
+    </g>
     <g id={ICON_NAMES.BACK_ARROW}>
       <svg viewBox="0 0 40 40" fill="none">
         <path d="M28 5L13 20L28 35" stroke="currentColor" strokeWidth="10%" />

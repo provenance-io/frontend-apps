@@ -1,6 +1,5 @@
 export const subscribeToFund = {
   active: true,
-  color: 'PURPLE',
   icon: 'bubblesLink',
   requires: ['wallet', 'passport'],
   title: 'Subscribe to a Fund',

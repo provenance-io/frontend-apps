@@ -2,7 +2,6 @@ import { FIGURE_DASHBOARD_URL } from '../urls';
 
 export const bridgeBTC = {
   active: true,
-  color: 'PURPLE',
   icon: 'bridgeBTC',
   requires: ['wallet', 'passport'],
   complete: ['isKYC'],
