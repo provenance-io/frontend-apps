@@ -1,25 +1,30 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import PropTypes from 'prop-types';
-import { Sprite } from 'Components';
 import MenuItem from './MenuItem';
+import logo from './logo.svg';
 
 const MenuContainer = styled.div`
-  min-width: 270px;
-  width: 270px;
+  min-width: 400px;
+  width: 400px;
+  overflow: hidden;
   height: 100%;
   min-height: 100vh;
   margin-right: 30px;
   position: relative;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  letter-spacing: 0.24rem;
+  box-shadow: 0 4px 54px 0 ${({ theme }) => theme.BLACK95 };
 `;
 const MenuContent = styled.div`
-  width: 270px;
+  width: 400px;
   max-height: 100%;
   overflow-y: scroll;
-  padding: 30px 30px 80px 30px;
+  padding: 50px;
   height: 100%;
   position: fixed;
-  background: ${({ theme }) => theme.WHITE };
+  background: ${({ theme }) => theme.MENU_BG };
   left: 0;
   top: 0;
 `;
@@ -31,31 +36,16 @@ const MenuLogo = styled.div`
   align-items: center;
   position: relative;
   cursor: pointer;
+  margin-bottom: 40px;
 `;
-const LogoTitle = styled.p`
-  font-size: 2.6rem;
-  font-weight: ${({ theme }) => theme.FONT_WEIGHT_THIN };
-  text-transform: uppercase;
-`;
-const MenuTitle = styled.h1`
-  font-size: 1.5rem;
-  margin: 0 0 50px 0;
-`;
-const IconContainer = styled.div`
-  height: 50px;
-  width: 50px;
-  border-radius: 10px;
-  margin-right: 10px;
-  padding: 8px 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: ${({ theme }) => theme.BLUE_PRIMARY };
+const LogoTitle = styled.h1`
+  line-height: 1.4rem;
 `;
 const MenuItems = styled.div``;
 const MenuSection = styled.div``;
 const SectionTitle = styled.h4`
   font-weight: ${({ theme }) => theme.FONT_WEIGHT_NORMAL };
+  margin-bottom: 20px;
 `;
 const spaceout = keyframes`
   from {
@@ -67,25 +57,29 @@ const spaceout = keyframes`
 `;
 const TestnetMessage = styled.div`
   font-size: 1rem;
-  letter-spacing: 0.27rem;
-  font-weight: ${({ theme }) => theme.FONT_WEIGHT_BOLD };
+  letter-spacing: 0.5rem;
+  /* font-weight: ${({ theme }) => theme.FONT_WEIGHT_BOLD }; */
   animation: ${spaceout} 1s linear infinite;
   animation-direction: alternate-reverse;
   position: absolute;
-  color: ${({ theme }) => theme.GRAY_LIGHTER };
-  top: 26px;
-  left: 64px;
+  opacity: 0.3;
+  top: 45px;
+  left: 82px;
 `;
 const Version = styled.div`
   position: absolute;
-  color: ${({ theme }) => theme.GRAY_LIGHTER };
-  font-weight: ${({ theme }) => theme.FONT_WEIGHT_NORMAL };
-  font-size: 1.0rem;
+  text-transform: lowercase;
+  opacity: 0.3;
+  font-size: 1rem;
   letter-spacing: 0.1rem;
-  left: 60px;
-  top: 56px;
+  left: 164px;
+  top: 45px;
   z-index: 10;
-  padding: 4px 0;
+`;
+const Logo = styled.img`
+  height: 62px;
+  width: 62px;
+  margin-right: 20px;
 `;
 
 const Menu = ({ className }) => (
@@ -93,14 +87,11 @@ const Menu = ({ className }) => (
     <MenuContent>
       <MenuHeader>
         <MenuLogo onClick={() => { window.scrollTo({top: 0, behavior: 'smooth'}) }}>
+          <Logo src={logo} />
+          <LogoTitle>Provenance Applications</LogoTitle>
           {process.env.REACT_APP_ENV !== 'production' && <TestnetMessage>TESTNET</TestnetMessage>}
-          <IconContainer>
-            <Sprite icon="LOGO" color="WHITE" />
-          </IconContainer>
-          <LogoTitle>Apps</LogoTitle>
           <Version>v{process.env.REACT_APP_VERSION}</Version>
         </MenuLogo>
-        <MenuTitle>Provenance Applications</MenuTitle>
         <MenuItems>
           <MenuSection>
             <SectionTitle>Wallet</SectionTitle>

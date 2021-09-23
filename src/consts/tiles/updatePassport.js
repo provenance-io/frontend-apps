@@ -1,7 +1,7 @@
 export const updatePassport = {
   active: true,
   color: 'TEAL',
-  icon: 'tokenFloat',
+  icon: 'upDocuments',
   requires: ['wallet', 'passport'],
   title: 'Upgrade Passport',
   content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed laoreet vehicula leo, eget posuere est sagittis a.',

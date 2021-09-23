@@ -4,17 +4,24 @@ import PropTypes from 'prop-types';
 import { Sprite } from 'Components';
 
 const MenuItemContainer = styled.div`
-  padding: 8px 12px;
-  background: ${({ theme }) => theme.GRAY_LIGHTEST };
+  padding: 10px 20px;
+  background: ${({ theme }) => theme.MENU_ITEM_BG };
   margin-bottom: 10px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: space-between;
   user-select: none;
+  transition: 500ms all;
+  border-radius: 5px;
+  &:last-child {
+    margin-bottom: 25px;
+  }
+  &:hover {
+    background: ${({ theme }) => theme.MENU_ITEM_ACTIVE_BG };
+  }
 `;
 const MenuTitle = styled.div`
-  font-size: 1.3rem;
   font-weight: ${({ theme }) => theme.FONT_WEIGHT_THIN };
 `;
 const MenuIconContainer = styled.div`
@@ -24,11 +31,9 @@ const MenuIconContainer = styled.div`
   justify-content: center;
   width: 24px;
   padding: 6px 6px 6px 8px;
-  border-radius: 100%;
-  background: ${({ theme }) => theme.BLUE_PRIMARY };
 `;
 
-const MenuItem = ({ className, title, section }) => {
+const MenuItem = ({ className, title, section, active }) => {
   const scrollTo = () => {
     if (section) {
       const targetElement = document.getElementById(section);
@@ -42,7 +47,7 @@ const MenuItem = ({ className, title, section }) => {
     <MenuItemContainer className={className} onClick={() => scrollTo()}>
       <MenuTitle>{title}</MenuTitle>
       <MenuIconContainer>
-        <Sprite icon="CHEVRON" color="WHITE" flipX />
+        <Sprite icon="CHEVRON" color={active ? 'ICON_LIGHT' : 'ICON_DARK'}flipX />
       </MenuIconContainer>
     </MenuItemContainer>
   );
@@ -52,10 +57,12 @@ MenuItem.propTypes = {
   className: PropTypes.string,
   title: PropTypes.string.isRequired,
   section: PropTypes.string,
+  active: PropTypes.bool,
 };
 MenuItem.defaultProps = {
   className: '',
   section: '',
+  active: false,
 };
 
 export default MenuItem;

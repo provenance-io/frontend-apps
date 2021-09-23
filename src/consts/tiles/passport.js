@@ -1,7 +1,7 @@
 export const passport = {
   active: true,
   color: 'TEAL',
-  icon: 'circuit',
+  icon: 'documents',
   requires: ['wallet'],
   complete: ['passport'],
   title: 'View Passport',

@@ -10,25 +10,20 @@ const HomeContainer = styled.div`
   flex-grow: 1;
   padding-bottom: 180px;
 `;
-const TileContainer = styled.div`
-  display:flex;
-  flex-wrap: wrap;
-`;
-const TileRow = styled.div`
-  display: flex;
+const TileContainer = styled.div``;
+const TileRow = styled.div``;
+const TileRowContent = styled.div`
+  display: inline-flex;
   align-items: flex-start;
-  width: 100%;
   flex-wrap: wrap;
   padding: 20px;
-  background: ${({ theme }) => theme.WHITE };
   margin: 20px 0;
-  border-radius: 3px;
-  box-shadow: 4px 4px 6px 0px ${({ theme }) => theme.BLACK13 };
 `;
 const RowTitle = styled.h2`
-  font-size: 3.6rem;
-  margin: 0;
-  padding: 20px 20px 0 20px;
+  font-size: 1.8rem;
+  padding-bottom: 8px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid ${({ theme }) => theme.BORDER_PRIMARY };
   flex-basis: 100%;
   font-weight: ${({ theme }) => theme.FONT_WEIGHT_NORMAL };
   color: ${({ theme }) => theme.GRAY_LIGHT };
@@ -164,32 +159,42 @@ const Home = () => {
         { /* TEST ONLY, REMOVE ME | END */}
         <TileContainer>
           <TileRow>
-            <RowTitle id="wallet">Wallet</RowTitle>
-            <Tile tileName='wallet' />
+            <TileRowContent>
+              <RowTitle id="wallet">Wallet</RowTitle>
+              <Tile tileName='wallet' />
+            </TileRowContent>
           </TileRow>
           <TileRow>
-            <RowTitle id="nft">NFT</RowTitle>
-            <Tile tileName='createNFT' />
-            <Tile tileName='tokenizeNFT' />
+            <TileRowContent>
+              <RowTitle id="nft">NFT</RowTitle>
+              <Tile tileName='createNFT' />
+              <Tile tileName='tokenizeNFT' />
+            </TileRowContent>
           </TileRow>
           <TileRow>
-            <RowTitle id="hash">Hash</RowTitle>
-            <Tile tileName='purchaseHash' />
-            <Tile tileName='delegateHash' />
-            <Tile tileName='transferHash' />
+            <TileRowContent>
+              <RowTitle id="hash">Hash</RowTitle>
+              <Tile tileName='purchaseHash' />
+              <Tile tileName='delegateHash' />
+              <Tile tileName='transferHash' />
+            </TileRowContent>
           </TileRow>
           <TileRow>
-            <RowTitle id="passport">Passport</RowTitle>
-            <Tile tileName='passport' />
-            <Tile tileName='updatePassport' />
+            <TileRowContent>
+              <RowTitle id="passport">Passport</RowTitle>
+              <Tile tileName='passport' />
+              <Tile tileName='updatePassport' />
+            </TileRowContent>
           </TileRow>
           <TileRow>
-            <RowTitle id="exchange">Exchange</RowTitle>
-            <Tile tileName='subscribeToFund' />
-            <Tile tileName='buyDigitalCurrency' />
-            <Tile tileName='tradeATS' />
-            <Tile tileName='bridgeBTC' />
-            <Tile tileName='bridgeETH' />
+            <TileRowContent>
+              <RowTitle id="exchange">Exchange</RowTitle>
+              <Tile tileName='subscribeToFund' />
+              <Tile tileName='buyDigitalCurrency' />
+              <Tile tileName='tradeATS' />
+              <Tile tileName='bridgeBTC' />
+              <Tile tileName='bridgeETH' />
+            </TileRowContent>
           </TileRow>
         </TileContainer>
       </HomeContainer>

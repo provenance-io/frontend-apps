@@ -8,30 +8,26 @@ const BaseStyling = styled.div`
   font-family: ${({ theme }) => theme.PRIMARY_FONT_FAMILY};
   color: ${({ theme }) => theme.FONT_PRIMARY};
   font-weight: ${({ theme }) => theme.FONT_WEIGHT_THINEST };
-  font-size: 1.2rem;
-  background: ${({ theme }) => theme.GRAY_LIGHTEST };
+  background: ${({ theme }) => theme.BODY_BG };
   a {
     color: ${({ theme }) => theme.FONT_LINK};
     :visited {
-      color: ${({ theme }) => theme.FONT_LINK_VISITED};
+      color: ${({ theme }) => theme.FONT_LINK};
     }
   }
   h1,
   h2,
-  h3 {
-    font-family: ${({ theme }) => theme.HEADER_FONT_FAMILY};
-  }
+  h3,
   h4,
   h5,
-  h6 {
-    font-family: ${({ theme }) => theme.PRIMARY_FONT_FAMILY};
-  }
+  h6,
   p,
   span,
   li,
-  footer {
-    font-family: ${({ theme }) => theme.PRIMARY_FONT_FAMILY};
+  footer, {
+    font-family: ${({ theme }) => theme.HEADER_FONT_FAMILY};
   }
+
   th {
     font-weight: ${({ theme }) => theme.FONT_WEIGHT_NORMAL};
   }
