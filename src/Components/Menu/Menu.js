@@ -38,7 +38,7 @@ const LogoTitle = styled.p`
   text-transform: uppercase;
 `;
 const MenuTitle = styled.h1`
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   margin: 0 0 50px 0;
 `;
 const IconContainer = styled.div`
@@ -72,10 +72,20 @@ const TestnetMessage = styled.div`
   animation: ${spaceout} 1s linear infinite;
   animation-direction: alternate-reverse;
   position: absolute;
-  color: ${({ theme }) => theme.GRAY_LIGHT };
+  color: ${({ theme }) => theme.GRAY_LIGHTER };
   top: 26px;
   left: 64px;
-  opacity: 0.3;
+`;
+const Version = styled.div`
+  position: absolute;
+  color: ${({ theme }) => theme.GRAY_LIGHTER };
+  font-weight: ${({ theme }) => theme.FONT_WEIGHT_NORMAL };
+  font-size: 1.0rem;
+  letter-spacing: 0.1rem;
+  left: 60px;
+  top: 56px;
+  z-index: 10;
+  padding: 4px 0;
 `;
 
 const Menu = ({ className }) => (
@@ -88,6 +98,7 @@ const Menu = ({ className }) => (
             <Sprite icon="LOGO" color="WHITE" />
           </IconContainer>
           <LogoTitle>Apps</LogoTitle>
+          <Version>v{process.env.REACT_APP_VERSION}</Version>
         </MenuLogo>
         <MenuTitle>Provenance Applications</MenuTitle>
         <MenuItems>

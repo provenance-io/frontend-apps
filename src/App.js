@@ -2,27 +2,13 @@ import React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { WalletContextProvider } from '@provenanceio/wallet-lib';
+import { Helmet } from 'react-helmet';
 import { SpriteSheet, BaseStyle, Menu } from 'Components';
 import { GlobalStyle, Themes } from 'theme';
 import { Home, NotFound, Passport } from 'Pages';
 import { useWallet } from 'redux/hooks';
 import { PASSPORT_INFO_URL, HOME_URL } from 'consts';
 
-const Version = styled.div`
-  text-align: right;
-  position: fixed;
-  bottom: 10px;
-  right: 10px;
-  z-index: 10;
-  background: ${({ theme }) => `linear-gradient(
-    270deg,
-    ${theme.TRANSPARENT} 0%,
-    ${theme.GRAY_LIGHTEST} 50%,
-    ${theme.TRANSPARENT} 100%
-  )`};
-  width: 80px;
-  padding: 4px 0;
-`;
 const Content = styled.div`
   display: flex;
 `;
@@ -37,6 +23,11 @@ function App() {
         <SpriteSheet />
         <ThemeProvider theme={Themes.default}>
           <BaseStyle>
+            <Helmet>
+              <link rel="preconnect" href="https://fonts.googleapis.com" />
+              <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+              <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet" />
+            </Helmet>
             <Content>
               <Menu />
               <Switch>
@@ -44,7 +35,6 @@ function App() {
                 <Route path={PASSPORT_INFO_URL} component={Passport} />
                 <Route component={NotFound} />
               </Switch>
-              <Version>v{process.env.REACT_APP_VERSION}</Version>
             </Content>
           </BaseStyle>
         </ThemeProvider>

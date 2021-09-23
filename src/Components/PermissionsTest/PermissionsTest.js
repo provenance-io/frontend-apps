@@ -8,7 +8,7 @@ const PermissionsTestContainer = styled.div`
   z-index: 30;
   top:0;
   right: 0;
-  width: 200px;
+  width: 225px;
   background: ${({ theme }) => theme.BLUE_PRIMARY };
   padding: 12px 20px;
   display: flex;
@@ -23,16 +23,14 @@ const PermissionsTestContainer = styled.div`
     padding: 8px 10px;
     border: none;
     border-radius: 5px 0 0 5px;
-    width: 128px;
-    height: 20px;
+    width: 140px;
     outline: none;
   }
   button {
     border: none;
     background: ${({ theme }) => theme.TILE_PURPLE_C };
     color: ${({ theme }) => theme.WHITE };
-    padding: 0 5px;
-    height: 20px;
+    padding: 5px 8px;
     cursor: pointer;
     border-radius: 0 5px 5px 0;
   }

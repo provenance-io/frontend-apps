@@ -14,7 +14,8 @@ const MenuItemContainer = styled.div`
   user-select: none;
 `;
 const MenuTitle = styled.div`
-  font-size: 1.4rem;
+  font-size: 1.3rem;
+  font-weight: ${({ theme }) => theme.FONT_WEIGHT_THIN };
 `;
 const MenuIconContainer = styled.div`
   height: 24px;
