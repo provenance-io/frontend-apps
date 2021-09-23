@@ -37,7 +37,7 @@ export const allColors = {
   // BLUE_LIGHTEST: '#000000', // [TBD]
   // BLUE_LIGHTER: '#000000', // [TBD]
   // BLUE_LIGHT: '#000000', // [TBD]
-  BLUE_PRIMARY: '#557BF5', // [Custom Link Blue]
+  BLUE_PRIMARY: '#498AFD', // [Custom Link Blue]
   // BLUE_DARK: '#000000', // [TBD]
   // BLUE_DARKER: '#000000', // [TBD]
   // BLUE_DARKEST: '#000000', // [TBD]

@@ -16,8 +16,10 @@ export const Colors = {
   // Border
   BORDER_PRIMARY: allColors.GREY_LIGHTEST, 
   // Button
-  BUTTON_BG: allColors.BLUE_MUTED_DARK,
-  BUTTON_HOVER: allColors.BLUE_MUTED_DARKER,
+  BUTTON_BG: allColors.TRANSPARENT,
+  BUTTON_BORDER: allColors.BLUE_PRIMARY,
+  BUTTON_BORDER_HOVER: allColors.WHITE,
+  BUTTON_HOVER: allColors.TRANSPARENT,
   BUTTON_COLOR: allColors.WHITE,
   // Icon
   ICON_PRIMARY: allColors.BLUE_MUTED_LIGHT,

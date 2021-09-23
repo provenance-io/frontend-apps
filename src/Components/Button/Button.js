@@ -9,7 +9,7 @@ const StyledButton = styled.button`
   color: ${({ theme }) => theme.BUTTON_COLOR };
   background: ${({ theme }) => theme.BUTTON_BG };
   border-radius: 4px;
-  border: none;
+  border: 1px solid ${({ theme }) => theme.BUTTON_BORDER };
   cursor: ${({ disabled }) => disabled ? 'not-allowed' : 'pointer' };
   display: flex;
   font-size: 1.4rem;
@@ -18,13 +18,16 @@ const StyledButton = styled.button`
   padding: 14px 20px;
   transition: 250ms all;
   user-select: none;
-  &:hover { background: ${({ theme }) => theme.BUTTON_HOVER }; }
+  &:hover {
+    background: ${({ theme }) => theme.BUTTON_HOVER };
+    border: 1px solid ${({ theme }) => theme.BUTTON_BORDER_HOVER };
+  }
 `;
 const ButtonContent = styled.div`
   font-size: 1.4rem;
 `;
 const ButtonIcon = styled.div`
-  margin-left: 10px;
+  margin-right: 10px;
   display: flex;
 `;
 
@@ -49,12 +52,12 @@ const Button = ({ className, color, icon, iconSize, iconColor, iconOptions, onCl
       disabled={disabled}
       width={width}
     >
-      <ButtonContent>{children}</ButtonContent>
       {icon && (
         <ButtonIcon>
           <Sprite {...iconOptions} icon={icon} size={iconSize} color={iconColor} />
         </ButtonIcon>
       )}
+      <ButtonContent>{children}</ButtonContent>
     </StyledButton>
   );
 };

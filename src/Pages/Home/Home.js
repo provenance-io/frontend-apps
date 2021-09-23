@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useWalletService, WINDOW_MESSAGES } from '@provenanceio/wallet-lib';
-import { Wrapper, Tile, Button as BaseButton, WalletPreview, PermissionsTest } from 'Components';
+import { Wrapper, Tile, Button, WalletPreview, PermissionsTest } from 'Components';
 import { PROVENANCE_WALLET_URL, FIGURE_WALLET_URL } from 'consts';
 import { usePageTitle, useWallet } from 'redux/hooks';
 import { getFromSessionStorage, getWalletUrlParams } from 'utils';
@@ -9,12 +9,9 @@ import rayBG from './rayBG.jpg';
 
 const HomeContainer = styled.div`
   flex-grow: 1;
-  padding-bottom: 180px;
-  padding-left: 460px;
-  margin-top: 90px;
+  padding: 90px 0 180px 480px;
   background-image: url(${rayBG});
-  background-size: cover;
-  background-position: 400px -300px;
+  background-size: contain;
   background-repeat: no-repeat;
 `;
 const TileContainer = styled.div``;
@@ -39,20 +36,30 @@ const RowTitle = styled.h2`
   font-weight: ${({ theme }) => theme.FONT_WEIGHT_BOLD };
   color: ${({ theme }) => theme.GRAY_LIGHT };
 `;
-const HeaderContent = styled.div``;
+const HeaderContent = styled.div`
+  display: flex;
+  align-content: center;
+  flex-wrap: wrap;
+  max-width: 1000px;
+  align-items: center;
+  margin-bottom: 40px;
+`;
 const HeaderText = styled.div`
-  font-size: 2.1rem;
+  font-size: 1.2rem;
+  font-weight: ${({ theme }) => theme.FONT_WEIGHT_BOLD };
+  text-transform: uppercase;
+  letter-spacing: 0.6rem;
+  margin-right: 14px;
+  margin-bottom: 20px;
 `;
 const ButtonGroup = styled.div`
   display: flex;
+  margin-bottom: 20px;
   button {
     &:not(:first-of-type) {
       margin-left: 20px;
     }
   }
-`;
-const Button = styled(BaseButton)`
-  margin: 20px 0 50px 0;
 `;
 
 const Home = () => {
@@ -149,8 +156,8 @@ const Home = () => {
       <HeaderContent>
         <HeaderText>Select the type of wallet to connect</HeaderText>
         <ButtonGroup>
-          <Button onClick={()=> connectWallet(FIGURE_WALLET_URL)}>Figure Wallet</Button>
-          <Button onClick={()=> connectWallet(PROVENANCE_WALLET_URL)}>Provenance Wallet</Button>
+          <Button icon="FIGURE" onClick={()=> connectWallet(FIGURE_WALLET_URL)}>Figure Wallet</Button>
+          <Button icon="LOGO" onClick={()=> connectWallet(PROVENANCE_WALLET_URL)}>Provenance Wallet</Button>
         </ButtonGroup>
       </HeaderContent>
     ) : (

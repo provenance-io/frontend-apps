@@ -19,6 +19,23 @@ const TileWrapper = styled.div`
   overflow: hidden;
   border: 1px solid ${({ theme }) => theme.TILE_BORDER };
 `;
+const TileCover = styled.a`
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  user-select: none;
+  z-index: 2;
+  background: transparent;
+  transition: 500ms all;
+  opacity: 0;
+  background: radial-gradient(80.87% 32.41% at 49.85% 0%, #738ECA 6.25%, rgba(55, 78, 125, 0) 96.35%), radial-gradient(117.93% 56.41% at 113.12% 107.17%, #616E9D 6.25%, rgba(65, 67, 122, 0.71) 35.94%, rgba(56, 94, 121, 0) 100%);
+  &:hover {
+    opacity: 1;
+  }
+`;
 const TileTop = styled.div`
   border-radius: 5px 5px 0 0;
   ${({ hasPermission }) => !hasPermission && `
@@ -48,7 +65,7 @@ const BottomLinkSection = styled.div`
   align-items: flex-end;
   justify-content: flex-end;
 `;
-const BottomLink = styled.a``;
+const BottomIcon = styled.div``;
 const Sprite = styled(BaseSprite)`
   height: 100%;
   width: 100%;
@@ -123,6 +140,7 @@ const Tile = ({ className, tileName }) => {
 
   return active ? (
     <TileWrapper>
+      {hasPermission && <TileCover href={url} />}
       <TileTop hasPermission={hasPermission}>
         <TileIcon src={`${process.env.PUBLIC_URL}/assets/images/tileIcons/${icon}.svg`} alt={`${title} icon`} />
       </TileTop>
@@ -133,9 +151,9 @@ const Tile = ({ className, tileName }) => {
         </BottomText>
         {hasPermission ? (
           <BottomLinkSection>
-            <BottomLink href={url}>
+            <BottomIcon>
               <Sprite icon="ARROW" color="WHITE" />
-            </BottomLink>
+            </BottomIcon>
           </BottomLinkSection>
         ) : (
           <RequiredSection>
