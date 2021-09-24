@@ -100,7 +100,7 @@ const Menu = ({ className }) => (
           <MenuSection>
             <MenuLine length="446" top="20" left="3" direction="down" />
             <SectionTitle>Wallet</SectionTitle>
-            <MenuItem title="Create a Wallet" section="wallet" indent="21" />
+            <MenuItem title="Create a Wallet" section="wallet" indent="30" />
           </MenuSection>
           <MenuSection indent="30">
             <MenuLine length="14" top="3" left="-24" direction="left" />
