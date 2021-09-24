@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Sprite } from 'Components';
 
 const MenuItemContainer = styled.div`
-  padding: 10px 20px;
+  padding: 10px 18px;
   background: ${({ theme }) => theme.MENU_ITEM_BG };
   margin-bottom: 10px;
   cursor: pointer;
@@ -14,6 +14,7 @@ const MenuItemContainer = styled.div`
   user-select: none;
   transition: 500ms all;
   border-radius: 5px;
+  ${({ indent }) => indent && `margin-left: ${indent}px;` }
   &:last-child {
     margin-bottom: 25px;
   }
@@ -33,7 +34,7 @@ const MenuIconContainer = styled.div`
   padding: 6px 6px 6px 8px;
 `;
 
-const MenuItem = ({ className, title, section, active }) => {
+const MenuItem = ({ className, title, section, active, indent }) => {
   const scrollTo = () => {
     if (section) {
       const targetElement = document.getElementById(section);
@@ -44,7 +45,7 @@ const MenuItem = ({ className, title, section, active }) => {
   };
 
   return (
-    <MenuItemContainer className={className} onClick={() => scrollTo()}>
+    <MenuItemContainer className={className} onClick={() => scrollTo()} indent={indent}>
       <MenuTitle>{title}</MenuTitle>
       <MenuIconContainer>
         <Sprite icon="CHEVRON" color={active ? 'ICON_LIGHT' : 'ICON_DARK'}flipX />
@@ -58,11 +59,13 @@ MenuItem.propTypes = {
   title: PropTypes.string.isRequired,
   section: PropTypes.string,
   active: PropTypes.bool,
+  indent: PropTypes.string,
 };
 MenuItem.defaultProps = {
   className: '',
   section: '',
   active: false,
+  indent: '',
 };
 
 export default MenuItem;

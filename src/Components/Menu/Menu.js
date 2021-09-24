@@ -2,6 +2,7 @@ import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import PropTypes from 'prop-types';
 import MenuItem from './MenuItem';
+import MenuLine from './MenuLine';
 import logo from './logo.svg';
 
 const MenuContainer = styled.div`
@@ -42,7 +43,10 @@ const LogoTitle = styled.h1`
   line-height: 1.4rem;
 `;
 const MenuItems = styled.div``;
-const MenuSection = styled.div``;
+const MenuSection = styled.div`
+  position: relative;
+  ${({ indent }) => indent && `margin-left: ${indent}px;` }
+`;
 const SectionTitle = styled.h4`
   font-weight: ${({ theme }) => theme.FONT_WEIGHT_NORMAL };
   margin-bottom: 20px;
@@ -94,26 +98,32 @@ const Menu = ({ className }) => (
         </MenuLogo>
         <MenuItems>
           <MenuSection>
+            <MenuLine length="446" top="20" left="3" direction="down" />
             <SectionTitle>Wallet</SectionTitle>
-            <MenuItem title="Create a Wallet" section="wallet" />
+            <MenuItem title="Create a Wallet" section="wallet" indent="21" />
           </MenuSection>
-          <MenuSection>
+          <MenuSection indent="30">
+            <MenuLine length="14" top="3" left="-24" direction="left" />
             <SectionTitle>NFT</SectionTitle>
             <MenuItem title="Create an NFT" section="nft" />
             <MenuItem title="Tokenize an NFT" section="nft" />
           </MenuSection>
-          <MenuSection>
+          <MenuSection indent="30">
+            <MenuLine length="14" top="3" left="-24" direction="left" />
             <SectionTitle>Hash</SectionTitle>
             <MenuItem title="Purchase Hash" section="hash" />
             <MenuItem title="Delegate Hash" section="hash" />
             <MenuItem title="Transfer Hash" section="hash" />
           </MenuSection>
-          <MenuSection>
+          <MenuSection indent="30">
+            <MenuLine length="153" top="3" left="-10" />
+            <MenuLine length="14" top="3" left="-24" direction="left"  />
             <SectionTitle>Passport</SectionTitle>
             <MenuItem title="Add a Passport" section="passport" />
             <MenuItem title="Upgrade Passport" section="passport" />
           </MenuSection>
-          <MenuSection>
+          <MenuSection indent="42">
+            <MenuLine length="10" top="3" left="-20" direction="left" />
             <SectionTitle>Exchange</SectionTitle>
             <MenuItem title="Subscribe to a Fund" section="exchange" />
             <MenuItem title="Buy Digital Currency" section="exchange" />

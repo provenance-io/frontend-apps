@@ -51,4 +51,11 @@ export const allColors = {
   BLUE_MUTED_DARK: '#39456B', // Steel
   BLUE_MUTED_DARKER: '#383E55', // Grey
   BLUE_MUTED_DARKEST: '#292D3E', // Dark Grey
+
+
+  // Test colors:
+  RED: 'red',
+  GREEN: 'green',
+  BLUE: 'pink',
+  YELLOW: 'yellow',
 };
