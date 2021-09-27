@@ -11,7 +11,7 @@ const HomeContainer = styled.div`
   flex-grow: 1;
   background-color: ${({ theme }) => theme.BLACK };
   padding: 196px 20px;
-  @media ${breakpoints.media.up('md')} {
+  @media ${breakpoints.up('md')} {
     padding: 90px 0 180px 480px;
     background-image: url(${rayBG});
     background-size: contain;

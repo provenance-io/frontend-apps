@@ -2,13 +2,10 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import {default as BaseSprite} from 'Components/Sprite';
-// import Link from 'Components/Link';
-// import { breakpoints } from 'consts';
 import { useWallet } from 'redux/hooks';
 import * as allTiles from 'consts/tiles';
 
 const TileWrapper = styled.div`
-  /* height: 500px; */
   width: 340px;
   position: relative;
   display: flex;

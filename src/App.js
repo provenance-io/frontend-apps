@@ -6,18 +6,20 @@ import { Helmet } from 'react-helmet';
 import { SpriteSheet, BaseStyle, Menu, MenuMobile, MenuTablet } from 'Components';
 import { GlobalStyle, Themes } from 'theme';
 import { Home, NotFound, Passport } from 'Pages';
-import { useWallet } from 'redux/hooks';
-import { PASSPORT_INFO_URL, HOME_URL, breakpoints } from 'consts';
+import { useWallet, useMediaQuery } from 'redux/hooks';
+import { PASSPORT_INFO_URL, HOME_URL } from 'consts';
 
 const Content = styled.div``;
 
 function App() {
   const { walletUrl } = useWallet();
+  const { matches: useTablet } = useMediaQuery('down', 'md');
+  const { matches: useMobile } = useMediaQuery('down', 'sm');
 
   const renderMenu = () => {
-    if (breakpoints.size.down('sm')) { // Mobile (600)
+    if (useMobile) { // Mobile (600)
       return <MenuMobile />
-    } else if (breakpoints.size.down('md')) { // Tablet (960)
+    } else if (useTablet) { // Tablet (960)
       return <MenuTablet />
     }
     return <Menu /> // Desktop
