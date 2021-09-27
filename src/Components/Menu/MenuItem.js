@@ -34,7 +34,7 @@ const MenuIconContainer = styled.div`
   padding: 6px 6px 6px 8px;
 `;
 
-const MenuItem = ({ className, title, section, active, indent }) => {
+const MenuItem = ({ className, title, section, active, indent, onClick }) => {
   const scrollTo = () => {
     if (section) {
       const targetElement = document.getElementById(section);
@@ -45,7 +45,7 @@ const MenuItem = ({ className, title, section, active, indent }) => {
   };
 
   return (
-    <MenuItemContainer className={className} onClick={() => scrollTo()} indent={indent}>
+    <MenuItemContainer className={className} onClick={onClick || scrollTo} indent={indent}>
       <MenuTitle>{title}</MenuTitle>
       <MenuIconContainer>
         <Sprite icon="CHEVRON" color={active ? 'ICON_LIGHT' : 'ICON_DARK'}flipX />
@@ -60,12 +60,14 @@ MenuItem.propTypes = {
   section: PropTypes.string,
   active: PropTypes.bool,
   indent: PropTypes.string,
+  onClick: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
 };
 MenuItem.defaultProps = {
   className: '',
   section: '',
   active: false,
   indent: '',
+  onClick: '',
 };
 
 export default MenuItem;

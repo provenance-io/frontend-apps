@@ -3,18 +3,25 @@ import styled, { ThemeProvider } from 'styled-components';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { WalletContextProvider } from '@provenanceio/wallet-lib';
 import { Helmet } from 'react-helmet';
-import { SpriteSheet, BaseStyle, Menu } from 'Components';
+import { SpriteSheet, BaseStyle, Menu, MenuMobile, MenuTablet } from 'Components';
 import { GlobalStyle, Themes } from 'theme';
 import { Home, NotFound, Passport } from 'Pages';
 import { useWallet } from 'redux/hooks';
-import { PASSPORT_INFO_URL, HOME_URL } from 'consts';
+import { PASSPORT_INFO_URL, HOME_URL, breakpoints } from 'consts';
 
-const Content = styled.div`
-  display: flex;
-`;
+const Content = styled.div``;
 
 function App() {
   const { walletUrl } = useWallet();
+
+  const renderMenu = () => {
+    if (breakpoints.size.down('sm')) { // Mobile (600)
+      return <MenuMobile />
+    } else if (breakpoints.size.down('md')) { // Tablet (960)
+      return <MenuTablet />
+    }
+    return <Menu /> // Desktop
+  }
 
   return (
     <BrowserRouter basename={process.env.PUBLIC_URL || ''}>
@@ -29,7 +36,7 @@ function App() {
               <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet" />
             </Helmet>
             <Content>
-              <Menu />
+              {renderMenu()}
               <Switch>
                 <Route exact path={HOME_URL} component={Home} />
                 <Route path={PASSPORT_INFO_URL} component={Passport} />

@@ -1,18 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import { useWalletService, WINDOW_MESSAGES } from '@provenanceio/wallet-lib';
-import { Wrapper, Tile, Button, WalletPreview, PermissionsTest } from 'Components';
-import { PROVENANCE_WALLET_URL, FIGURE_WALLET_URL } from 'consts';
+import { useWalletService } from '@provenanceio/wallet-lib';
+import { Wrapper, Tile, WalletStatus } from 'Components';
+import { PROVENANCE_WALLET_URL, FIGURE_WALLET_URL, breakpoints } from 'consts';
 import { usePageTitle, useWallet } from 'redux/hooks';
 import { getFromSessionStorage, getWalletUrlParams } from 'utils';
 import rayBG from './rayBG.jpg';
 
 const HomeContainer = styled.div`
   flex-grow: 1;
-  padding: 90px 0 180px 480px;
-  background-image: url(${rayBG});
-  background-size: contain;
-  background-repeat: no-repeat;
+  background-color: ${({ theme }) => theme.BLACK };
+  padding: 196px 20px;
+  @media ${breakpoints.media.up('md')} {
+    padding: 90px 0 180px 480px;
+    background-image: url(${rayBG});
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
 `;
 const TileContainer = styled.div``;
 const TileRow = styled.div`
@@ -36,43 +40,15 @@ const RowTitle = styled.h2`
   font-weight: ${({ theme }) => theme.FONT_WEIGHT_BOLD };
   color: ${({ theme }) => theme.GRAY_LIGHT };
 `;
-const HeaderContent = styled.div`
-  display: flex;
-  align-content: center;
-  flex-wrap: wrap;
-  max-width: 1000px;
-  align-items: center;
-  margin-bottom: 40px;
-`;
-const HeaderText = styled.div`
-  font-size: 1.2rem;
-  font-weight: ${({ theme }) => theme.FONT_WEIGHT_BOLD };
-  text-transform: uppercase;
-  letter-spacing: 0.6rem;
-  margin-right: 14px;
-  margin-bottom: 20px;
-`;
-const ButtonGroup = styled.div`
-  display: flex;
-  margin-bottom: 20px;
-  button {
-    &:not(:first-of-type) {
-      margin-left: 20px;
-    }
-  }
-`;
 
 const Home = () => {
   usePageTitle('Home');
-  const [connectionStatus, setConnectionStatus] = useState('');
-  const [permissionsChecked, setPermissionsChecked] = useState(false);
   const {
     setWalletLogin,
     walletUrl,
     isLoggedIn,
     setWalletUrl,
     getPermissions,
-    permissionsLoading,
     walletType: storeWalletType,
     address: storeAddress,
     keychainAccountName: storeKeychainAccountName,
@@ -85,18 +61,10 @@ const Home = () => {
   // Wallet has logged in (one way or another), check permissions
   // ----------------------------------------------------------------
   useEffect(() => {
-    if (isLoggedIn && address && !permissionsLoading && !permissionsChecked) {
-      setPermissionsChecked(true);
+    if (isLoggedIn && address) {
       getPermissions(address);
     }
-  }, [isLoggedIn, address, permissionsLoading, getPermissions, permissionsChecked]);
-  // -----------------------------------------------------------------------
-  // Create event listener for the user logging in to trigger KYC check
-  // -----------------------------------------------------------------------
-  walletService.addEventListener(WINDOW_MESSAGES.CONNECTED, walletServiceState => {
-    // Update the wallet store
-    setWalletLogin(walletServiceState);
-  });
+  }, [isLoggedIn, address, getPermissions]);
   // -------------------------------------------------------
   // Auto-Connect wallet if session storage wallet exists
   // -------------------------------------------------------
@@ -143,38 +111,11 @@ const Home = () => {
     walletService,
     getPermissions,
   ]);
-  // Connect to the wallet api
-  const connectWallet = (url) => {
-    walletService.setWalletUrl(url);
-    walletService.connect(url);
-  };
-  // User initially selects "Connect Wallet", determine type of wallet (Fig vs Prov)
-  const renderConnectionStatus = () => (
-    isLoggedIn ? (
-      <WalletPreview />
-    ) : connectionStatus ? (
-      <HeaderContent>
-        <HeaderText>Select the type of wallet to connect</HeaderText>
-        <ButtonGroup>
-          <Button icon="FIGURE" onClick={()=> connectWallet(FIGURE_WALLET_URL)}>Figure Wallet</Button>
-          <Button icon="LOGO" onClick={()=> connectWallet(PROVENANCE_WALLET_URL)}>Provenance Wallet</Button>
-        </ButtonGroup>
-      </HeaderContent>
-    ) : (
-      <HeaderContent>
-        <HeaderText>Connect or create a wallet to view the apps you have access to</HeaderText>
-        <Button onClick={()=> setConnectionStatus('select')}>Connect Wallet</Button>
-      </HeaderContent>
-    )
-  );
 
   return (
     <Wrapper>
       <HomeContainer>
-        {renderConnectionStatus()}
-        { /* TEST ONLY, REMOVE ME | START */}
-        <PermissionsTest />
-        { /* TEST ONLY, REMOVE ME | END */}
+        <WalletStatus />
         <TileContainer>
           <TileRow>
             <TileRowContent>
