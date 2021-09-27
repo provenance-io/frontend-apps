@@ -16,6 +16,7 @@ const HomeContainer = styled.div`
     background-image: url(${rayBG});
     background-size: contain;
     background-repeat: no-repeat;
+    background-color: ${({ theme }) => theme.GREY_DARKEST };
   }
 `;
 const TileContainer = styled.div``;
