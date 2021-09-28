@@ -3,27 +3,16 @@ import styled, { ThemeProvider } from 'styled-components';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { WalletContextProvider } from '@provenanceio/wallet-lib';
 import { Helmet } from 'react-helmet';
-import { SpriteSheet, BaseStyle, Menu, MenuMobile, MenuTablet } from 'Components';
+import { SpriteSheet, BaseStyle, Menu } from 'Components';
 import { GlobalStyle, Themes } from 'theme';
 import { Home, NotFound, Passport } from 'Pages';
-import { useWallet, useMediaQuery } from 'redux/hooks';
+import { useWallet } from 'redux/hooks';
 import { PASSPORT_INFO_URL, HOME_URL } from 'consts';
 
 const Content = styled.div``;
 
 function App() {
   const { walletUrl } = useWallet();
-  const { matches: useTablet } = useMediaQuery('down', 'md');
-  const { matches: useMobile } = useMediaQuery('down', 'sm');
-
-  const renderMenu = () => {
-    if (useMobile) { // Mobile (600)
-      return <MenuMobile />
-    } else if (useTablet) { // Tablet (960)
-      return <MenuTablet />
-    }
-    return <Menu /> // Desktop
-  }
 
   return (
     <BrowserRouter basename={process.env.PUBLIC_URL || ''}>
@@ -38,7 +27,7 @@ function App() {
               <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet" />
             </Helmet>
             <Content>
-              {renderMenu()}
+              <Menu />
               <Switch>
                 <Route exact path={HOME_URL} component={Home} />
                 <Route path={PASSPORT_INFO_URL} component={Passport} />

@@ -15,15 +15,13 @@ const Dropdown = styled.select`
   background: ${({ theme }) => theme.BLUE_MUTED_DARK };
   border: none;
   outline: none;
-  width: 300px;
+  width: 100%;
   color: ${({ theme }) => theme.WHITE };
   text-transform: uppercase;
   letter-spacing: 0.24rem;
   font-size: 1.2rem;
 `;
-const DropdownOption = styled.option`
-
-`;
+const DropdownOption = styled.option``;
 
 const DropdownList = ({ className, onChange, value }) => (
   <DropdownListContainer className={className}>

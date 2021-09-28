@@ -6,15 +6,14 @@ import { useWallet } from 'redux/hooks';
 import { Button, WalletPreview } from 'Components';
 import { FIGURE_WALLET_URL, PROVENANCE_WALLET_URL } from 'consts';
 
-const WalletStatusContainer = styled.div`
-  padding: 10px;
-`;
+const WalletStatusContainer = styled.div``;
 const HeaderContent = styled.div`
   display: flex;
   align-content: center;
   flex-wrap: wrap;
   align-items: center;
   margin-bottom: 40px;
+  padding: 10px;
 `;
 const HeaderText = styled.div`
   font-size: 1.2rem;

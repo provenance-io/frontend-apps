@@ -4,11 +4,16 @@ import { useWalletService } from '@provenanceio/wallet-lib';
 import PropTypes from 'prop-types';
 import { useWallet } from 'redux/hooks';
 import { Sprite, CopyValue } from 'Components';
+import { breakpoints } from 'consts';
 
 const WalletPreviewContainer = styled.div`
   font-size: 1.3rem;
   display: inline-block;
   margin-bottom: 60px;
+  @media ${breakpoints.down('sm')} {
+    max-width: 100%;
+    padding: 0 10px;
+  }
 `;
 const LoginMsg = styled.div`
   display: flex;
@@ -29,6 +34,10 @@ const WalletInfo = styled.div`
   border-radius: 10px;
   align-items: center;
   height: 50px;
+  @media ${breakpoints.down('sm')} {
+    max-width: 100%;
+    overflow: scroll;
+  }
 `;
 const WalletTxt = styled.div`
   padding: 10px 20px;

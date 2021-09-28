@@ -9,14 +9,18 @@ import rayBG from './rayBG.jpg';
 
 const HomeContainer = styled.div`
   flex-grow: 1;
-  background-color: ${({ theme }) => theme.BLACK };
-  padding: 196px 20px;
-  @media ${breakpoints.up('md')} {
-    padding: 90px 0 180px 480px;
-    background-image: url(${rayBG});
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-color: ${({ theme }) => theme.GREY_DARKEST };
+  padding: 90px 0 180px 480px;
+  background-image: url(${rayBG});
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: ${({ theme }) => theme.GREY_DARKEST };
+  @media ${breakpoints.down('md')} {
+    padding: 190px 20px;
+    background-color: ${({ theme }) => theme.BLACK };
+    background-image: none;
+  }
+  @media ${breakpoints.down('sm')} {
+    padding: 190px 5px;
   }
 `;
 const TileContainer = styled.div``;
