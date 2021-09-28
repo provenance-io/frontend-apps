@@ -63,13 +63,13 @@ const Home = () => {
   const { address } = walletService?.state;
   const existingWallet = getWalletUrlParams();
   // ----------------------------------------------------------------
-  // Wallet has logged in (one way or another), check permissions
+  // Wallet has logged in/out (one way or another), check permissions
   // ----------------------------------------------------------------
   useEffect(() => {
-    if (isLoggedIn && address) {
-      getPermissions(address);
+    if (isLoggedIn && (address || storeAddress)) {
+      getPermissions(address || storeAddress);
     }
-  }, [isLoggedIn, address, getPermissions]);
+  }, [isLoggedIn, address, storeAddress, getPermissions]);
   // -------------------------------------------------------
   // Auto-Connect wallet if session storage wallet exists
   // -------------------------------------------------------
