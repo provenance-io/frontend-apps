@@ -100,36 +100,36 @@ const MenuDesktop = ({ className }) => (
           <MenuSection>
             <MenuLine length="446" top="20" left="3" direction="down" />
             <SectionTitle>Wallet</SectionTitle>
-            <MenuItem title="Create a Wallet" section="wallet" indent="30" />
+            <MenuItem tileName="wallet" indent="30" />
           </MenuSection>
           <MenuSection indent="30">
             <MenuLine length="14" top="3" left="-24" direction="left" />
             <SectionTitle>NFT</SectionTitle>
-            <MenuItem title="Create an NFT" section="nft" />
-            <MenuItem title="Tokenize an NFT" section="nft" />
+            <MenuItem tileName="createNFT" section="nft" />
+            <MenuItem tileName="tokenizeNFT" section="nft" />
           </MenuSection>
           <MenuSection indent="30">
             <MenuLine length="14" top="3" left="-24" direction="left" />
             <SectionTitle>Hash</SectionTitle>
-            <MenuItem title="Purchase Hash" section="hash" />
-            <MenuItem title="Delegate Hash" section="hash" />
-            <MenuItem title="Transfer Hash" section="hash" />
+            <MenuItem tileName="purchaseHash" section="hash" />
+            <MenuItem tileName="delegateHash" section="hash" />
+            <MenuItem tileName="transferHash" section="hash" />
           </MenuSection>
           <MenuSection indent="30">
             <MenuLine length="153" top="3" left="-10" />
             <MenuLine length="14" top="3" left="-24" direction="left"  />
             <SectionTitle>Passport</SectionTitle>
-            <MenuItem title="Add a Passport" section="passport" />
-            <MenuItem title="Upgrade Passport" section="passport" />
+            <MenuItem tileName="passport" section="passport" />
+            <MenuItem tileName="updatePassport" section="passport" />
           </MenuSection>
           <MenuSection indent="42">
             <MenuLine length="10" top="3" left="-20" direction="left" />
             <SectionTitle>Exchange</SectionTitle>
-            <MenuItem title="Subscribe to a Fund" section="exchange" />
-            <MenuItem title="Buy Digital Currency" section="exchange" />
-            <MenuItem title="Trade on ATS" section="exchange" />
-            <MenuItem title="Access BTC Bridge" section="exchange" />
-            <MenuItem title="Access ETH Bridge" section="exchange" />
+            <MenuItem tileName="subscribeToFund" section="exchange" />
+            <MenuItem tileName="buyDigitalCurrency" section="exchange" />
+            <MenuItem tileName="tradeATS" section="exchange" />
+            <MenuItem tileName="bridgeBTC" section="exchange" />
+            <MenuItem tileName="bridgeETH" section="exchange" />
           </MenuSection>
         </MenuItems>
       </MenuHeader>

@@ -168,36 +168,36 @@ const MenuTablet = ({ className }) => {
           <MenuSection>
             <MenuLine length="446" top="20" left="3" direction="down" />
             <SectionTitle>Wallet</SectionTitle>
-            <MenuItem title="Create a Wallet" onClick={() => menuItemClick("wallet")} indent="30" />
+            <MenuItem tileName="wallet" onClick={() => menuItemClick("wallet")} indent="30" />
           </MenuSection>
           <MenuSection indent="30">
             <MenuLine length="14" top="3" left="-24" direction="left" />
             <SectionTitle>NFT</SectionTitle>
-            <MenuItem title="Create an NFT" onClick={() => menuItemClick('nft')} />
-            <MenuItem title="Tokenize an NFT" onClick={() => menuItemClick('nft')} />
+            <MenuItem tileName="createNFT" onClick={() => menuItemClick('nft')} />
+            <MenuItem tileName="tokenizeNFT" onClick={() => menuItemClick('nft')} />
           </MenuSection>
           <MenuSection indent="30">
             <MenuLine length="14" top="3" left="-24" direction="left" />
             <SectionTitle>Hash</SectionTitle>
-            <MenuItem title="Purchase Hash" onClick={() => menuItemClick('hash')} />
-            <MenuItem title="Delegate Hash" onClick={() => menuItemClick('hash')} />
-            <MenuItem title="Transfer Hash" onClick={() => menuItemClick('hash')} />
+            <MenuItem tileName="purchaseHash" onClick={() => menuItemClick('hash')} />
+            <MenuItem tileName="delegateHash" onClick={() => menuItemClick('hash')} />
+            <MenuItem tileName="transferHash" onClick={() => menuItemClick('hash')} />
           </MenuSection>
           <MenuSection indent="30">
             <MenuLine length="153" top="3" left="-10" />
             <MenuLine length="14" top="3" left="-24" direction="left"  />
             <SectionTitle>Passport</SectionTitle>
-            <MenuItem title="Add a Passport" onClick={() => menuItemClick('passport')} />
-            <MenuItem title="Upgrade Passport" onClick={() => menuItemClick('passport')} />
+            <MenuItem tileName="passport" onClick={() => menuItemClick('passport')} />
+            <MenuItem tileName="updatePassport" onClick={() => menuItemClick('passport')} />
           </MenuSection>
           <MenuSection indent="42">
             <MenuLine length="10" top="3" left="-20" direction="left" />
             <SectionTitle>Exchange</SectionTitle>
-            <MenuItem title="Subscribe to a Fund" onClick={() => menuItemClick('exchange')} />
-            <MenuItem title="Buy Digital Currency" onClick={() => menuItemClick('exchange')} />
-            <MenuItem title="Trade on ATS" onClick={() => menuItemClick('exchange')} />
-            <MenuItem title="Access BTC Bridge" onClick={() => menuItemClick('exchange')} />
-            <MenuItem title="Access ETH Bridge" onClick={() => menuItemClick('exchange')} />
+            <MenuItem tileName="subscribeToFund" onClick={() => menuItemClick('exchange')} />
+            <MenuItem tileName="buyDigitalCurrency" onClick={() => menuItemClick('exchange')} />
+            <MenuItem tileName="tradeATS" onClick={() => menuItemClick('exchange')} />
+            <MenuItem tileName="bridgeBTC" onClick={() => menuItemClick('exchange')} />
+            <MenuItem tileName="bridgeETH" onClick={() => menuItemClick('exchange')} />
           </MenuSection>
         </MenuItems>
       )}

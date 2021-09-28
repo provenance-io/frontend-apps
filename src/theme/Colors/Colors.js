@@ -10,7 +10,7 @@ export const Colors = {
   // Sidebar Menu
   MENU_BG: allColors.GREY_DARKER, 
   MENU_ITEM_BG: allColors.BLUE_MUTED_DARKEST,
-  MENU_ITEM_ACTIVE_BG: allColors.BLUE_MUTED_DARK,
+  MENU_ITEM_ALLOWED_BG: allColors.BLUE_MUTED_DARK,
   MENU_LINE: allColors.BLUE_MUTED_LIGHT,
   // Body
   BODY_BG: allColors.GREY_DARKEST,
