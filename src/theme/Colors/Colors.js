@@ -11,6 +11,7 @@ export const Colors = {
   MENU_BG: allColors.GREY_DARKER, 
   MENU_ITEM_BG: allColors.BLUE_MUTED_DARKEST,
   MENU_ITEM_ALLOWED_BG: allColors.BLUE_MUTED_DARK,
+  MENU_ITEM_HOVER_BG: allColors.BLUE_MUTED_DARKER,
   MENU_LINE: allColors.BLUE_MUTED_LIGHT,
   // Body
   BODY_BG: allColors.GREY_DARKEST,

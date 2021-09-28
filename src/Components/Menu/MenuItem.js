@@ -21,7 +21,7 @@ const MenuItemContainer = styled.div`
     margin-bottom: 25px;
   }
   &:hover {
-    background: ${({ theme }) => theme.MENU_ITEM_ACTIVE_BG };
+    background: ${({ theme }) => theme.MENU_ITEM_HOVER_BG };
   }
 `;
 const MenuTitle = styled.div`
