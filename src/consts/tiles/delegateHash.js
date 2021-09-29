@@ -1,4 +1,4 @@
-import { EXPLORER_VALIDATORS_URL, HOW_TO_STAKE_URL } from 'consts';
+import { EXPLORER_VALIDATORS_URL, HOW_TO_STAKE_URL } from '../urls';
 
 export const delegateHash = {
   active: true,

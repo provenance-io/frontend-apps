@@ -75,14 +75,14 @@ const MenuItem = ({ className, section, indent, onClick, tileName }) => {
     }
   };
 
-  return active ? (
-    <MenuItemContainer className={className} onClick={onClick || scrollTo} indent={indent} hasPermission={hasPermission}>
+  return (
+    <MenuItemContainer className={className} onClick={onClick || scrollTo} indent={indent} hasPermission={hasPermission && active}>
       <MenuTitle>{title}</MenuTitle>
       <MenuIconContainer>
-        <Sprite icon="CHEVRON" color={hasPermission ? 'ICON_LIGHT' : 'ICON_DARK'}flipX />
+        <Sprite icon="CHEVRON" color={(hasPermission && active)? 'ICON_LIGHT' : 'ICON_DARK'}flipX />
       </MenuIconContainer>
     </MenuItemContainer>
-  ) : null;
+  );
 }
 
 MenuItem.propTypes = {

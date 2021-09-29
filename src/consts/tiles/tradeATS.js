@@ -1,4 +1,4 @@
-import { SECONDARIES_DEMO_URL, SECONDARIES_URL } from 'consts';
+import { SECONDARIES_DEMO_URL, SECONDARIES_URL } from '../urls';
 
 export const tradeATS = {
   active: true,

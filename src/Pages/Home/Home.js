@@ -154,8 +154,8 @@ const Home = () => {
             <TileRowContent>
               <RowTitle id="exchange">Exchange</RowTitle>
               <Tile tileName='subscribeToFund' />
-              <Tile tileName='buyDigitalCurrency' />
               <Tile tileName='tradeATS' />
+              <Tile tileName='buyDigitalCurrency' />
               <Tile tileName='bridgeBTC' />
               <Tile tileName='bridgeETH' />
             </TileRowContent>

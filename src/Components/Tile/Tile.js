@@ -72,6 +72,7 @@ const Sprite = styled(BaseSprite)`
 `;
 const BottomTextContainer = styled.div`
   margin-bottom: 40px;
+  position: relative;
 `;
 const BottomText = styled.p`
   font-size: 1.2rem;
@@ -98,7 +99,16 @@ const StarContainer = styled.div`
   top:0;
   left:0;
   width: 100%;
-  background: ${({ theme }) => theme.BLACK50 };
+  background: rgb(0,0,0, .7);
+  background: linear-gradient(
+    240deg, rgba(0,0,0,.7) 0%,
+    rgba(20,24,33,.7) 14%,
+    rgba(62,68,79,.7) 29%,
+    rgba(31,34,42,.7) 55%,
+    rgba(70,74,84,.7) 61%,
+    rgba(20,24,33,.7) 72%,
+    rgba(44,48,60,.7) 100%
+  );
   height: 100%;
   z-index: 2;
   user-select: none;
@@ -123,15 +133,15 @@ const StarText = styled.p`
 const StarAnimation = keyframes`
   0% {
     transform: rotate(0deg);
-    opacity: 0.5;
+    opacity: 0.4;
   }
   50% {
     transform: rotate(180deg);
-    opacity: 1;
+    opacity: 0.8;
   }
   100% {
     transform: rotate(360deg);
-    opacity: 0.5;
+    opacity: 0.4;
   }
 `;
 const StarIcon = styled.img`
@@ -139,9 +149,15 @@ const StarIcon = styled.img`
   height: auto;
   position: absolute;
   animation: ${StarAnimation} 20s linear infinite;
-  filter: blur(0.6rem);
+  filter: blur(0.8rem);
   user-select: none;
   pointer-events: none;
+`;
+const HelpIcon = styled.a`
+  position: absolute;
+  z-index: 2;
+  top: -10px;
+  right: -10px;
 `;
 
 const Tile = ({ className, tileName }) => {
@@ -149,7 +165,7 @@ const Tile = ({ className, tileName }) => {
   const [isComplete, setIsComplete] = useState(false);
   const { permissions } = useWallet();
   const data = allTiles[tileName];
-  const { complete = [], requires = [], active, icon } = data;
+  const { complete = [], requires = [], active, icon, help } = data;
   // If not yet completed, override the url, content, and title from incomplete
   const finalData = isComplete ? data : {...data, ...data.incomplete}
   const { url, content, title } = finalData;
@@ -207,6 +223,11 @@ const Tile = ({ className, tileName }) => {
       </TileTop>
       <TileBottom>
           <BottomTextContainer>
+            {help && (
+              <HelpIcon href={help} title="Get more information/help">
+                <BaseSprite icon="HELP_OUTLINE" size="2rem" color="BLUE_MUTED_LIGHT" />
+              </HelpIcon>
+            )}
             <TileTitle>{title}</TileTitle>
             <BottomText>
               {content}

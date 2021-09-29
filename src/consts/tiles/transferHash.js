@@ -1,4 +1,4 @@
-import { FIGURE_DASHBOARD_URL, PROVENANCE_WALLET_INFO_URL } from 'consts';
+import { FIGURE_DASHBOARD_URL, PROVENANCE_WALLET_INFO_URL } from '../urls';
 
 export const transferHash = {
   active: true,

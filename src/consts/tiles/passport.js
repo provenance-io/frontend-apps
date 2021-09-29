@@ -1,4 +1,4 @@
-import { PASSPORT_URL } from 'consts';
+import { PASSPORT_URL } from '../urls';
 
 export const passport = {
   active: true,

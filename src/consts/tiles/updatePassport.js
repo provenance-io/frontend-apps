@@ -1,4 +1,4 @@
-import { PASSPORT_UPGRADE_URL, PASSPORT_URL } from 'consts';
+import { PASSPORT_UPGRADE_URL, PASSPORT_URL } from '../urls';
 
 export const updatePassport = {
   active: true,

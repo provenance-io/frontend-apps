@@ -1,4 +1,4 @@
-import { DIGITAL_FUND_URL, MARKETPLACE_BUYER_URL } from 'consts';
+import { DIGITAL_FUND_URL, MARKETPLACE_BUYER_URL } from '../urls';
 
 export const subscribeToFund = {
   active: true,

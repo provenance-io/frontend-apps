@@ -1,4 +1,4 @@
-import { ASSET_ONBOARDING_URL } from 'consts';
+import { ASSET_ONBOARDING_URL } from '../urls';
 
 export const tokenizeNFT = {
   active: true,

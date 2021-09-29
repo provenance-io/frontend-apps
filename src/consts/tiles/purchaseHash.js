@@ -1,4 +1,4 @@
-import { DEPOSIT_MONEY_URL, DLOB_URL } from "consts";
+import { DEPOSIT_MONEY_URL, DLOB_URL } from '../urls';
 
 export const purchaseHash =   {
   active: true,
