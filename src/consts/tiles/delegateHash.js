@@ -1,8 +1,11 @@
+import { EXPLORER_VALIDATORS_URL, HOW_TO_STAKE_URL } from 'consts';
+
 export const delegateHash = {
   active: true,
   icon: 'tokenMulti',
   requires: ['wallet'],
   title: 'Delegate Hash',
-  content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed laoreet vehicula leo, eget posuere est sagittis a.',
-  url: 'https://provenance.io/delegated-token',
+  content: 'Earn revenue on your Hash. Participate in the Provenance Hash staking process by delegating Hash to a validator.',
+  help: HOW_TO_STAKE_URL,
+  url: EXPLORER_VALIDATORS_URL,
 };

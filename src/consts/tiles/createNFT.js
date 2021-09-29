@@ -1,8 +1,10 @@
+import { ASSET_ONBOARDING_URL } from "consts";
+
 export const createNFT = {
   active: true,
   icon: 'boxCover',
   requires: ['wallet'],
   title: 'Create an NFT',
-  content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed laoreet vehicula leo, eget posuere est sagittis a.',
-  url: 'https://provenance.io/create-a-nft',
+  content: 'Create a “Non-Fungible Token” that represents a unique (non-fungible) digital asset (token) whose ownership is registered and tracked on the blockchain.',
+  url: ASSET_ONBOARDING_URL,
 };

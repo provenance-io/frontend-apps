@@ -1,8 +1,10 @@
+import { ASSET_ONBOARDING_URL } from 'consts';
+
 export const tokenizeNFT = {
   active: true,
   icon: 'boxRing',
   requires: ['wallet'],
   title: 'Tokenize an NFT',
-  content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed laoreet vehicula leo, eget posuere est sagittis a.',
-  url: 'https://provenance.io/tokenize-a-nft',
+  content: 'Create a value marker for Non-Fungible Tokens (NFTs) that can be traded on Provenance-based exchanges.',
+  url: ASSET_ONBOARDING_URL,
 };

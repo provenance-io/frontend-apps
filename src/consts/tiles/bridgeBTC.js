@@ -5,12 +5,7 @@ export const bridgeBTC = {
   icon: 'bridgeBtc',
   requires: ['wallet', 'passport'],
   complete: ['isKYC'],
-  title: "View BTC Bridge",
-  content: 'Utilize Your Bitcoin Holdings by buying, selling and trading on the Provenance Ecosystem through Provenance Bridge.',
+  title: "Access BTC Bridge",
+  content: 'Transfer BTC from your Bitcoin wallet to your Provenance wallet.  Then use the resulting Provenance SATBTC (BTC) digital currency from your Provenance wallet to buy, sell, or trade on the Provenance ecosystem.',
   url: `${FIGURE_DASHBOARD_URL}`,
-  incomplete: {
-    title: "Access BTC Bridge",
-    content: 'To use the BTC Bridge you must have completed your Figure Passport and be approved.  Click here to get detailed step by step directions and complete this process.',
-    url: `/passport`,
-  }
 };

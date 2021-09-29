@@ -5,12 +5,7 @@ export const bridgeETH = {
   icon: 'bridgeEth',
   requires: ['wallet', 'passport'],
   complete: ['isKYC'],
-  title: 'View ETH Bridge',
-  content: 'Utilize Your ETH Holdings by buying, selling and trading on the Provenance Ecosystem through Provenance Bridge.',
+  title: 'Access ETH Bridge',
+  content: 'Transfer ETH from your Ethereum wallet to your Provenance wallet.  Then use the resulting Provenance GWEI (ETH) digital currency from your Provenance wallet to buy, sell, or trade on the Provenance ecosystem.',
   url: `${FIGURE_DASHBOARD_URL}`,
-  incomplete: {
-    title: 'Access ETH Bridge',
-    content: 'To use the ETH Bridge you must have completed your Figure Passport and be approved.  Click here to get detailed step by step directions and complete this process.',
-    url: `/passport`,
-  }
 };

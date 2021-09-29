@@ -1,8 +1,11 @@
+import { PASSPORT_UPGRADE_URL, PASSPORT_URL } from 'consts';
+
 export const updatePassport = {
   active: true,
   icon: 'upDocuments',
   requires: ['wallet', 'passport'],
-  title: 'Upgrade Passport',
-  content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed laoreet vehicula leo, eget posuere est sagittis a.',
-  url: 'https://provenance.io/upgrade-passport',
+  title: 'Upgrade a Passport',
+  content: 'Upgrade an existing Passport to add additional accreditation levels or BSA/KYC/AML material.',
+  url: PASSPORT_UPGRADE_URL,
+  help: PASSPORT_URL,
 };
