@@ -3,6 +3,6 @@ export const buyDigitalCurrency = {
   icon: 'currency',
   requires: ['wallet', 'passport'],
   title: 'Buy Digital Currency',
-  content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed laoreet vehicula leo, eget posuere est sagittis a.',
+  content: 'Purchase digital currency, a "digital marker" that references fiat currency that is in a bank deposit account, to participate in Provenance exchanges.',
   url: 'https://provenance.io/purchase-stablecoin',
 };
