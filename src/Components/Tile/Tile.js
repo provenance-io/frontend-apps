@@ -223,7 +223,7 @@ const Tile = ({ className, tileName }) => {
       </TileTop>
       <TileBottom>
           <BottomTextContainer>
-            {help && (
+            {help && hasPermission && (
               <HelpIcon href={help} title="Get more information/help">
                 <BaseSprite icon="HELP_OUTLINE" size="2rem" color="BLUE_MUTED_LIGHT" />
               </HelpIcon>
