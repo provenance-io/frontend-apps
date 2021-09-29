@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import PropTypes from 'prop-types';
 import {default as BaseSprite} from 'Components/Sprite';
 import { useWallet } from 'redux/hooks';
@@ -55,6 +55,7 @@ const TileBottom = styled.div`
   flex-direction: column;
   background: ${({ theme }) => theme.TILE_BG};
   border-radius: 0px 0px 5px 5px;
+  justify-content: space-between;
 `;
 const BottomLinkSection = styled.div`
   display: flex;
@@ -69,10 +70,12 @@ const Sprite = styled(BaseSprite)`
   width: 21px;
   height: 14px;
 `;
+const BottomTextContainer = styled.div`
+  margin-bottom: 40px;
+`;
 const BottomText = styled.p`
   font-size: 1.2rem;
   line-height: 20px;
-  margin-bottom: 40px;
 `;
 const RequiredSection = styled.div``;
 const RequiredText = styled.div`
@@ -86,6 +89,59 @@ const RequireIcon = styled.img`
   height: 50px;
   width: 50px;
   margin-right: 10px;
+`;
+const StarContainer = styled.div`
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  top:0;
+  left:0;
+  width: 100%;
+  background: ${({ theme }) => theme.BLACK50 };
+  height: 100%;
+  z-index: 2;
+  user-select: none;
+  `;
+const StarContent = styled.div`
+  position: relative;
+  height: 60%;
+  width: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+const StarText = styled.p`
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.26rem;
+  font-weight: ${({ theme }) => theme.FONT_WEIGHT_BOLD };
+  text-shadow: 1px 1px 2px #9d8300, 0px -1px 1px #ffeb00;
+  color: #ffd500;
+  z-index: 2;
+`;
+const StarAnimation = keyframes`
+  0% {
+    transform: rotate(0deg);
+    opacity: 0.5;
+  }
+  50% {
+    transform: rotate(180deg);
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(360deg);
+    opacity: 0.5;
+  }
+`;
+const StarIcon = styled.img`
+  width: 100%;
+  height: auto;
+  position: absolute;
+  animation: ${StarAnimation} 20s linear infinite;
+  filter: blur(0.6rem);
+  user-select: none;
+  pointer-events: none;
 `;
 
 const Tile = ({ className, tileName }) => {
@@ -135,17 +191,27 @@ const Tile = ({ className, tileName }) => {
     })
   };
 
-  return active ? (
-    <TileWrapper>
-      {hasPermission && <TileCover href={url} />}
+  return (
+    <TileWrapper active={active}>
+      {!active && (
+        <StarContainer>
+          <StarContent>
+            <StarText>Coming Soon</StarText>
+            <StarIcon src={`${process.env.PUBLIC_URL}/assets/images/other/star01.png`} />
+          </StarContent>
+        </StarContainer>
+      )}
+      {hasPermission && active && <TileCover href={url} />}
       <TileTop hasPermission={hasPermission}>
         <TileIcon src={`${process.env.PUBLIC_URL}/assets/images/tileIcons/${icon}.svg`} alt={`${title} icon`} />
       </TileTop>
       <TileBottom>
-        <TileTitle>{title}</TileTitle>
-        <BottomText>
-          {content}
-        </BottomText>
+          <BottomTextContainer>
+            <TileTitle>{title}</TileTitle>
+            <BottomText>
+              {content}
+            </BottomText>
+          </BottomTextContainer>
         {hasPermission ? (
           <BottomLinkSection>
             <BottomIcon>
@@ -160,7 +226,7 @@ const Tile = ({ className, tileName }) => {
         )}
       </TileBottom>
     </TileWrapper>
-  ) : null;
+  );
 };
 
 Tile.propTypes = {

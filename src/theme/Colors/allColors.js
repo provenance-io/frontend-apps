@@ -17,6 +17,7 @@ export const allColors = {
   // -------------
   BLACK: '#000000',
   BLACK95: 'rgba(0,0,0, 0.95)',
+  BLACK50: 'rgba(0,0,0, 0.50)',
   BLACK30: 'rgba(0,0,0, 0.30)',
   BLACK25: 'rgba(0,0,0, 0.25)',
   BLACK13: 'rgba(0,0,0, 0.13)',

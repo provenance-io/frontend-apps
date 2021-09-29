@@ -155,8 +155,12 @@ const MenuTablet = ({ className }) => {
           <MenuLogo onClick={() => { window.scrollTo({top: 0, behavior: 'smooth'}) }}>
             <Logo src={logo} />
             <LogoTitle>Provenance Applications</LogoTitle>
-            {process.env.REACT_APP_ENV !== 'production' && <TestnetMessage>TESTNET</TestnetMessage>}
-            <Version>v{process.env.REACT_APP_VERSION}</Version>
+            {process.env.REACT_APP_ENV !== 'production' && (
+              <>
+                <TestnetMessage>TESTNET</TestnetMessage>
+                <Version>v{process.env.REACT_APP_VERSION}</Version>
+              </>
+            )}
           </MenuLogo>
           <Sprite icon="MENU" size="2rem" color="WHITE" onClick={toggleMenu} />
           <DropdownList value={dropdownValue} onChange={changeDropdown} />

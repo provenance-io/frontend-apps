@@ -93,8 +93,12 @@ const MenuDesktop = ({ className }) => (
         <MenuLogo onClick={() => { window.scrollTo({top: 0, behavior: 'smooth'}) }}>
           <Logo src={logo} />
           <LogoTitle>Provenance Applications</LogoTitle>
-          {process.env.REACT_APP_ENV !== 'production' && <TestnetMessage>TESTNET</TestnetMessage>}
-          <Version>v{process.env.REACT_APP_VERSION}</Version>
+          {process.env.REACT_APP_ENV !== 'production' && (
+            <>
+              <TestnetMessage>TESTNET</TestnetMessage>
+              <Version>v{process.env.REACT_APP_VERSION}</Version>
+            </>
+          )}
         </MenuLogo>
         <MenuItems>
           <MenuSection>

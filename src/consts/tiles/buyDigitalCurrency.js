@@ -1,5 +1,5 @@
 export const buyDigitalCurrency = {
-  active: true,
+  active: false,
   icon: 'currency',
   requires: ['wallet', 'passport'],
   title: 'Buy Digital Currency',
