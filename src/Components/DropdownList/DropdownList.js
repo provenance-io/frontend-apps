@@ -26,7 +26,7 @@ const Dropdown = styled.select`
   color: ${({ theme }) => theme.WHITE };
   text-transform: uppercase;
   letter-spacing: 0.24rem;
-  font-size: 1.2rem;
+  font-size: 16px; /* 16px needed to prevent mobile zooming on select */
   -webkit-appearance: none;
 `;
 
