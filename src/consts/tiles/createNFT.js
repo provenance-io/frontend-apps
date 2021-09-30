@@ -1,7 +1,7 @@
 import { ASSET_ONBOARDING_URL } from '../urls';
 
 export const createNFT = {
-  active: true,
+  active: false,
   icon: 'boxCover',
   requires: ['wallet'],
   title: 'Create an NFT',

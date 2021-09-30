@@ -1,7 +1,7 @@
 import { ASSET_ONBOARDING_URL } from '../urls';
 
 export const tokenizeNFT = {
-  active: true,
+  active: false,
   icon: 'boxRing',
   requires: ['wallet'],
   title: 'Tokenize an NFT',
