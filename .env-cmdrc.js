@@ -16,7 +16,6 @@ module.exports = {
     // Wallet Urls
     REACT_APP_FIGURE_WALLET_URL: "https://test.figure.com/dashboard",
     REACT_APP_PROVENANCE_WALLET_URL: "https://wallet.test.provenance.io",
-    REACT_APP_PROVENANCE_CREATE_WALLET_URL: "https://test.provenance.io/create-a-wallet",
     REACT_APP_WALLET_PERMISSION_URL: "https://api.test.provenance.io/provenance/attribute/v1/attributes",
     // Tile URLs
     REACT_APP_ASSET_ONBOARDING_URL: "https://test.figure.tech/asset-onboarding",
@@ -49,7 +48,6 @@ module.exports = {
     // Wallet Urls
     REACT_APP_FIGURE_WALLET_URL: "https://figure.com/dashboard",
     REACT_APP_PROVENANCE_WALLET_URL: "https://wallet.provenance.io",
-    REACT_APP_PROVENANCE_CREATE_WALLET_URL: "https://provenance.io/create-a-wallet",
     REACT_APP_WALLET_PERMISSION_URL: "https://api.provenance.io/provenance/attribute/v1/attributes",
     // Tile URLs
     REACT_APP_ASSET_ONBOARDING_URL: "https://www.figure.tech/asset-onboarding",
