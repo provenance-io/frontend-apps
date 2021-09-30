@@ -74,7 +74,7 @@ export const GlobalStyle = createGlobalStyle`
     text-decoration: none;
   }
   // Fix mobile double tap zoom (Especially bad on input fields)
-  input, button {
+  input, button, select, option {
       touch-action: manipulation;
   }
 `;
