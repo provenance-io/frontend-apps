@@ -59,7 +59,7 @@ jobs:
       - name: Build and push compose
         uses: docker/build-push-action@v2
         with:
-          file: Dockerfile
+          file: Dockerfile-prod
           context: .
           push: true
           tags: provenanceio/frontend-apps-generic:latest
