@@ -5,9 +5,9 @@ import { WalletContextProvider } from '@provenanceio/wallet-lib';
 import { Helmet } from 'react-helmet';
 import { SpriteSheet, BaseStyle, Menu } from 'Components';
 import { GlobalStyle, Themes } from 'theme';
-import { Home, NotFound, Passport } from 'Pages';
+import { Home, NotFound, Passport, Icons } from 'Pages';
 import { useWallet } from 'redux/hooks';
-import { PASSPORT_INFO_URL, HOME_URL } from 'consts';
+import { PASSPORT_INFO_URL, HOME_URL, ICONS_URL } from 'consts';
 
 const Content = styled.div``;
 
@@ -31,6 +31,7 @@ function App() {
               <Switch>
                 <Route exact path={HOME_URL} component={Home} />
                 <Route path={PASSPORT_INFO_URL} component={Passport} />
+                <Route path={ICONS_URL} component={Icons} />
                 <Route component={NotFound} />
               </Switch>
             </Content>

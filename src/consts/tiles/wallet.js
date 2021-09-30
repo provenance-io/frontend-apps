@@ -1,4 +1,4 @@
-import { FIGURE_DASHBOARD_URL, PROVENANCE_CREATE_WALLET_URL } from '../urls';
+import { FIGURE_DASHBOARD_URL, PROVENANCE_CREATE_WALLET_URL, PROVENANCE_WALLET_URL } from '../urls';
 
 export const wallet = {
   active: true,
@@ -6,7 +6,7 @@ export const wallet = {
   complete: ['wallet'],
   title: 'View Wallet',
   content: 'Visit Figure Dashboard to view your wallet in detail.',
-  url: FIGURE_DASHBOARD_URL,
+  url: { figure: FIGURE_DASHBOARD_URL, provenance: PROVENANCE_WALLET_URL },
   incomplete: {
     title: 'Create a Wallet',
     content: 'Create a new wallet and get started.',

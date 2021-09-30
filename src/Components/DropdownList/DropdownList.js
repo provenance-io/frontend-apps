@@ -1,13 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { dropdownItems } from 'consts';
+import { dropdownItems, breakpoints } from 'consts';
+import { Sprite } from 'Components';
 
 const DropdownListContainer = styled.div`
   padding: 0px 12px;
   background: ${({ theme }) => theme.BLUE_MUTED_DARK };
   width: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   border-radius: 4px;
+  @media ${breakpoints.down('sm')} {
+    width: 100%;
+  }
 `;
 
 const Dropdown = styled.select`
@@ -20,16 +27,17 @@ const Dropdown = styled.select`
   text-transform: uppercase;
   letter-spacing: 0.24rem;
   font-size: 1.2rem;
+  -webkit-appearance: none;
 `;
-const DropdownOption = styled.option``;
 
 const DropdownList = ({ className, onChange, value }) => (
   <DropdownListContainer className={className}>
     <Dropdown onChange={onChange} value={value}>
       {dropdownItems.map(item => (
-        <DropdownOption key={item} value={item}>{item}</DropdownOption>
+        <option key={item} value={item}>{item}</option>
       ))}
     </Dropdown>
+    <Sprite icon="CARET" size="1.3rem" />
   </DropdownListContainer>
 );
 

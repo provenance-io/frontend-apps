@@ -163,12 +163,14 @@ const HelpIcon = styled.a`
 const Tile = ({ className, tileName }) => {
   const [hasPermission, setHasPermission] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
-  const { permissions } = useWallet();
+  const { permissions, walletType } = useWallet();
   const data = allTiles[tileName];
-  const { complete = [], requires = [], active, icon, help } = data;
+  const { complete = [], requires = [], active, icon } = data;
   // If not yet completed, override the url, content, and title from incomplete
   const finalData = isComplete ? data : {...data, ...data.incomplete}
-  const { url, content, title } = finalData;
+  const { url, content, title, help } = finalData;
+  // Check to see if the URL depends on the wallet (will be an object - todo- clean this up)
+  const walletBasedURL = typeof url === 'object' && !Array.isArray(url) && url !== null;
   // Check permissions on each render
   useEffect(() => {
     let permissionMissing = false;
@@ -217,7 +219,7 @@ const Tile = ({ className, tileName }) => {
           </StarContent>
         </StarContainer>
       )}
-      {hasPermission && active && <TileCover href={url} />}
+      {hasPermission && active && <TileCover href={walletBasedURL ? url[walletType.toLowerCase()] : url} />}
       <TileTop hasPermission={hasPermission}>
         <TileIcon src={`${process.env.PUBLIC_URL}/assets/images/tileIcons/${icon}.svg`} alt={`${title} icon`} />
       </TileTop>

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { breakpoints } from 'consts';
 import { default as BaseSprite } from '../Sprite';
 import { default as BaseMenuItem } from './MenuItem';
-import { default as BaseDropdownList } from '../DropdownList';
+import DropdownList from '../DropdownList';
 import MenuLine from './MenuLine';
 import logo from './logo.svg';
 
@@ -99,11 +99,6 @@ const Sprite = styled(BaseSprite)`
   position: absolute;
   top: 30px;
   right: 15px;
-`;
-const DropdownList = styled(BaseDropdownList)`
-  @media ${breakpoints.down('sm')} {
-    width: 100%;
-  }
 `;
 
 const MenuTablet = ({ className }) => {
