@@ -3,54 +3,60 @@
 // Note: Not every variant will be getting used and these are mainly a guideline, we shouldn't need more than 7 of each generic color
 
 export const allColors = {
+  // -------------
   // Transparent
+  // -------------
   TRANSPARENT: 'rgba(0,0,0,0)',
+  // -------------
   // White
+  // -------------
   WHITE: '#FFFFFF',
+  WHITE20: 'rgba(255, 255, 255, 0.20)',
+  // -------------
   // Black
+  // -------------
   BLACK: '#000000',
-  BLACK30: '#00000076',
-  // Gray
-  GRAY_LIGHTEST: '#EEEEEE',
-  GRAY_LIGHTER: '#DADADA',
-  GRAY_LIGHT: '#9EAAC7',
-  GRAY_PRIMARY: '#383E55',
-  GRAY_DARK: '#32384d',
-  GRAY_DARKER: '#191C27',
-  GRAY_DARKEST: '#141821',
-  // Red
-  RED_LIGHTEST: '#FFAFAF',
-  RED_LIGHTER: '#FF9F72',
-  RED_LIGHT: '#FF7F56',
-  RED_PRIMARY: '#FF5E3B',
-  RED_DARK: '#FD3A1F',
-  RED_DARKER: '#D90000',
-  RED_DARKEST: '#A90000',
-  // Green
-  GREEN_LIGHTEST: '#80F33F',
-  GREEN_LIGHTER: '#89BE7E',
-  GREEN_LIGHT: '#63975A',
-  GREEN_PRIMARY: '#3F7237',
-  GREEN_DARK: '#1A4E17',
-  GREEN_DARKER: '#002D00',
-  GREEN_DARKEST: '#001D00',
-  // Blue
-  BLUE_LIGHTEST: '#b6d0fe',
-  BLUE_LIGHTER: '#92b9fe',
-  BLUE_LIGHT: '#6da1fd',
-  BLUE_PRIMARY: '#498AFD',
-  BLUE_DARK: '#3a6eca',
-  BLUE_DARKER: '#2c5398',
-  BLUE_DARKEST: '#1d3765',
-  // Yellow
-  YELLOW_LIGHTEST: '#FFF67A',
-  YELLOW_LIGHTER: '#F4F27D',
-  YELLOW_LIGHT: '#ffde5d',
-  YELLOW_PRIMARY: '#FEC82A',
-  YELLOW_DARK: '#ffb90f',
-  YELLOW_DARKER: '#2E3200',
-  YELLOW_DARKEST: '#1A2100',
-  // Purple
-  PURPLE_PRIMARY: '#42368e',
-  PURPLE_DARK: '#2d2d2d',
+  BLACK95: 'rgba(0,0,0, 0.95)',
+  BLACK50: 'rgba(0,0,0, 0.50)',
+  BLACK30: 'rgba(0,0,0, 0.30)',
+  BLACK25: 'rgba(0,0,0, 0.25)',
+  BLACK13: 'rgba(0,0,0, 0.13)',
+  BLACK10: 'rgba(0,0,0, 0.10)',
+  // -------------
+  // Grey
+  // -------------
+  GREY_LIGHTEST: '#F9F9F9', // [Unnamed in designs]
+  GREY_LIGHTER: '#F0F2F8', // Dark Grey
+  // GREY_LIGHT: '#000000', // [TBD]
+  GREY_PRIMARY: '#1F222E', // Midnight
+  GREY_DARK: '#191C27', // Background
+  GREY_DARKER: '#141821', // [Unnamed in designs]
+  GREY_DARKEST: '#131721', // [Unnamed in designs]
+  // -------------
+  // Blue Color
+  // -------------
+  // BLUE_LIGHTEST: '#000000', // [TBD]
+  // BLUE_LIGHTER: '#000000', // [TBD]
+  // BLUE_LIGHT: '#000000', // [TBD]
+  BLUE_PRIMARY: '#498AFD', // [Custom Link Blue]
+  // BLUE_DARK: '#000000', // [TBD]
+  // BLUE_DARKER: '#000000', // [TBD]
+  // BLUE_DARKEST: '#000000', // [TBD]
+  // -------------
+  // Blue Muted
+  // -------------
+  // BLUE_MUTED_LIGHTEST: '#000000', // [TBD]
+  // BLUE_MUTED_LIGHTER: '#000000', // [TBD]
+  BLUE_MUTED_LIGHT: '#C8D4F1', // Sky
+  BLUE_MUTED_PRIMARY: '#9EAAC7', // Light Grey
+  BLUE_MUTED_DARK: '#39456B', // Steel
+  BLUE_MUTED_DARKER: '#383E55', // Grey
+  BLUE_MUTED_DARKEST: '#292D3E', // Dark Grey
+
+
+  // Test colors:
+  RED: 'red',
+  GREEN: 'green',
+  BLUE: 'pink',
+  YELLOW: 'yellow',
 };

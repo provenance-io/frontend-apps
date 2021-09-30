@@ -20,11 +20,12 @@ export const removeFromSessionStorage = values => {
 
 // Get one or more values from sessionStorage
 export const getFromSessionStorage = items => {
-  const getFromSession = item => {
-    window.sessionStorage.getItem(item);
-  };
-  const multiItem = Array.isArray(items);
-  multiItem ? items.forEach(item => getFromSession(item)) : getFromSession(items);
+  const results = {};
+  // turn items into an array if it isn't one
+  const itemsArray = Array.isArray(items) ? items : [items];
+  // Look for the item in the current session, if found, add to results
+  itemsArray.forEach(item => results[item] = window.sessionStorage.getItem(item));
+  return results;
 };
 
 // Clear out all of the current sessionStorage

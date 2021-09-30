@@ -11,7 +11,7 @@ const CopyButton = styled.div`
   position: relative;
 `;
 const CopiedNotice = styled.div`
-  background: ${({ theme }) => theme.POPUP_BACKGROUND};
+  background: ${({ theme }) => theme.BLUE_MUTED_DARK};
   color: ${({ theme }) => theme.FONT_WHITE};
   position: absolute;
   padding: 8px;
@@ -55,7 +55,7 @@ const CopyValue = ({ value, className, size, icon, title, iconColor }) => {
       <Sprite size={size} icon={icon} color={iconColor} />
       {justCopied && (
         <CopiedNotice>
-          <Caret icon="CARET" size="1.8rem" flipY color="POPUP_BACKGROUND" />
+          <Caret icon="CARET" size="1.8rem" flipY color="BLUE_MUTED_DARK" />
           Copied!
         </CopiedNotice>
       )}

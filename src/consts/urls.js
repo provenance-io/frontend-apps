@@ -1,28 +1,26 @@
-// Use the override if it exists, if it doesn't get the value from the build
-const reactAppEnv = process.env.REACT_APP_ENV;
-// Determine current environment
-const isProd = reactAppEnv === 'production';
-const isTest = reactAppEnv === 'test';
-
-// -- Provenance.io Website
-export const PROVENANCE_WEBSITE_URL =
-  isProd ? process.env.REACT_APP_PROD_PROVENANCE_WEBSITE_URL : process.env.REACT_APP_TEST_PROVENANCE_WEBSITE_URL;
-
-// -- Wallet
-export const FIGURE_WALLET_URL = isProd ? process.env.REACT_APP_PROD_FIGURE_WALLET_URL : process.env.REACT_APP_TEST_FIGURE_WALLET_URL;
-export const PROVENANCE_WALLET_URL = isProd
-  ? process.env.REACT_APP_PROD_PROVENANCE_WALLET_URL
-  : process.env.REACT_APP_TEST_PROVENANCE_WALLET_URL;
-
-// -- Provenance Bridge
-export const PROVENANCE_BRIDGE_URL =
-  isProd ? process.env.REACT_APP_PROD_PROVENANCE_BRIDGE_URL :
-  isTest ? process.env.REACT_APP_TEST_PROVENANCE_BRIDGE_URL :
-  process.env.REACT_APP_LOCAL_PROVENANCE_BRIDGE_URL
-;
-// -------- Base Bridge URL
-const BRIDGE_API_URL =
-  isProd ? process.env.REACT_APP_PROD_BRIDGE_HOSTNAME : process.env.REACT_APP_TEST_BRIDGE_HOSTNAME;
-;
-// -------- Base Bridge URL
+// Provenance Bridge
+export const PROVENANCE_BRIDGE_URL = process.env.REACT_APP_PROVENANCE_BRIDGE_URL;
+export const BRIDGE_API_URL = process.env.REACT_APP_BRIDGE_API_URL;
 export const BRIDGE_WALLET_KYC_URL = `${BRIDGE_API_URL}/pb/name/attribute/passport/pb`;
+// Provenance.io
+export const PROVENANCE_WEBSITE_URL = process.env.REACT_APP_PROVENANCE_WEBSITE_URL;
+// Figure Dashboard
+export const FIGURE_DASHBOARD_URL = process.env.REACT_APP_FIGURE_DASHBOARD_URL;
+// Wallet Urls
+export const FIGURE_WALLET_URL = process.env.REACT_APP_FIGURE_WALLET_URL;
+export const PROVENANCE_WALLET_URL = process.env.REACT_APP_PROVENANCE_WALLET_URL;
+export const PROVENANCE_CREATE_WALLET_URL = process.env.REACT_APP_PROVENANCE_CREATE_WALLET_URL;
+export const WALLET_PERMISSION_URL = process.env.REACT_APP_WALLET_PERMISSION_URL;
+// Tile URLs
+export const ASSET_ONBOARDING_URL = process.env.REACT_APP_ASSET_ONBOARDING_URL;
+export const DLOB_URL = process.env.REACT_APP_DLOB_URL;
+export const DEPOSIT_MONEY_URL = process.env.REACT_APP_DEPOSIT_MONEY_URL;
+export const HOW_TO_STAKE_URL = process.env.REACT_APP_HOW_TO_STAKE_URL;
+export const EXPLORER_VALIDATORS_URL = process.env.REACT_APP_EXPLORER_VALIDATORS_URL;
+export const PROVENANCE_WALLET_INFO_URL = process.env.REACT_APP_PROVENANCE_WALLET_INFO_URL;
+export const PASSPORT_URL = process.env.REACT_APP_PASSPORT_URL;
+export const PASSPORT_UPGRADE_URL = process.env.REACT_APP_PASSPORT_UPGRADE_URL;
+export const DIGITAL_FUND_URL = process.env.REACT_APP_DIGITAL_FUND_URL;
+export const MARKETPLACE_BUYER_URL = process.env.REACT_APP_MARKETPLACE_BUYER_URL;
+export const SECONDARIES_URL = process.env.REACT_APP_SECONDARIES_URL;
+export const SECONDARIES_DEMO_URL = process.env.REACT_APP_SECONDARIES_DEMO_URL

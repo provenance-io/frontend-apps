@@ -37,6 +37,11 @@ const SpriteSheet = () => (
         <path d="M10 9.5V14.5" stroke="currentColor" />
       </svg>
     </g>
+    <g id={ICON_NAMES.ARROW}>
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 22 16">
+        <path stroke="currentColor" strokeWidth="1.4" d="m14 1 7 7-7 7M21 8H0"/>
+      </svg>
+    </g>
     <g id={ICON_NAMES.BACK_ARROW}>
       <svg viewBox="0 0 40 40" fill="none">
         <path d="M28 5L13 20L28 35" stroke="currentColor" strokeWidth="10%" />
@@ -54,11 +59,11 @@ const SpriteSheet = () => (
     </g>
     <g id={ICON_NAMES.CHEVRON}>
       <svg viewBox="0 0 7 10" fill="none" stroke="currentColor">
-        <path d="M5.81818 1L2 5L5.81818 9" strokeWidth="2" />
+        <path d="M5.81818 1L2 5L5.81818 9" strokeWidth="1" />
       </svg>
     </g>
     <g id={ICON_NAMES.CLOSE}>
-      <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" strokeWidth="2">
+      <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" strokeWidth="1">
         <path d="M8.99984 1L5.09375 5L8.99984 9" />
         <path d="M1.00016 1L4.90625 5L1.00016 9" />
       </svg>
@@ -239,7 +244,17 @@ const SpriteSheet = () => (
         <path stroke="currentColor" d="M1.27 2.4l1.86 2 3.74-4"/>
       </svg>
     </g>
+    <g id={ICON_NAMES.CIRCLE_ARROW}>
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 65 65">
+        <path stroke="currentColor" strokeWidth="4" d="M29 46l10-13-10-14m4 44a30 30 0 11-1-61 30 30 0 011 61z"/>
+      </svg>
+    </g>
   </Svg>
 );
 
 export default SpriteSheet;
+
+
+
+
+

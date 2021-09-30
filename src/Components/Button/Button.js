@@ -4,68 +4,30 @@ import PropTypes from 'prop-types';
 import Sprite from 'Components/Sprite';
 
 const StyledButton = styled.button`
-  text-align: left;
-  display: flex;
   ${({ width }) => width && `flex-basis: ${width};` }
   align-items: center;
-  justify-content: center;
-  color: ${({ theme }) => theme.BUTTON_FONT};
+  color: ${({ theme }) => theme.BUTTON_COLOR };
+  background: ${({ theme }) => theme.BUTTON_BG };
   border-radius: 4px;
-  font-size: 1.4rem;
-  padding: 14px 20px;
+  border: 1px solid ${({ theme }) => theme.BUTTON_BORDER };
   cursor: ${({ disabled }) => disabled ? 'not-allowed' : 'pointer' };
+  display: flex;
+  font-size: 1.4rem;
+  justify-content: center;
   letter-spacing: 0.07rem;
-  font-family: ${({ theme }) => theme.PRIMARY_FONT_FAMILY };
-  transition: 250ms all linear;
+  padding: 14px 20px;
+  transition: 250ms all;
   user-select: none;
-  /* PRIMARY VS SECONDARY BUTTON VS OTHER COLOR (SECONDARY IS JUST AN OUTLINE) */
-  ${({ theme, color }) => {
-    switch(color) {
-      case 'PRIMARY':
-        return `
-          border: none;
-          background: ${theme.BUTTON_BACKGROUND}};
-          color: ${theme.BUTTON_FONT_PRIMARY};
-          &:focus { background: ${theme.BUTTON_FOCUS}; }
-          &:hover { background: ${theme.BUTTON_HOVER}; }
-          &:active {background: ${theme.BUTTON_ACTIVE}; }
-          &:disabled {
-            background: ${theme.BUTTON_DISABLED}};
-            color: ${theme.BUTTON_FONT_PRIMARY_DISABLED };
-          }
-        `;
-      case 'SECONDARY':
-        return `
-          border: 1px solid ${theme.BUTTON_BORDER}};
-          background: ${theme.TRANSPARENT};
-          color: ${theme.BUTTON_FONT_SECONDARY};
-          &:focus { border-color: ${theme.BUTTON_FOCUS}; }
-          &:hover { border-color: ${theme.BUTTON_HOVER}; }
-          &:active { border-color: ${theme.BUTTON_ACTIVE}; }
-          &:disabled {
-            border-color: ${theme.BUTTON_DISABLED };
-            color: ${theme.BUTTON_FONT_SECONDARY_DISABLED };
-          }
-        `;
-      default: return `
-          border: none;
-          background: ${theme[color]}};
-          &:focus { background: ${theme[`${color}_DARK`]} }; }
-          &:hover { background: ${theme[`${color}_DARK`]} }; }
-          &:active {background: ${theme[`${color}_DARK`]} }; }
-          &:disabled {
-            border-color: ${theme.BUTTON_DISABLED };
-            color: ${theme.BUTTON_FONT_PRIMARY_DISABLED };
-          }
-      `;
-    }
-  }}
+  &:hover {
+    background: ${({ theme }) => theme.BUTTON_HOVER };
+    border: 1px solid ${({ theme }) => theme.BUTTON_BORDER_HOVER };
+  }
 `;
 const ButtonContent = styled.div`
   font-size: 1.4rem;
 `;
 const ButtonIcon = styled.div`
-  margin-left: 10px;
+  margin-right: 10px;
   display: flex;
 `;
 
@@ -90,12 +52,12 @@ const Button = ({ className, color, icon, iconSize, iconColor, iconOptions, onCl
       disabled={disabled}
       width={width}
     >
-      <ButtonContent>{children}</ButtonContent>
       {icon && (
         <ButtonIcon>
           <Sprite {...iconOptions} icon={icon} size={iconSize} color={iconColor} />
         </ButtonIcon>
       )}
+      <ButtonContent>{children}</ButtonContent>
     </StyledButton>
   );
 };

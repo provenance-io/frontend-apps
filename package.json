@@ -1,6 +1,6 @@
 {
   "name": "frontend-apps",
-  "version": "0.1.2",
+  "version": "1.0.0",
   "license": "Apache-2.0",
   "private": false,
   "dependencies": {
@@ -9,6 +9,7 @@
     "base64url": "3.0.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-helmet": "6.1.0",
     "react-redux": "7.2.4",
     "react-router": "5.2.0",
     "react-router-dom": "5.2.0",
@@ -20,7 +21,7 @@
   },
   "devDependencies": {
     "babel-eslint": "10.1.0",
-    "colors": "1.4.0",
+    "env-cmd": "10.1.0",
     "eslint": "7.27.0",
     "eslint-config-prettier": "8.3.0",
     "eslint-config-react-app": "6.0.0",
@@ -29,22 +30,19 @@
     "eslint-plugin-prettier": "3.4.0",
     "eslint-plugin-react": "7.24.0",
     "eslint-plugin-react-hooks": "4.2.0",
-    "fs-extra": "10.0.0",
-    "inquirer": "8.1.2",
     "prettier": "2.3.0",
     "react-scripts": "4.0.3"
   },
   "scripts": {
     "start": "npm run start:local",
-    "start:local": "REACT_APP_ENV=local PORT=3006 react-scripts start",
-    "start:test": "REACT_APP_ENV=test PORT=3006 react-scripts start",
-    "start:prod": "REACT_APP_ENV=production PORT=3006 react-scripts start",
+    "start:local": "PORT=3006 env-cmd -e default react-scripts start",
+    "start:staging": "PORT=3006 env-cmd -e default,staging react-scripts start",
+    "start:production": "PORT=3006 env-cmd -e default,production react-scripts start",
     "build": "react-scripts build",
-    "build:production": "npm run build",
-    "build:staging": "REACT_APP_ENV=test npm run build",
+    "build:staging": "env-cmd -e default,staging npm run build",
+    "build:production": "env-cmd -e default,production npm run build",
     "test": "",
-    "eject": "react-scripts eject",
-    "script:component": "node scripts/createComponent/createComponent.js"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [

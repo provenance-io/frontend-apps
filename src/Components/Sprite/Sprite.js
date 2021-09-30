@@ -51,7 +51,7 @@ Sprite.defaultProps = {
   flipX: false,
   flipY: false,
   height: null,
-  secondaryColor: 'WHITE',
+  secondaryColor: 'ICON_PRIMARY',
   size: '100%',
   spin: 0,
   width: null,
