@@ -39,14 +39,14 @@ module.exports = {
     // App settings
     REACT_APP_ENV: "production",
     // Provenance Bridge
-    REACT_APP_PROVENANCE_BRIDGE_URL: "http://figure.com/bridge",
-    REACT_APP_BRIDGE_API_URL: "https://figure.com/btcrelayer/secured/api/v1",
+    REACT_APP_PROVENANCE_BRIDGE_URL: "http://www.figure.com/bridge",
+    REACT_APP_BRIDGE_API_URL: "https://www.figure.com/btcrelayer/secured/api/v1",
     // Provenance.io
     REACT_APP_PROVENANCE_WEBSITE_URL: "https://provenance.io",
     // Figure Dashboard
-    REACT_APP_FIGURE_DASHBOARD_URL: "https://figure.com/dashboard",
+    REACT_APP_FIGURE_DASHBOARD_URL: "https://www.figure.com/dashboard",
     // Wallet Urls
-    REACT_APP_FIGURE_WALLET_URL: "https://figure.com/dashboard",
+    REACT_APP_FIGURE_WALLET_URL: "https://www.figure.com/dashboard",
     REACT_APP_PROVENANCE_WALLET_URL: "https://wallet.provenance.io",
     REACT_APP_WALLET_PERMISSION_URL: "https://api.provenance.io/provenance/attribute/v1/attributes",
     // Tile URLs
