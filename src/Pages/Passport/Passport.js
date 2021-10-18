@@ -92,7 +92,7 @@ const Passport = () => {
           </StepTxt>
           <StepImg src={`${process.env.PUBLIC_URL}/assets/images/passportSteps/step6.webp`} alt="Passport Step 6" />
         </StepRow>
-        <ButtonLink to="/">Return to Applications</ButtonLink>
+        <ButtonLink to="/">Return to dApplications</ButtonLink>
       </Content>
     </Wrapper>
   );
