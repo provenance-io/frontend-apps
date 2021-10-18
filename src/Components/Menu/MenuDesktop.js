@@ -42,6 +42,9 @@ const MenuLogo = styled.div`
 const LogoTitle = styled.h1`
   line-height: 1.4rem;
 `;
+const LowerCase = styled.span`
+  text-transform: lowercase;
+`;
 const MenuItems = styled.div``;
 const MenuSection = styled.div`
   position: relative;
@@ -92,7 +95,7 @@ const MenuDesktop = ({ className }) => (
       <MenuHeader>
         <MenuLogo onClick={() => { window.scrollTo({top: 0, behavior: 'smooth'}) }}>
           <Logo src={logo} />
-          <LogoTitle>Provenance dApplications</LogoTitle>
+          <LogoTitle>Provenance <LowerCase>d</LowerCase>Applications</LogoTitle>
           {process.env.REACT_APP_ENV !== 'production' && (
             <>
               <TestnetMessage>TESTNET</TestnetMessage>
