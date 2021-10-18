@@ -1,4 +1,4 @@
-# Provenance Frontend Applications
+# Provenance Frontend dApplications
 
 ## Startup Commands
   `npm start` - Start the app locally on port 3000 (Should open automatically, but you can manually visit http://localhost:3006/)
