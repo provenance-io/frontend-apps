@@ -30,6 +30,7 @@ module.exports = {
     REACT_APP_MARKETPLACE_BUYER_URL: "https://test.figure.com/marketplace/buyer",
     REACT_APP_SECONDARIES_URL: "https://test.figure.com/equity-solutions/secondaries/",
     REACT_APP_SECONDARIES_DEMO_URL: "https://test.figure.com/equity-solutions/secondaries/demo/",
+    REACT_APP_ZORRO_URL: "https://www.zorrosign.com"
   },
   staging: {
     // App settings
@@ -60,5 +61,6 @@ module.exports = {
     REACT_APP_MARKETPLACE_BUYER_URL: "https://www.figure.com/marketplace/buyer",
     REACT_APP_SECONDARIES_URL: "https://www.figure.com/equity-solutions/secondaries/",
     REACT_APP_SECONDARIES_DEMO_URL: "https://www.figure.com/equity-solutions/secondaries/demo/",
+    REACT_APP_ZORRO_URL: "https://www.zorrosign.com"
   },
 };

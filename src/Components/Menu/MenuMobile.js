@@ -107,7 +107,7 @@ const Sprite = styled(BaseSprite)`
 const MenuTablet = ({ className }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownValue, setDropdownValue] = useState('wallet');
-  
+
   const toggleMenu = () => {
     const bodyElement = document.getElementsByTagName('body')[0];
     // If the menu is open, add a max-height and overflow hidden to the body (no scrolling past open menu)
@@ -184,6 +184,11 @@ const MenuTablet = ({ className }) => {
             <MenuItem tileName="purchaseHash" onClick={() => menuItemClick('hash')} />
             <MenuItem tileName="delegateHash" onClick={() => menuItemClick('hash')} />
             <MenuItem tileName="transferHash" onClick={() => menuItemClick('hash')} />
+          </MenuSection>
+          <MenuSection indent="30">
+            <MenuLine length="14" top="3" left="-24" direction="left" />
+            <SectionTitle>Document Management</SectionTitle>
+            <MenuItem tileName="ZorroSign" onClick={() => menuItemClick('documents')} />
           </MenuSection>
           <MenuSection indent="30">
             <MenuLine length="153" top="3" left="-10" />

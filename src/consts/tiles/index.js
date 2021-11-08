@@ -11,3 +11,4 @@ export * from './tokenizeNFT';
 export * from './tradeATS';
 export * from './transferHash';
 export * from './updatePassport';
+export * from './zorrosign';
