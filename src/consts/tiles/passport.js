@@ -2,7 +2,7 @@ import { PASSPORT_URL } from '../urls';
 
 export const passport = {
   active: true,
-  icon: 'documents',
+  icon: 'documents.svg',
   requires: ['wallet'],
   complete: ['passport'],
   title: 'View Passport',

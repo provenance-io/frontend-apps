@@ -221,7 +221,7 @@ const Tile = ({ className, tileName }) => {
       )}
       {hasPermission && active && <TileCover href={walletBasedURL ? url[walletType.toLowerCase()] : url} />}
       <TileTop hasPermission={hasPermission}>
-        <TileIcon src={`${process.env.PUBLIC_URL}/assets/images/tileIcons/${icon}.svg`} alt={`${title} icon`} />
+        <TileIcon src={`${process.env.PUBLIC_URL}/assets/images/tileIcons/${icon}`} alt={`${title} icon`} />
       </TileTop>
       <TileBottom>
           <BottomTextContainer>
