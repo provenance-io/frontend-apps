@@ -200,7 +200,7 @@ const Tile = ({ className, tileName }) => {
       const { icon: reqIcon } = allTiles[name];
       return (
         <RequireIcon
-          src={`${process.env.PUBLIC_URL}/assets/images/reqIcons/${reqIcon}.svg`}
+          src={`${process.env.PUBLIC_URL}/assets/images/reqIcons/${reqIcon}`}
           alt={`Requires ${name}`}
           title={`Requires ${name}`}
           key={name}
