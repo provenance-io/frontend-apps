@@ -160,6 +160,12 @@ const Home = () => {
               <Tile tileName='bridgeETH' />
             </TileRowContent>
           </TileRow>
+          <TileRow>
+            <TileRowContent>
+              <RowTitle id="documents">Document Management</RowTitle>
+              <Tile tileName='zorrosign'/>
+            </TileRowContent>
+          </TileRow>
         </TileContainer>
       </HomeContainer>
     </Wrapper>
