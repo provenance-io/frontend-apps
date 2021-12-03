@@ -2,7 +2,7 @@ import { FIGURE_DASHBOARD_URL } from '../urls';
 
 export const bridgeETH = {
   active: false,
-  icon: 'bridgeEth',
+  icon: 'bridgeEth.svg',
   requires: ['wallet', 'passport'],
   complete: ['isKYC'],
   title: 'Access ETH Bridge',

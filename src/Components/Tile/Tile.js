@@ -200,7 +200,7 @@ const Tile = ({ className, tileName }) => {
       const { icon: reqIcon } = allTiles[name];
       return (
         <RequireIcon
-          src={`${process.env.PUBLIC_URL}/assets/images/reqIcons/${reqIcon}.svg`}
+          src={`${process.env.PUBLIC_URL}/assets/images/reqIcons/${reqIcon}`}
           alt={`Requires ${name}`}
           title={`Requires ${name}`}
           key={name}
@@ -221,7 +221,7 @@ const Tile = ({ className, tileName }) => {
       )}
       {hasPermission && active && <TileCover href={walletBasedURL ? url[walletType.toLowerCase()] : url} />}
       <TileTop hasPermission={hasPermission}>
-        <TileIcon src={`${process.env.PUBLIC_URL}/assets/images/tileIcons/${icon}.svg`} alt={`${title} icon`} />
+        <TileIcon src={`${process.env.PUBLIC_URL}/assets/images/tileIcons/${icon}`} alt={`${title} icon`} />
       </TileTop>
       <TileBottom>
           <BottomTextContainer>
